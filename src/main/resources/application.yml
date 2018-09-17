@@ -1,4 +1,4 @@
-#http://localhost:8000/search/book
+#http://localhost:8000/search
 server:
   port: 8000
   context-path: /search

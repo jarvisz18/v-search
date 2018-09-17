@@ -4,6 +4,7 @@ import cn.ixan.search.domain.User;
 import cn.ixan.search.domain.UserExample;
 import cn.ixan.search.mapper.UserMapper;
 import cn.ixan.search.service.UserService;
+import com.github.pagehelper.PageHelper;
 import io.searchbox.client.JestClient;
 import io.searchbox.core.Bulk;
 import io.searchbox.core.BulkResult;
@@ -47,5 +48,56 @@ public class UserServiceImpl implements UserService {
 			log.error("执行批量操作发生异常",e);
 		}
 		return result;
+	}
+
+	/**
+	 * 查询所有用户信息
+	 * @return
+	 */
+	@Override
+	public List<User> findAll(Integer pageNum,Integer pageSize) {
+		PageHelper.startPage(pageNum,pageSize);
+		return userMapper.selectByExample(new UserExample());
+	}
+
+	/**
+	 * 添加用户信息
+	 *
+	 * @param user
+	 */
+	@Override
+	public void insertByUser(User user) {
+
+	}
+
+	/**
+	 * 根据主键查询用户信息
+	 *
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public Object findById(Long id) {
+		return null;
+	}
+
+	/**
+	 * 修改用户信息
+	 *
+	 * @param user
+	 */
+	@Override
+	public void update(User user) {
+
+	}
+
+	/**
+	 * 删除用户信息
+	 *
+	 * @param id
+	 */
+	@Override
+	public void delete(Long id) {
+
 	}
 }
