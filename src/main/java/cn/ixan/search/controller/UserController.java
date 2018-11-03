@@ -3,9 +3,7 @@ package cn.ixan.search.controller;
 import cn.ixan.search.domain.User;
 import cn.ixan.search.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.omg.CORBA.INTERNAL;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,7 +31,9 @@ public class UserController {
 	@GetMapping("/list/{pageNum}/{pageSize}")
 	public List<User> getUserList(@PathVariable(value = "pageNum")Integer pageNum,
 	                              @PathVariable("pageSize")Integer pageSize) {
-		 return userService.listUser(pageNum, pageSize);
+		List<User> users = userService.listUser(pageNum, pageSize);
+		log.info("查询用户记录:[{}]",users.size());
+		return users;
 	}
 
 	/**

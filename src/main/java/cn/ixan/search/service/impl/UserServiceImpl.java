@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
 		PageHelper.startPage(pageNum,pageSize);
 		UserExample userExample = new UserExample();
 		List<User> users = userMapper.selectByExample(userExample);
-		log.info("查询到用户记录:[{}]",users.size());
+		log.info("查询到用户记录数:[{}]",users.size());
 		return users;
 	}
 

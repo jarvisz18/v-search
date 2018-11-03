@@ -5,10 +5,6 @@ mybatis:
   - classpath:mapper/*Mapper.xml
 
 spring:
-  #热部署
-  devtools:
-    restart:
-      enabled: false
   #elastic配置
   elasticsearch:
     jest:
