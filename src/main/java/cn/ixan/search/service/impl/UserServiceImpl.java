@@ -11,6 +11,7 @@ import io.searchbox.core.BulkResult;
 import io.searchbox.core.Index;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -18,6 +19,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * @author stack_zhang@outlook.com
+ */
 @Service
 @Slf4j
 public class UserServiceImpl implements UserService {
@@ -28,7 +32,7 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * 同步用户信息到ES库
-	 * @return
+	 * @return boolean
 	 */
 	@Override
 	public boolean syncUserInfo2ES() {
@@ -52,18 +56,21 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * 查询所有用户信息
-	 * @return
+	 * @return List<User>
 	 */
+	@Cacheable(value = "models")
 	@Override
-	public List<User> findAll(Integer pageNum,Integer pageSize) {
+	public List<User> listUser(Integer pageNum,Integer pageSize) {
 		PageHelper.startPage(pageNum,pageSize);
-		return userMapper.selectByExample(new UserExample());
+		UserExample userExample = new UserExample();
+		List<User> users = userMapper.selectByExample(userExample);
+		log.info("查询到用户记录:[{}]",users.size());
+		return users;
 	}
 
 	/**
 	 * 添加用户信息
-	 *
-	 * @param user
+	 * @param user 用户信息
 	 */
 	@Override
 	public void insertByUser(User user) {
@@ -72,19 +79,18 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * 根据主键查询用户信息
-	 *
-	 * @param id
-	 * @return
+	 * @param id 主键
+	 * @return User
 	 */
+	@Cacheable(value = "models")
 	@Override
-	public Object findById(Long id) {
-		return null;
+	public User findUserById(Integer id) {
+		return userMapper.selectByPrimaryKey(id);
 	}
 
 	/**
 	 * 修改用户信息
-	 *
-	 * @param user
+	 * @param user 用户信息
 	 */
 	@Override
 	public void update(User user) {
@@ -93,8 +99,7 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * 删除用户信息
-	 *
-	 * @param id
+	 * @param id 主键
 	 */
 	@Override
 	public void delete(Long id) {

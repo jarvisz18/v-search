@@ -4,6 +4,7 @@ import io.searchbox.annotations.JestId;
 
 /**
  * 学生实体类
+ * @author stack_zhang@outlook.com
  */
 public class User {
     /**

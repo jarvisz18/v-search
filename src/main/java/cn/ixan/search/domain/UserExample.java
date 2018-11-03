@@ -2,7 +2,9 @@ package cn.ixan.search.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author stack_zhang@outlook.com
+ */
 public class UserExample {
     protected String orderByClause;
 

@@ -6,6 +6,10 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
+/**
+ * @author stack_zhang@outlook.com
+ */
 @Repository
 public interface UserMapper {
     int countByExample(UserExample example);

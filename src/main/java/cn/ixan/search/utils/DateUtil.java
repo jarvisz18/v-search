@@ -1,14 +1,18 @@
 package cn.ixan.search.utils;
 
+import org.apache.commons.lang3.time.DateUtils;
+
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * 日期工具类
+ * 时间日期工具类,切勿重复造轮子
+ * @see DateUtils
+ * @author stack_zhang@outlook.com
  */
-public final class DateUtils {
+public class DateUtil extends DateUtils{
 
 	/**
 	 * 返回某段时间的所有日期
