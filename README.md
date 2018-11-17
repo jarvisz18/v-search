@@ -9,9 +9,10 @@
 
 #### 安装教程
 
-1. xxxx
-2. xxxx
-3. xxxx
+1. 启动启动类SearchApplication.java
+2. 进入v-search目录下,在终端(cmd窗口打开),使用 mvn spring-boot:run 命令启动
+3. 进入v-serahc目录下,在终端(cmd窗口打开),mvn install 安装,进入taget目录下,启动jar
+   使用命令 java -jar xxx.jar
 
 #### 使用说明
 
