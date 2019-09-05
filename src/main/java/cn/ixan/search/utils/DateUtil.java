@@ -20,7 +20,7 @@ public class DateUtil extends DateUtils{
 	}
 
 	public static long differentTimeByMills(Date dateBegin, Date dateEnd){
-		return (dateEnd.getTime()-dateBegin.getTime())/(1000*3600*24);
+		return (dateEnd.getTime()-dateBegin.getTime())/(1000*3600*24L);
 	}
 
 }

@@ -6,13 +6,19 @@ spring:
     name: v-search
   profiles:
     active: dev
+  resources:
+    static-locations: classpath:/static,classpath:/public,classpath:/templates,classpath:/resources,classpath:/META-INF/resources
+    cache-period: 31536000
+    chain:
+      cache: true
 
 #查看自动配置报告
 debug: true
+
 
 #配置日志
 logging:
   config: classpath:logback-spring.xml
   level:
-    cn.ixan.boot.mapper: debug
+    cn.ixan.search.mapper: debug
 

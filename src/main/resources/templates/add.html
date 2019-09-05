@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${userModel.title}"></title>
+    <!--引入外部的css文件-->
+    <link rel="stylesheet" href="./css/index.css" />
+    <!--引入外部的js文件-->
+    <script type="text/javascript" src="./js/index.js" ></script>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}">...</div>
+<div th:text="${userModel.title}"></div>
+<form action="/search/users/add" method="post" th:object="${userModel.user}">
+    <input type="hidden" name="userId" th:value="*{userId}">
+    名字:
+    <input type="text" name="userName" th:value="*{userName}">
+    电话:
+    <input type="text" name="phone" th:value="*{phone}">
+    性别:
+    <input type="text" name="sex" th:value="*{sex}">
+    <br>
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>
