@@ -16,6 +16,8 @@ import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author stack_zhang@outlook.com
@@ -91,15 +93,16 @@ public class DataSourceProperties {
 	@ConditionalOnMissingBean
 	public ServletRegistrationBean druidServletRegistrationBean() {
 		ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
+		Map<String,String> initParameters = new HashMap<>();
 		//白名单
-		servletRegistrationBean.addInitParameter("allow", "");
+		initParameters.put("allow", "");
 		//黑名单
-		//servletRegistrationBean.addInitParameter("deny","192.168.0.9");
-		//超级管理员 用户名 密码
-		servletRegistrationBean.addInitParameter("loginUsername", "admin");
-		servletRegistrationBean.addInitParameter("loginPassword", "admin");
+		initParameters.put("deny","");
+		initParameters.put("loginUsername", "admin");
+		initParameters.put("loginPassword", "admin");
 		//是否能够重置数据  禁用HTML的 reset all 功能
-		servletRegistrationBean.addInitParameter("resetEnable","false");
+		initParameters.put("resetEnable","false");
+		servletRegistrationBean.setInitParameters(initParameters);
 		return servletRegistrationBean;
 	}
 
