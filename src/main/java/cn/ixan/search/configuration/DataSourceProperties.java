@@ -47,14 +47,13 @@ public class DataSourceProperties {
 	private String connectProperties;
 	private String publicKey;
 
-	// TODO: 19-9-8 如何配置druid自动解密
 	@Primary
 	@Bean(name = "dataSource")
 	public DataSource dataSource() {
 		DruidDataSource datasource = new DruidDataSource();
 		datasource.setUrl(url);
 		datasource.setUsername(username);
-		datasource.setPassword(db_decrypt_test());
+		datasource.setPassword(password);
 		datasource.setDriverClassName(driverClassName);
 		datasource.setInitialSize(initialSize);
 		datasource.setMinIdle(minIdle);
@@ -69,7 +68,7 @@ public class DataSourceProperties {
 		datasource.setPoolPreparedStatements(poolPreparedStatements);
 		datasource.setMaxPoolPreparedStatementPerConnectionSize(maxPoolPreparedStatementPerConnectionSize);
 		//${spring.datasource.druid.publicKey}占位,publicKey要真实存在
-		//datasource.setConnectionProperties(connectProperties);
+		datasource.setConnectionProperties(connectProperties);
 		try {
 			datasource.setFilters(filters);
 		} catch (SQLException e) {
