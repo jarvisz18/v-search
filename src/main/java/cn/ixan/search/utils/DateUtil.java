@@ -4,6 +4,8 @@ import org.apache.commons.lang3.time.DateUtils;
 
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -23,4 +25,8 @@ public class DateUtil extends DateUtils{
 		return (dateEnd.getTime()-dateBegin.getTime())/(1000*3600*24L);
 	}
 
+	public static String currentTime() {
+		LocalDateTime localDateTime = LocalDateTime.now();
+		return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+	}
 }

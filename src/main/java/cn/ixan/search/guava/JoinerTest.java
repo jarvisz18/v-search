@@ -5,7 +5,17 @@ import com.google.common.primitives.Ints;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.List;
+
 public class JoinerTest {
+
+    @Test
+    public void joinTestThree(){
+        int[] numbers = {1,2,3,4,5};
+        List<Integer> parts = Ints.asList(numbers);
+        String join = Joiner.on(",").join(parts);
+        Assert.assertEquals("1,2,3,4,5",join);
+    }
 
     @Test
     public void joinTestTwo(){

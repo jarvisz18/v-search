@@ -8,7 +8,7 @@ spring:
   #elastic配置
   elasticsearch:
     jest:
-      uris: http://192.168.137.128:9200
+      uris: http://127.0.0.1:9200
       read-timeout: 6000
   #数据库配置
   datasource:
@@ -21,7 +21,7 @@ spring:
         filters: config,stat,wall,log4j
         driver-class-name: com.mysql.jdbc.Driver
         #基本属性
-        url: jdbc:mysql://127.0.0.1:3306/mytest?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+        url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
         username: root
         #加密方式:java -cp druid-1.1.13.jar com.alibaba.druid.filter.config.ConfigTools your password
         password: OgRtWKt+Ws20nzDSncwwpBhooYwmUJZ1QNdCoURubMnyY/nrd21sJCLAy1XBpJTGqM4czdE7zMdOdV1EpC4w1Q==

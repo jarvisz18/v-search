@@ -1,5 +1,5 @@
 server:
-  port: 8000
+  port: 9087
   context-path: /search
 spring:
   application:
