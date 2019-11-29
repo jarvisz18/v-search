@@ -9,7 +9,11 @@ import io.searchbox.client.JestClient;
 import io.searchbox.client.JestResult;
 import io.searchbox.core.*;
 import io.searchbox.params.Parameters;
+import org.apache.ibatis.session.ExecutorType;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.assertj.core.util.Lists;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +32,8 @@ public class ShakespeareServiceImpl implements ShakespeareService{
     private JestClient jestClient;
     @Autowired
     private ShakespeareMapper shakespeareMapper;
+    @Autowired
+    private SqlSessionTemplate sqlSessionTemplate;
 
     @Override
     public boolean clean() {
@@ -136,7 +142,7 @@ public class ShakespeareServiceImpl implements ShakespeareService{
                 log.info("索引[{}]存在[{}]条数据",Constant.SHAKES_PEARE_INDEX,total);
                 List<SearchResult.Hit<Shakespeare, Void>> hits = execute.getHits(Shakespeare.class);
                 list = hits.stream().map(e -> e.source).collect(Collectors.toList());
-                count += save(list);
+                count += inserBatch(list);
                 list.clear();
                 //获取scroll_id
                 String scroll_id = execute.getJsonObject().get(Constant.SCROLL_ID).getAsString();
@@ -144,15 +150,13 @@ public class ShakespeareServiceImpl implements ShakespeareService{
                 log.info("当前scroll_id长度为:[{}]",scroll_id.length());
                 while (true){
                     SearchScroll build = new SearchScroll.Builder(scroll_id, Constant.SCROLL_TIME).build();
-                    String restMethodName = build.getRestMethodName();
-                    log.info("请求方式:[{}]",restMethodName);
                     JestResult result = jestClient.execute(build);
                     List<Shakespeare> source = result.getSourceAsObjectList(Shakespeare.class);
                     if(CollectionUtils.isEmpty(source)){
                         break;
                     }
                     //插入操作
-                    count += save(source);
+                    count += inserBatch(source);
                 }
                 log.info("ES backup to Database success, data size is [{}]",count);
             }
@@ -197,6 +201,32 @@ public class ShakespeareServiceImpl implements ShakespeareService{
 
     private int save(List<Shakespeare> list) {
         list.forEach(e -> shakespeareMapper.save(e));
+        if(log.isDebugEnabled()){
+            log.debug("[{}]批量插入数据成功,插入数据[{}]条", DateUtil.currentTime(),list.size());
+        }
+        return list.size();
+    }
+
+    private int inserBatch(List<Shakespeare> list) {
+        final ShakespeareMapper mapper = sqlSessionTemplate.getMapper(ShakespeareMapper.class);
+        final SqlSessionFactory sqlSessionFactory = sqlSessionTemplate.getSqlSessionFactory();
+        final SqlSession session = sqlSessionFactory.openSession(ExecutorType.BATCH);
+        try {
+            for(Shakespeare shakespeare:list){
+                mapper.save(shakespeare);
+            }
+            if(log.isDebugEnabled()){
+                log.debug("[{}]批量插入数据成功,插入数据[{}]条", DateUtil.currentTime(),list.size());
+            }
+            session.commit();
+        } finally {
+            session.close();
+        }
+        return list.size();
+    }
+
+    private int addBatch(List<Shakespeare> list) {
+        shakespeareMapper.addBatch(list);
         if(log.isDebugEnabled()){
             log.debug("[{}]批量插入数据成功,插入数据[{}]条", DateUtil.currentTime(),list.size());
         }

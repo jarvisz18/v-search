@@ -9,6 +9,14 @@
         SELECT COUNT(*) FROM shakespeare
     </select>
 
+    <insert id="addBatch">
+        <foreach collection="list" item="s" separator=";">
+            INSERT INTO shakespeare(type,line_id,play_name,speech_number,line_number,speaker,text_entry)
+            VALUES
+            (#{s.type},#{s.line_id},#{s.play_name},#{s.speech_number},#{s.line_number},#{s.speaker},#{s.text_entry})
+        </foreach>
+    </insert>
+
     <insert id="save" parameterType="cn.ixan.search.domain.Shakespeare">
         INSERT INTO shakespeare(type,line_id,play_name,speech_number,line_number,speaker,text_entry)
         VALUES (#{type},#{line_id},#{play_name},#{speech_number},#{line_number},#{speaker},#{text_entry})

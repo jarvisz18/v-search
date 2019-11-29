@@ -11,6 +11,7 @@ public interface ShakespeareMapper {
     int total();
     List<Shakespeare> simpleQuery(@Param("from") int from, @Param("scrollSize") int scrollSize);
 
+    void addBatch(@Param("list") List<Shakespeare> list);
     void save(Shakespeare shakespeare);
 
 }

@@ -18,7 +18,7 @@ spring:
       druid:
         publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIQcKm1lQtx3CqgAh3jr0nCHq8Rhm8UlOuH+ft6Qgg9GJ7OT39qHRQATWsPJs4aqAGjmpQAwGi67E+RbhRBTcLECAwEAAQ==
         #监控统计拦截的filters
-        filters: config,stat,wall,log4j
+        filters: config,stat,log4j #wall
         driver-class-name: com.mysql.jdbc.Driver
         #基本属性
         url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true

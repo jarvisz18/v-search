@@ -4,6 +4,7 @@ import com.alibaba.druid.filter.config.ConfigTools;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import com.alibaba.druid.wall.WallConfig;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -115,5 +116,13 @@ public class DataSourceProperties {
 		filterRegistrationBean.addUrlPatterns("/*");
 		filterRegistrationBean.addInitParameter("exclusions","*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
 		return filterRegistrationBean;
+	}
+
+	@Bean
+	public WallConfig wallConfig(){
+		WallConfig wallConfig = new WallConfig();
+		wallConfig.setMultiStatementAllow(true);//允许一次执行多条语句
+		wallConfig.setNoneBaseStatementAllow(true);//允许一次执行多条语句
+		return wallConfig;
 	}
 }
