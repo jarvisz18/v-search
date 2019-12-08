@@ -1,9 +1,8 @@
-package cn.ixan.search.guava;
+package cn.ixan.search.test.guava;
 
 import com.google.common.base.Charsets;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
 import com.google.common.io.Files;
 import com.google.common.primitives.Ints;
 import org.junit.Test;
