@@ -1,3 +1,10 @@
+server:
+  port: 9087
+  context-path: /search
+  tomcat:
+    max-threads: 2000
+    max-connections: 200
+    min-spare-threads: 50
 #整合mybatis
 mybatis:
   config-location: classpath:config/sqlMapConfig.xml
@@ -8,8 +15,10 @@ spring:
   #elastic配置
   elasticsearch:
     jest:
-      uris: http://192.168.137.128:9200
+      uris: http://192.168.137.129:9200
       read-timeout: 6000
+      username: elastic
+      password: elastic
   #数据库配置
   datasource:
     name: mysql_test
