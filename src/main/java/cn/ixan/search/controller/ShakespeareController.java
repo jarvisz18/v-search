@@ -4,12 +4,12 @@ import cn.ixan.search.domain.ResultBean;
 import cn.ixan.search.domain.Shakespeare;
 import cn.ixan.search.service.ShakespeareService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.HashMap;
@@ -24,7 +24,7 @@ import java.util.Map;
 @Slf4j
 public class ShakespeareController {
 
-    @Autowired
+    @Resource
     private ShakespeareService shakespeareService;
 
     @GetMapping("/settings/{indexName}/{indexType}")
