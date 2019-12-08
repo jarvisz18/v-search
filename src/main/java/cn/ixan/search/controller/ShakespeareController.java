@@ -27,10 +27,16 @@ public class ShakespeareController {
     @Autowired
     private ShakespeareService shakespeareService;
 
-    @GetMapping("/exist/{indexName}/{indexType}")
-    public ResultBean<String> exist(@PathVariable("indexName") String indexName,
+    @GetMapping("/settings/{indexName}/{indexType}")
+    public ResultBean<String> settings(@PathVariable("indexName") String indexName,
                                     @PathVariable("indexType") String indexType){
-        return shakespeareService.exist(indexName,indexType);
+        return shakespeareService.settings(indexName,indexType);
+    }
+
+    @GetMapping("/mapping/{indexName}/{indexType}")
+    public ResultBean<String> mapping(@PathVariable("indexName") String indexName,
+                                    @PathVariable("indexType") String indexType){
+        return shakespeareService.mapping(indexName,indexType);
     }
 
     @PostMapping("/shake/reload")

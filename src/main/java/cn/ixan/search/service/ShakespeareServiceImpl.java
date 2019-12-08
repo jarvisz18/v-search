@@ -11,6 +11,7 @@ import io.searchbox.client.JestClient;
 import io.searchbox.client.JestResult;
 import io.searchbox.core.*;
 import io.searchbox.indices.mapping.GetMapping;
+import io.searchbox.indices.settings.GetSettings;
 import io.searchbox.params.Parameters;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
@@ -58,7 +59,29 @@ public class ShakespeareServiceImpl implements ShakespeareService{
     }
 
     @Override
-    public ResultBean<String> exist(String indexName, String indexType) {
+    public ResultBean<String> settings(String indexName, String indexType) {
+        ResultBean<String> resultBean = new ResultBean<>();
+        GetSettings mapping = new GetSettings.Builder()
+                .addIndex(indexName)
+                .build();
+        try {
+            JestResult execute = jestClient.execute(mapping);
+            boolean succeeded = execute.isSucceeded();
+            resultBean.setCode(execute.getResponseCode());
+            resultBean.setMsg(execute.getErrorMessage());
+            if(succeeded){
+                resultBean.setData(gson.toJson(execute.getJsonObject()));
+            } else {
+                resultBean.setData(gson.toJson(execute));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return resultBean;
+    }
+
+    @Override
+    public ResultBean<String> mapping(String indexName, String indexType) {
         ResultBean<String> resultBean = new ResultBean<>();
         GetMapping mapping = new GetMapping.Builder()
                 .addIndex(indexName)
@@ -70,7 +93,7 @@ public class ShakespeareServiceImpl implements ShakespeareService{
             resultBean.setCode(execute.getResponseCode());
             resultBean.setMsg(execute.getErrorMessage());
             if(succeeded){
-                resultBean.setData(execute.getJsonString());
+                resultBean.setData(gson.toJson(execute.getJsonObject()));
             } else {
                 resultBean.setData(gson.toJson(execute));
             }
