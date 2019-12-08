@@ -1,3 +1,10 @@
+server:
+  port: 9087
+  context-path: /search
+  tomcat:
+    max-threads: 200
+    max-connections: 50
+    min-spare-threads: 5
 #整合mybatis
 mybatis:
   config-location: classpath:config/sqlMapConfig.xml
