@@ -1,4 +1,4 @@
-package cn.ixan.search.guava;
+package cn.ixan.search.test.guava;
 
 import com.google.common.base.CharMatcher;
 import org.junit.Assert;
