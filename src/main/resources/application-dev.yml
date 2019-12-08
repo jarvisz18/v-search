@@ -8,8 +8,10 @@ spring:
   #elastic配置
   elasticsearch:
     jest:
-      uris: http://127.0.0.1:9200
+      uris: http://192.168.70.129:9200
       read-timeout: 6000
+      username: elastic
+      password: elastic
   #数据库配置
   datasource:
       name: mysql_test

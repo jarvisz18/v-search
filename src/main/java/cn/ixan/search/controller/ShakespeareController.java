@@ -1,5 +1,6 @@
 package cn.ixan.search.controller;
 
+import cn.ixan.search.domain.ResultBean;
 import cn.ixan.search.domain.Shakespeare;
 import cn.ixan.search.service.ShakespeareService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,17 @@ public class ShakespeareController {
     @Autowired
     private ShakespeareService shakespeareService;
 
+    @GetMapping("/exist/{indexName}/{indexType}")
+    public ResultBean<String> exist(@PathVariable("indexName") String indexName,
+                                    @PathVariable("indexType") String indexType){
+        return shakespeareService.exist(indexName,indexType);
+    }
+
+    @PostMapping("/shake/reload")
+    public Map<String, Object> reload(){
+        return shakespeareService.reload();
+    }
+
     @PostMapping("/shake/clean")
     public boolean clean(){
         return shakespeareService.clean();
@@ -39,10 +51,10 @@ public class ShakespeareController {
     @PostMapping("/shake/backup")
     public Map<String, Object> backup(){
         Map<String,Object> result = new HashMap<>();
-        final Instant now = Instant.now();
-        final boolean backup = shakespeareService.backup();
-        final Instant end = Instant.now();
-        final long millis = Duration.between(now, end).toMillis();
+        Instant now = Instant.now();
+        boolean backup = shakespeareService.backupToDatabase();
+        Instant end = Instant.now();
+        long millis = Duration.between(now, end).toMillis();
         result.put("result",backup);
         result.put("millis",millis+"ms");
         return result;

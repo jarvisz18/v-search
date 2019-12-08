@@ -1,5 +1,6 @@
 package cn.ixan.search;
 
+import com.google.gson.Gson;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,6 +9,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.concurrent.ConcurrentMapCache;
 import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
+import redis.clients.jedis.Jedis;
 
 import java.util.Collections;
 
@@ -20,6 +22,16 @@ import java.util.Collections;
 public class SearchApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SearchApplication.class, args);
+	}
+
+	@Bean
+	public Gson gson(){
+		return new Gson();
+	}
+
+	@Bean
+	public Jedis jedis(){
+		return new Jedis("192.168.70.128",6379);
 	}
 
 	@Bean
