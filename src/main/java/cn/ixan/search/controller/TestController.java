@@ -19,7 +19,7 @@ public class TestController {
 		log.info("开始时间[{}]", DateUtil.currentTime());
 		log.info("结束时间[{}]",DateUtil.currentTime());
 		log.info("获取到数据:[{}]",uuid);
-		return uuid;
+		return uuid+":张小贤的mac";
 
 	}
 }
