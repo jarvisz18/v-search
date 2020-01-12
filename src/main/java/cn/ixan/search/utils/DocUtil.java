@@ -2,13 +2,12 @@ package cn.ixan.search.utils;
 
 import com.google.common.base.CharMatcher;
 import com.google.common.collect.Lists;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.extractor.WordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,21 +15,50 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * word 文档处理类
  */
+@Slf4j
 public class DocUtil {
-    private static final Logger logger = LoggerFactory.getLogger(DocUtil.class);
 
     public static void main(String[] args) {
         List<String> strings = readWordFile("/Users/mac/Desktop/ES/Doc1.docx");
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
+        strings.forEach(builder::append);
+        String s = builder.toString();
+        log.info("文件内容为:{}",StringUtils.isNotBlank(s)?s:"null of content");
+    }
 
-        strings.forEach(stringBuilder::append);
-        String s = stringBuilder.toString();
-        System.out.println(StringUtils.isNotBlank(s)?s:"null of content");
+    public static List<String> readWordToString(InputStream stream,String fileName) {
+        List<String> contextList = Lists.newArrayList();
+        try {
+            if (fileName.endsWith(".doc")) {
+                HWPFDocument document = new HWPFDocument(stream);
+                WordExtractor extractor = new WordExtractor(document);
+                String[] contextArray = extractor.getParagraphText();
+                Arrays.asList(contextArray).forEach(context -> contextList.add(CharMatcher.whitespace().removeFrom(context)));
+                extractor.close();
+                document.close();
+            } else if (fileName.endsWith(".docx")) {
+                XWPFDocument document = new XWPFDocument(stream).getXWPFDocument();
+                List<XWPFParagraph> paragraphList = document.getParagraphs();
+                paragraphList.forEach(paragraph -> contextList.add(CharMatcher.whitespace().removeFrom(paragraph.getParagraphText())));
+                document.close();
+            } else {
+                log.debug("此文件{}不是word文件", fileName);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                stream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+                log.debug("读取word文件失败");
+            }
+        }
+        return contextList;
     }
 
     public static List<String> readWordFile(String path) {
@@ -51,16 +79,18 @@ public class DocUtil {
                 paragraphList.forEach(paragraph -> contextList.add(CharMatcher.whitespace().removeFrom(paragraph.getParagraphText())));
                 document.close();
             } else {
-                logger.debug("此文件{}不是word文件", path);
+                log.debug("此文件{}不是word文件", path);
             }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (null != stream) try {
-                stream.close();
+            try {
+                if (null != stream) {
+                    stream.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
-                logger.debug("读取word文件失败");
+                log.debug("读取word文件失败");
             }
         }
         return contextList;
