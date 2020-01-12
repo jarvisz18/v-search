@@ -1,0 +1,58 @@
+package cn.ixan.search.controller;
+
+import cn.ixan.search.domain.Yys;
+import io.searchbox.client.JestClient;
+import io.searchbox.core.Index;
+import io.searchbox.core.Search;
+import io.searchbox.core.SearchResult;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@RestController
+public class YysController {
+
+    @Autowired
+    private JestClient jestClient;
+
+    @GetMapping("/like")
+    public List<Yys> like(){
+        List<Yys> list = new ArrayList<>();
+        String query = "{\"query\":{\"wildcard\":{\"name.keyword\":{\"value\":\"黄河*\"}}}}";
+        Search builder = new Search.Builder(query).addIndex("yys").addType("_doc").build();
+        try {
+            SearchResult execute = jestClient.execute(builder);
+            if(execute.isSucceeded()){
+                List<SearchResult.Hit<Yys, Void>> hits = execute.getHits(Yys.class);
+                list = hits.stream().map(e -> e.source).collect(Collectors.toList());
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @GetMapping("/yys")
+    public String test(){
+        Yys yys = new Yys();
+        yys.setId("111");
+        yys.setName("黄河我爱你");
+
+        Index build = new Index.Builder(yys)
+                .index("yys")
+                .type("_doc").build();
+        try {
+            jestClient.execute(build);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "ok";
+    }
+}

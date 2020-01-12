@@ -1,5 +1,5 @@
 server:
-  port: 9087
+  port: 10040
   context-path: /search
   tomcat:
     max-threads: 2000

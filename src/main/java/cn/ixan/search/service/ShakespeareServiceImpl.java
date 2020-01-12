@@ -281,8 +281,11 @@ public class ShakespeareServiceImpl implements ShakespeareService{
 
     @Override
     public void bulkDataToES(List<Shakespeare> list) {
-        List<Index> collect = list.stream().map(shakespeare -> new Index.Builder(shakespeare).build())
-                .collect(Collectors.toList());
+        List<Index> collect = new ArrayList<>();
+        for (Shakespeare shakespeare : list) {
+            Index index = new Index.Builder(shakespeare).build();
+            collect.add(index);
+        }
         Bulk build = new Bulk.Builder()
                 .defaultIndex(Constant.SHAKES_PEARE_INDEX)
                 .defaultType(Constant.INDEX_TYPE)

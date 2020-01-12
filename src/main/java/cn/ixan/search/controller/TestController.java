@@ -1,22 +1,25 @@
 package cn.ixan.search.controller;
 
+import cn.ixan.search.utils.DateUtil;
+import cn.ixan.search.utils.UUIDUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author stack_zhang@outlook.com
  */
-@Controller
+@RestController
 @Slf4j
 public class TestController {
+
 	@GetMapping("/test")
-	public void testCheckTime(@ModelAttribute String start,
-	                          @ModelAttribute String end){
-		log.info("开始时间[{}]",start);
-		log.info("结束时间[{}]",end);
+	public String testCheckTime(){
+		String uuid = UUIDUtils.uuid();
+		log.info("开始时间[{}]", DateUtil.currentTime());
+		log.info("结束时间[{}]",DateUtil.currentTime());
+		log.info("获取到数据:[{}]",uuid);
+		return uuid+":张小贤的mac";
 
 	}
 }

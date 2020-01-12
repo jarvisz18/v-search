@@ -5,7 +5,7 @@ spring:
   application:
     name: v-search
   profiles:
-    active: dev
+    active: prd
   resources:
     static-locations: classpath:/static,classpath:/public,classpath:/templates,classpath:/resources,classpath:/META-INF/resources
     cache-period: 31536000

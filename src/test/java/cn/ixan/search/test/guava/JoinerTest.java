@@ -9,6 +9,16 @@ import java.util.List;
 
 public class JoinerTest {
 
+    public static void main(String[] args) {
+        String str = "abc";
+        test(str);
+        System.out.println(str);
+    }
+
+    private static void test(String str) {
+        str = "def";
+    }
+
     @Test
     public void joinTestThree(){
         int[] numbers = {1,2,3,4,5};
