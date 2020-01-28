@@ -11,6 +11,14 @@ import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.extractor.WordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.tika.Tika;
+import org.apache.tika.exception.TikaException;
+import org.apache.tika.metadata.Metadata;
+import org.apache.tika.parser.AutoDetectParser;
+import org.apache.tika.parser.ParseContext;
+import org.apache.tika.sax.BodyContentHandler;
+import org.junit.Test;
+import org.xml.sax.SAXException;
 
 import java.io.*;
 import java.util.Arrays;
@@ -20,12 +28,47 @@ import java.util.List;
  * word 文档处理类
  */
 @Slf4j
-public class DocUtil {
+public class DocParserUtil {
 
     public static void main(String[] args) {
         //List<String> strings = readWordFile("/Users/mac/Desktop/ES/Doc1.docx");
         List<String> strings = readWordFile("C:\\Users\\Administrator\\Desktop\\规范.docx");
         System.out.println(wordToString(strings));
+    }
+
+    @Test
+    public void testMetadata() {
+        File file = new File("C:\\Users\\Administrator\\Desktop\\规范.docx");
+        Tika tika = new Tika();
+
+        try {
+            System.out.println(tika.detect(file));
+            System.out.println(tika.parseToString(file));
+            System.out.println("元数据-----");
+            Metadata metadata = new Metadata();
+
+            new AutoDetectParser().parse(new FileInputStream(file),new BodyContentHandler(),metadata,new ParseContext());
+            String[] names = metadata.names();
+            for(String name:names){
+                System.out.println(name + ":" + metadata.get(name));
+            }
+        } catch (IOException | TikaException | SAXException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testParsePdf(){
+        Tika tika = new Tika();
+        File file = new File("C:\\Users\\Administrator\\Desktop\\网络泡沫.pdf");
+        String s = null;
+        try {
+            s = tika.parseToString(file);
+        } catch (IOException | TikaException e) {
+            e.printStackTrace();
+        }
+        String from = CharMatcher.whitespace().removeFrom(s);
+        System.out.println(from);
     }
 
     public static ImExtInfo readFile(String inputPath){
@@ -53,8 +96,35 @@ public class DocUtil {
         return imExtInfo;
     }
 
-    private static ImExtInfo readTxtFile(String inputPath) {
-        return null;
+    /**
+     * 文本文档解析<br/>
+     * @param inputPath 文件路径
+     * @return 解析结果
+     */
+    public static ImExtInfo readTxtFile(String inputPath) {
+        ImExtInfo imExtInfo = new ImageExtInfo();
+        try {
+            File file = new File(inputPath.trim());
+            FileReader fileReader = new FileReader(inputPath);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String readLine = bufferedReader.readLine();
+            StringBuilder builder = new StringBuilder();
+            while (readLine != null){
+                builder.append(readLine);
+                readLine = bufferedReader.readLine();
+            }
+            imExtInfo.setTitle(file.getName());
+            imExtInfo.setPath(file.getAbsolutePath());
+            imExtInfo.setContent(builder.toString());
+            imExtInfo.setCreate_time(DateUtil.currentTime());
+            bufferedReader.close();
+            fileReader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return imExtInfo;
     }
 
     /**
@@ -62,7 +132,7 @@ public class DocUtil {
      * @param inputPath 文件路径
      * @return 解析结果
      */
-    private static ImExtInfo readDocFile(String inputPath) {
+    public static ImExtInfo readDocFile(String inputPath) {
         ImExtInfo imExtInfo = new ImageExtInfo();
         try {
             File file = new File(inputPath.trim());
@@ -121,7 +191,21 @@ public class DocUtil {
     }
 
     private static ImExtInfo readPdfFile(String inputPath) {
-        return null;
+        ImExtInfo imExtInfo = new ImageExtInfo();
+        Tika tika = new Tika();
+        File file = new File(inputPath);
+        String content = null;
+        try {
+            content = tika.parseToString(file);
+            content = CharMatcher.whitespace().removeFrom(content);
+        } catch (IOException | TikaException e) {
+            e.printStackTrace();
+        }
+        imExtInfo.setTitle(file.getName());
+        imExtInfo.setPath(file.getAbsolutePath());
+        imExtInfo.setContent(content);
+        imExtInfo.setCreate_time(DateUtil.currentTime());
+        return imExtInfo;
     }
 
 
