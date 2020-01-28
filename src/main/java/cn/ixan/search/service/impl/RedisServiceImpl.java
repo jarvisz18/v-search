@@ -6,13 +6,12 @@ import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
-import org.springframework.stereotype.Service;
 import redis.clients.jedis.Protocol;
 import redis.clients.util.SafeEncoder;
 
 import javax.annotation.Resource;
 
-@Service
+//@Service
 public class RedisServiceImpl implements RedisService {
     @Resource
     private StringRedisTemplate redisTemplate;

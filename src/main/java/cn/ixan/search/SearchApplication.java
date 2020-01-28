@@ -29,7 +29,7 @@ public class SearchApplication {
 		return new Gson();
 	}
 
-	@Bean
+	//@Bean
 	public Jedis jedis(){
 		return new Jedis("192.168.70.128",6379);
 	}
