@@ -1,0 +1,28 @@
+{
+  "fulltext": {
+    "mappings": {
+      "_doc": {
+        "properties": {
+          "content": {
+            "type": "text"
+          },
+          "create_time": {
+            "type": "text"
+          },
+          "path": {
+            "type": "keyword"
+          },
+          "title": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
