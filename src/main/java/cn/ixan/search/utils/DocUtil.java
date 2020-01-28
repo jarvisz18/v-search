@@ -23,11 +23,17 @@ import java.util.List;
 public class DocUtil {
 
     public static void main(String[] args) {
-        List<String> strings = readWordFile("/Users/mac/Desktop/ES/Doc1.docx");
+        //List<String> strings = readWordFile("/Users/mac/Desktop/ES/Doc1.docx");
+        List<String> strings = readWordFile("C:\\Users\\Administrator\\Desktop\\规范.docx");
+        System.out.println(wordToString(strings));
+    }
+
+    public static String wordToString(List<String> word) {
         StringBuilder builder = new StringBuilder();
-        strings.forEach(builder::append);
+        word.forEach(builder::append);
         String s = builder.toString();
-        log.info("文件内容为:{}",StringUtils.isNotBlank(s)?s:"null of content");
+        log.info("文件内容为:{}", StringUtils.isNotBlank(s)?s:"null of content");
+        return s;
     }
 
     public static List<String> readWordToString(InputStream stream,String fileName) {
