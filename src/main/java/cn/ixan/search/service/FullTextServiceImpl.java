@@ -16,6 +16,18 @@ public class FullTextServiceImpl implements FullTextService{
     private JestClient jestClient;
 
     @Override
+    public void index(Object source) {
+        Index build = new Index.Builder(source).index("fulltext")
+                .type("_doc")
+                .build();
+        try {
+            jestClient.execute(build);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void init(FullTextEntity entity) {
         Index build = new Index.Builder(entity).index("fulltext")
                 .type("_doc")
