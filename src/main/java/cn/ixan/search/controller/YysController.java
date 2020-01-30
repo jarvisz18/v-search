@@ -5,9 +5,9 @@ import io.searchbox.client.JestClient;
 import io.searchbox.core.Index;
 import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -21,6 +21,7 @@ public class YysController {
     @Autowired
     private JestClient jestClient;
 
+    @ApiOperation(value = "like",hidden = true)
     @GetMapping("/like")
     public List<Yys> like(){
         List<Yys> list = new ArrayList<>();
@@ -39,6 +40,7 @@ public class YysController {
         return list;
     }
 
+    @ApiOperation(value = "yys",hidden = true)
     @GetMapping("/yys")
     public String test(){
         Yys yys = new Yys();

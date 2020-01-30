@@ -2,6 +2,8 @@ package cn.ixan.search.controller;
 
 import cn.ixan.search.domain.UserInfo;
 import cn.ixan.search.service.ExportService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import java.util.List;
  * @author stack_zhang@outlook.com
  * @date 19-9-4
  */
+@Api("对用户信息数据操作")
 @RestController
 @RequestMapping("/users")
 public class UserInfoController {
@@ -25,11 +28,23 @@ public class UserInfoController {
 	@Autowired
 	private ExportService userservice;
 
+	/**
+	 * 跳转主页
+	 * @return String
+	 */
+	@ApiOperation(value = "toIndex",hidden = true)
+	@GetMapping(value = "/main.html")
+	public String toIndex(){
+		return "index";
+	}
+
 	private List<UserInfo> getUserList(){
 		List<UserInfo> lists = userservice.getUserList();
 		logger.info("查询到的用户信息:[{}]",lists);
 		return lists;
 	}
+
+	@ApiOperation(value = "userList",hidden = true)
 	@GetMapping
 	public ModelAndView userList(Model model){
 		model.addAttribute("userList",getUserList());
@@ -39,6 +54,7 @@ public class UserInfoController {
 	/**
 	 *创建表单
 	 */
+	@ApiOperation(value = "createForm",hidden = true)
 	@GetMapping("/form")
 	public ModelAndView createForm(Model model){
 		model.addAttribute("user",new UserInfo());
@@ -51,6 +67,7 @@ public class UserInfoController {
 	 * @param user
 	 * @return
 	 */
+	@ApiOperation(value = "addUser",hidden = true)
 	@PostMapping("/add")
 	public ModelAndView addUser(UserInfo user){
 		int result = userservice.saveUserInfo(user);
