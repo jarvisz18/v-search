@@ -16,7 +16,7 @@ spring:
   elasticsearch:
     jest:
       uris: http://192.168.137.129:9200
-      read-timeout: 6000
+      read-timeout: 60000
       username: elastic
       password: elastic
   #数据库配置

@@ -56,7 +56,7 @@ public class ShakespeareController {
         return shakespeareService.clean();
     }
 
-    @ApiOperation(value = "初始化数据",notes = "初始化数据")
+    @ApiOperation(value = "初始化莎士比亚数据到索引库",notes = "初始化莎士比亚数据到索引库")
     @PostMapping("/shake/init")
     public boolean init(){
         return shakespeareService.init();
