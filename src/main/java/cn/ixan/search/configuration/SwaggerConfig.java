@@ -28,10 +28,11 @@ public class SwaggerConfig {
     //构建 api文档的详细信息函数,注意这里的注解引用的是哪个
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Spring Boot 使用 Swagger2 构建RESTful API")
-                .contact(new Contact("Bryan", "http://blog.bianxh.top/", ""))
-                .version("1.0")
-                .description("API 描述")
+                .title("SpringBoot集成ElasticSearch服务")
+                .contact(new Contact("张贤龙", "http://192.168.0.104:9087/search/swagger-ui.html", "stack_zhang@outlook" +
+                        ".com"))
+                .version("1.0.0")
+                .description("SpringBoot集成ElasticSearch服务")
                 .build();
     }
 }

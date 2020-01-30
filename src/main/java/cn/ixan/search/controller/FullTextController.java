@@ -27,7 +27,7 @@ public class FullTextController {
     private FullTextService fullTextService;
 
     @PostMapping("/readFileFromPath")
-    @ApiOperation(value = "readFileFromPath",notes = "读取文件从输入路径")
+    @ApiOperation(value = "读取文件从输入路径",notes = "读取文件从输入路径")
     public String readFileFromPath(@RequestParam String path){
         ImExtInfo imExtInfo = DocParserUtil.readFile(path);
         fullTextService.index(imExtInfo);
@@ -35,7 +35,7 @@ public class FullTextController {
     }
 
     @PostMapping("/readFile")
-    @ApiOperation(value = "readFile",notes = "读取文件")
+    @ApiOperation(value = "读取文件",notes = "读取文件")
     public String readFile(){
         String path = "C:\\Users\\Administrator\\Desktop\\规范.docx";
         ImExtInfo imExtInfo = DocParserUtil.readFile(path);
@@ -44,7 +44,7 @@ public class FullTextController {
     }
 
     @PostMapping("/init")
-    @ApiOperation(value = "init",notes = "读取文件初始化")
+    @ApiOperation(value = "读取文件初始化",notes = "读取文件初始化")
     public String init(){
         List<String> readWordFile = DocParserUtil.readWordFile("C:\\Users\\Administrator\\Desktop\\规范.docx");
         String s = DocParserUtil.wordToString(readWordFile);
