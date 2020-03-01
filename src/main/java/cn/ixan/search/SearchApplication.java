@@ -9,6 +9,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.concurrent.ConcurrentMapCache;
 import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import redis.clients.jedis.Jedis;
 
 import java.util.Collections;
@@ -16,6 +17,7 @@ import java.util.Collections;
 /**
  * @author stack_zhang@outlook.com
  */
+@EnableAspectJAutoProxy
 @EnableCaching
 @MapperScan(basePackages = "cn.ixan.search.mapper")
 @SpringBootApplication
