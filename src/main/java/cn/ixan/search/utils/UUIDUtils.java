@@ -4,16 +4,15 @@ import java.util.UUID;
 
 public final class UUIDUtils {
 
-    public static String uuid(){
+    public static String uuid() {
         return UUID.randomUUID().toString().replace("-", "");
     }
 
-    public static String generate(){
+    public static String generate() {
         return UUID.randomUUID().toString();
     }
 
-    public static boolean checkUuid(String uuid){
-        //String regex = "(\\w{8}(-\\w{4}){3}-\\w{12}?)";
+    public static boolean checkUuid(String uuid) {
         String regex = "(\\w{32,36})";
         return uuid.matches(regex);
     }

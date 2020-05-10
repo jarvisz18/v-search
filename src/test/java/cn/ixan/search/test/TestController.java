@@ -1,6 +1,7 @@
-package cn.ixan.search.controller.test;
+package cn.ixan.search.test;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,9 +16,13 @@ import java.time.format.DateTimeFormatter;
  */
 @RestController
 @Slf4j
+@Scope("prototype")
 public class TestController {
+    private int count = 0;
+
     @PostMapping("/test")
-    public void test() {
+    public Integer test() {
         log.info("当前时间：" + DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(LocalDateTime.now()));
+        return count++;
     }
 }

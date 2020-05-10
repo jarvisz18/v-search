@@ -1,4 +1,4 @@
-package cn.ixan.search.controller.aspect;
+package cn.ixan.search.web.aspect;
 
 import java.lang.annotation.*;
 

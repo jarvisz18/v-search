@@ -12,13 +12,10 @@ spring:
     chain:
       cache: true
 
-#查看自动配置报告
-debug: true
-
-
 #配置日志
 logging:
   config: classpath:logback-spring.xml
   level:
     cn.ixan.search.mapper: debug
-
+#查看自动配置报告
+debug: true

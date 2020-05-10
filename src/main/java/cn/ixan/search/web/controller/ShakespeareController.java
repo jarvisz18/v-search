@@ -1,4 +1,4 @@
-package cn.ixan.search.controller;
+package cn.ixan.search.web.controller;
 
 import cn.ixan.search.domain.ResultBean;
 import cn.ixan.search.domain.Shakespeare;
@@ -22,7 +22,7 @@ import java.util.Map;
  * @author stack_zhang@outlook.com
  * <p>对shakespeare数据操作</p>
  */
-@Api("对shakespeare数据操作")
+@Api(tags = "对shakespeare数据操作")
 @RestController
 @Slf4j
 public class ShakespeareController {

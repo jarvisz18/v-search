@@ -1,4 +1,4 @@
-package cn.ixan.search.controller.aspect;
+package cn.ixan.search.web.aspect;
 
 
 import org.aspectj.lang.JoinPoint;
@@ -22,11 +22,11 @@ public class UserLogAdvice {
     private static final Logger log = LoggerFactory.getLogger(UserLogAdvice.class);
 
     //统一切点,对cn.ixan.search.controller及其子包中所有的类的所有方法切面
-    @Pointcut("execution(public * cn.ixan.search.controller..*.*(..))")
+    @Pointcut("execution(public * cn.ixan.search.web.controller..*.*(..))")
     public void pointcut() {
     }
 
-    @Pointcut("execution (* cn.ixan.search.controller..*.*(..)) && @annotation(userLog)")
+    @Pointcut("execution (* cn.ixan.search.web.controller..*.*(..)) && @annotation(userLog)")
     public void controllerAspect(UserLog userLog) {
     }
 

@@ -1,4 +1,4 @@
-package cn.ixan.search.controller;
+package cn.ixan.search.web.controller;
 
 import cn.ixan.search.domain.UserInfo;
 import cn.ixan.search.service.ExportService;
@@ -20,7 +20,7 @@ import java.util.List;
  * @author stack_zhang@outlook.com
  * @date 19-9-4
  */
-@Api("对用户信息数据操作")
+@Api(tags = "对用户信息数据操作")
 @RestController
 @RequestMapping("/users")
 public class UserInfoController {

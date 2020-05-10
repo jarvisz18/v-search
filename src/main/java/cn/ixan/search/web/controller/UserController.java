@@ -1,4 +1,4 @@
-package cn.ixan.search.controller;
+package cn.ixan.search.web.controller;
 
 import cn.ixan.search.domain.User;
 import cn.ixan.search.service.UserService;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author stack_zhang@outlook.com
  */
-@Api("对users数据操作")
+@Api(tags = "对users数据操作")
 @RestController
 @RequestMapping("/users")
 @Slf4j

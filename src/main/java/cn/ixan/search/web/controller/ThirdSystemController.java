@@ -1,4 +1,4 @@
-package cn.ixan.search.controller;
+package cn.ixan.search.web.controller;
 
 import cn.ixan.search.domain.BaseIndexDTO;
 import cn.ixan.search.service.ThirdSystemService;
@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.Map;
 
-@Api("通用索引数据操作")
+@Api(tags = "通用索引数据操作")
 @RestController
 @Slf4j
 public class ThirdSystemController {

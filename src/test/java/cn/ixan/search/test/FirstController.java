@@ -1,4 +1,4 @@
-package cn.ixan.search.controller;
+package cn.ixan.search.test;
 
 import cn.ixan.search.domain.valid.Insert;
 import cn.ixan.search.domain.valid.People;

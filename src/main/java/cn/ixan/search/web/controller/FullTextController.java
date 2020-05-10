@@ -1,4 +1,4 @@
-package cn.ixan.search.controller;
+package cn.ixan.search.web.controller;
 
 import cn.ixan.search.domain.FullTextEntity;
 import cn.ixan.search.domain.ImExtInfo;

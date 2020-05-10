@@ -31,7 +31,7 @@ public class SwaggerConfig {
                 .title("SpringBoot集成ElasticSearch服务")
                 .contact(new Contact("张贤龙", "http://192.168.0.104:9087/search/swagger-ui.html", "stack_zhang@outlook" +
                         ".com"))
-                .version("1.0.0")
+                .version("1.1")
                 .description("SpringBoot集成ElasticSearch服务")
                 .build();
     }
