@@ -1,4 +1,4 @@
-package cn.ixan.search.example;
+package cn.ixan.search.factory;
 
 /**
  * @author stack_zhang@outlook.com
