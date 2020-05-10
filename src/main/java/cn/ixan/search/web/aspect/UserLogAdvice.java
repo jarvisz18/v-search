@@ -6,7 +6,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
@@ -16,8 +15,8 @@ import java.time.LocalDateTime;
  * @date Created in 2020/3/1 21:38
  * @description user login advice
  */
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class UserLogAdvice {
     private static final Logger log = LoggerFactory.getLogger(UserLogAdvice.class);
 

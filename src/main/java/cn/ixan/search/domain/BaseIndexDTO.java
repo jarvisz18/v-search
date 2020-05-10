@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotBlank;
 
-@ApiModel(value = "基本索引查询类")
+@ApiModel(description = "基本索引查询类")
 @Data
 public class BaseIndexDTO {
     @ApiModelProperty(value = "索引名称", example = "fulltext")

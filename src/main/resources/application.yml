@@ -17,5 +17,3 @@ logging:
   config: classpath:logback-spring.xml
   level:
     cn.ixan.search.mapper: debug
-#查看自动配置报告
-debug: true
