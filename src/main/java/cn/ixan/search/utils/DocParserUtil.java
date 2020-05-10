@@ -33,7 +33,7 @@ public class DocParserUtil {
     public static void main(String[] args) {
         //List<String> strings = readWordFile("/Users/mac/Desktop/ES/Doc1.docx");
         List<String> strings = readWordFile("C:\\Users\\Administrator\\Desktop\\规范.docx");
-        System.out.println(wordToString(strings));
+        log.info(wordToString(strings));
     }
 
     @Test
@@ -42,15 +42,15 @@ public class DocParserUtil {
         Tika tika = new Tika();
 
         try {
-            System.out.println(tika.detect(file));
-            System.out.println(tika.parseToString(file));
-            System.out.println("元数据-----");
+            log.info(tika.detect(file));
+            log.info(tika.parseToString(file));
+            log.info("元数据-----");
             Metadata metadata = new Metadata();
 
             new AutoDetectParser().parse(new FileInputStream(file),new BodyContentHandler(),metadata,new ParseContext());
             String[] names = metadata.names();
             for(String name:names){
-                System.out.println(name + ":" + metadata.get(name));
+                log.info(name + ":" + metadata.get(name));
             }
         } catch (IOException | TikaException | SAXException e) {
             e.printStackTrace();
@@ -68,7 +68,7 @@ public class DocParserUtil {
             e.printStackTrace();
         }
         String from = CharMatcher.whitespace().removeFrom(s);
-        System.out.println(from);
+        log.info(from);
     }
 
     public static ImExtInfo readFile(String inputPath){
