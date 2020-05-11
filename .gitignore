@@ -2,3 +2,5 @@
 /logs/
 /.idea/
 /v-search.iml
+/boot-search/boot-search.iml
+/boot-eureka/boot-eureka.iml
