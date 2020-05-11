@@ -11,6 +11,11 @@
     <modules>
         <module>boot-eureka</module>
         <module>boot-search</module>
+        <module>boot-compute</module>
+        <module>boot-docker</module>
+        <module>cloud-zuul</module>
+        <module>cloud-feign</module>
+        <module>cloud-ribbon</module>
     </modules>
 
     <parent>
@@ -24,9 +29,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <!--以下两项需要如果不配置，解析themleaft 会有问题-->
-        <thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
-        <thymeleaf-layout-dialect.version>2.0.5</thymeleaf-layout-dialect.version>
     </properties>
 
     <dependencies>
@@ -37,4 +39,16 @@
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Finchley.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
