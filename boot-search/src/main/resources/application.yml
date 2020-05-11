@@ -1,0 +1,21 @@
+server:
+  port: 9087
+  servlet:
+    context-path: /search
+spring:
+  application:
+    name: v-search
+  profiles:
+    active: dev
+  resources:
+    static-locations: classpath:/static,classpath:/public,classpath:/templates,classpath:/resources,classpath:/META-INF/resources
+    chain:
+      cache: true
+    cache:
+      period: 31536000
+
+#配置日志
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    cn.ixan.search.mapper: debug
