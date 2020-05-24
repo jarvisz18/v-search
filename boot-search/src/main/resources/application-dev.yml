@@ -1,10 +1,17 @@
 server:
   port: 9087
-  context-path: /search
   tomcat:
     max-threads: 200
     max-connections: 50
     min-spare-threads: 5
+  servlet:
+    context-path: /search
+#服务注册
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+
 #整合mybatis
 mybatis:
   config-location: classpath:config/sqlMapConfig.xml
@@ -60,5 +67,6 @@ spring:
     cache: false
     encoding: UTF-8
     mode: HTML5
-    content-type: text/html
     prefix: classpath:/templates/
+    servlet:
+      content-type: text/html

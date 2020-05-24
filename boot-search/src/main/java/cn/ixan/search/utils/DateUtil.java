@@ -15,6 +15,22 @@ import java.util.Date;
  * @author stack_zhang@outlook.com
  */
 public class DateUtil extends DateUtils{
+	public static void main(String[] args) {
+		System.out.println(formatUTC());
+		System.out.println(stringToLocalDateTime(formatUTC()));
+		System.out.println(LocalDateTime.now());
+	}
+
+	public static LocalDateTime stringToLocalDateTime(String localDateTime){
+		DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+		return LocalDateTime.parse(localDateTime, pattern);
+	}
+
+	public static String formatUTC(){
+		LocalDateTime now = LocalDateTime.now(Clock.systemUTC());
+		DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+		return pattern.format(now);
+	}
 
 	public static String systemUTC(){
 		LocalDateTime now = LocalDateTime.now(Clock.systemUTC());
