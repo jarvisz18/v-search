@@ -11,3 +11,8 @@ eureka:
     registry-fetch-interval-seconds: 5
   server:
     use-read-only-response-cache: false #不读取只读的缓存服务清单
+
+logging:
+  file: /home/log/boot-eureka.log
+  level:
+    root: INFO
