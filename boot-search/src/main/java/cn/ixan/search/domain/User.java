@@ -5,6 +5,7 @@ import lombok.Data;
 
 /**
  * 学生实体类
+ *
  * @author stack_zhang@outlook.com
  */
 @Data

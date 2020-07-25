@@ -11,8 +11,8 @@ import java.util.Random;
 public class HelloController {
 
     @GetMapping("/hello")
-    public String test1(){
+    public String test1() {
         log.info("hello----------");
-        return "hello world!"+new Random().nextInt(100);
+        return "hello world!" + new Random().nextInt(100);
     }
 }

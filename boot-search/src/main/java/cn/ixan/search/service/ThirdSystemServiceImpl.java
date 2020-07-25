@@ -28,26 +28,27 @@ public class ThirdSystemServiceImpl implements ThirdSystemService {
 
     @Override
     public Map<String, Object> repeat(BaseIndexDTO baseIndexDTO) {
-        Map<String,Object> resultMap = new HashMap<>();
+        Map<String, Object> resultMap = new HashMap<>();
         String indexName = baseIndexDTO.getIndexName();
         String indexType = baseIndexDTO.getIndexType();
         String field = baseIndexDTO.getField();
         Integer size = baseIndexDTO.getSize();
-        String query = "{\"size\":0,\"aggs\":{\"nums\":{\"terms\":{\"field\":\""+field+"\",\"size\":"+size+"}}}}";
+        String query = "{\"size\":0,\"aggs\":{\"nums\":{\"terms\":{\"field\":\"" + field + "\",\"size\":" + size + "}}}}";
         Search search = new Search.Builder(query).addIndex(indexName).addType(indexType).build();
         try {
             SearchResult execute = jestClient.execute(search);
-            if(execute.isSucceeded()){
+            if (execute.isSucceeded()) {
                 JsonObject jsonObject = execute.getJsonObject();
                 JsonObject aggregations = jsonObject.get("aggregations").getAsJsonObject();
                 JsonObject nums = aggregations.get("nums").getAsJsonObject();
                 String buckets = nums.get("buckets").toString();
-                List<Bucket> data = gson.fromJson(buckets, new TypeToken<List<Bucket>>(){}.getType());
-                resultMap.put("data",data);
+                List<Bucket> data = gson.fromJson(buckets, new TypeToken<List<Bucket>>() {
+                }.getType());
+                resultMap.put("data", data);
             }
-            resultMap.put("total",execute.getTotal());
-            resultMap.put("msg",execute.getErrorMessage());
-            resultMap.put("code",execute.getResponseCode());
+            resultMap.put("total", execute.getTotal());
+            resultMap.put("msg", execute.getErrorMessage());
+            resultMap.put("code", execute.getResponseCode());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -12,18 +12,18 @@ import java.util.List;
  * @date 19-9-4
  */
 @Service
-public class ExportServiceImpl implements ExportService{
-	@Autowired
-	private UserInfoMapper userinfomapper;
+public class ExportServiceImpl implements ExportService {
+    @Autowired
+    private UserInfoMapper userinfomapper;
 
-	@Override
-	public List<UserInfo> getUserList() {
-		List<UserInfo> lists = userinfomapper.getAllUserInfo();
-		return lists;
-	}
+    @Override
+    public List<UserInfo> getUserList() {
+        List<UserInfo> lists = userinfomapper.getAllUserInfo();
+        return lists;
+    }
 
-	@Override
-	public Integer saveUserInfo(UserInfo user) {
-		return userinfomapper.saveUserInfo(user);
-	}
+    @Override
+    public Integer saveUserInfo(UserInfo user) {
+        return userinfomapper.saveUserInfo(user);
+    }
 }

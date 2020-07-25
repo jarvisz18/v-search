@@ -12,11 +12,11 @@ import java.util.List;
 @Mapper
 public interface UserInfoMapper {
 
-	List<UserInfo> getAll();
+    List<UserInfo> getAll();
 
-	UserInfo findByphone(String phone);
+    UserInfo findByphone(String phone);
 
-	List<UserInfo> getAllUserInfo();
+    List<UserInfo> getAllUserInfo();
 
-	Integer saveUserInfo(UserInfo user);
+    Integer saveUserInfo(UserInfo user);
 }

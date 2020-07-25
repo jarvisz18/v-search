@@ -23,7 +23,7 @@ public class ThirdSystemController {
 
     @ApiOperation(value = "查询索引重复数据")
     @PostMapping("/system/repeat")
-    public Map<String,Object> repeat(@RequestBody @Valid BaseIndexDTO baseIndexDTO){
+    public Map<String, Object> repeat(@RequestBody @Valid BaseIndexDTO baseIndexDTO) {
         return thirdSystemService.repeat(baseIndexDTO);
     }
 }

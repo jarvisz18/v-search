@@ -24,55 +24,58 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UserInfoController {
-	private static Logger logger = LoggerFactory.getLogger(UserInfoController.class);
-	@Autowired
-	private ExportService userservice;
+    private static Logger logger = LoggerFactory.getLogger(UserInfoController.class);
+    @Autowired
+    private ExportService userservice;
 
-	/**
-	 * 跳转主页
-	 * @return String
-	 */
-	@ApiOperation(value = "toIndex",hidden = true)
-	@GetMapping(value = "/main.html")
-	public String toIndex(){
-		return "index";
-	}
+    /**
+     * 跳转主页
+     *
+     * @return String
+     */
+    @ApiOperation(value = "toIndex", hidden = true)
+    @GetMapping(value = "/main.html")
+    public String toIndex() {
+        return "index";
+    }
 
-	private List<UserInfo> getUserList(){
-		List<UserInfo> lists = userservice.getUserList();
-		logger.info("查询到的用户信息:[{}]",lists);
-		return lists;
-	}
+    private List<UserInfo> getUserList() {
+        List<UserInfo> lists = userservice.getUserList();
+        logger.info("查询到的用户信息:[{}]", lists);
+        return lists;
+    }
 
-	@ApiOperation(value = "userList",hidden = true)
-	@GetMapping
-	public ModelAndView userList(Model model){
-		model.addAttribute("userList",getUserList());
-		model.addAttribute("title","用户管理");
-		return new ModelAndView("index","userModel",model);
-	}
-	/**
-	 *创建表单
-	 */
-	@ApiOperation(value = "createForm",hidden = true)
-	@GetMapping("/form")
-	public ModelAndView createForm(Model model){
-		model.addAttribute("user",new UserInfo());
-		model.addAttribute("title","添加用户");
-		return new ModelAndView("add","userModel",model);
-	}
+    @ApiOperation(value = "userList", hidden = true)
+    @GetMapping
+    public ModelAndView userList(Model model) {
+        model.addAttribute("userList", getUserList());
+        model.addAttribute("title", "用户管理");
+        return new ModelAndView("index", "userModel", model);
+    }
 
-	/**
-	 * 添加用户
-	 * @param user
-	 * @return
-	 */
-	@ApiOperation(value = "addUser",hidden = true)
-	@PostMapping("/add")
-	public ModelAndView addUser(UserInfo user){
-		int result = userservice.saveUserInfo(user);
-		logger.info("添加结果:[{}]",result);
-		return new ModelAndView("redirect:/users");
-	}
+    /**
+     * 创建表单
+     */
+    @ApiOperation(value = "createForm", hidden = true)
+    @GetMapping("/form")
+    public ModelAndView createForm(Model model) {
+        model.addAttribute("user", new UserInfo());
+        model.addAttribute("title", "添加用户");
+        return new ModelAndView("add", "userModel", model);
+    }
+
+    /**
+     * 添加用户
+     *
+     * @param user
+     * @return
+     */
+    @ApiOperation(value = "addUser", hidden = true)
+    @PostMapping("/add")
+    public ModelAndView addUser(UserInfo user) {
+        int result = userservice.saveUserInfo(user);
+        logger.info("添加结果:[{}]", result);
+        return new ModelAndView("redirect:/users");
+    }
 
 }

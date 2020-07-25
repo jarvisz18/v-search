@@ -21,7 +21,8 @@ public class TreeTable {
 
     /**
      * <p>表里面要有id，name, parentId这几个字段</p>
-     * @param id 父节点id
+     *
+     * @param id       父节点id
      * @param rootTree 所有数据的集合
      * @return childList
      */

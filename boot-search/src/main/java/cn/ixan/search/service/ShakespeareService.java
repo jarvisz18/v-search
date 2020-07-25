@@ -11,23 +11,29 @@ public interface ShakespeareService {
 
     /**
      * 判断索引是否存在
-     * @return boolean
+     *
      * @param indexName
      * @param indexType
+     * @return boolean
      */
     ResultBean<String> mapping(String indexName, String indexType);
+
     /**
      * <p>重新加载数据</p>
      * <p>保证接口的幂等性</p>
+     *
      * @return Map<String, Object>
      */
     Map<String, Object> reload();
+
     boolean clean();
+
     boolean init();
 
     void bulkDataToES(List<Shakespeare> list);
 
     boolean backupToDatabase();
+
     List<Shakespeare> query(Integer from, Integer size);
 
     int save(Integer from, Integer size);

@@ -31,29 +31,32 @@ public class UserLogAdvice {
 
     /**
      * 拦截的方法执行之前就执行
+     *
      * @param joinPoint 拦截的方法传入的参数
-     * @param userLog 自定义注解
+     * @param userLog   自定义注解
      */
     @Before(value = "controllerAspect(userLog)", argNames = "joinPoint,userLog")
     public void addBeforeLogger(JoinPoint joinPoint, UserLog userLog) {
         log.info("调用了前置通知");
         LocalDateTime now = LocalDateTime.now();
-        log.info("登陆时间:"+now.toString()+",接口访问开始");
+        log.info("登陆时间:" + now.toString() + ",接口访问开始");
     }
 
     //@After: 后置通知
     @After("pointcut()")
-    public void afterMethod(JoinPoint joinPoint){
+    public void afterMethod(JoinPoint joinPoint) {
         log.info("调用了后置通知");
     }
+
     //@AfterRunning: 返回通知 rsult为返回内容
-    @AfterReturning(value="pointcut()",returning="result")
-    public void afterReturningMethod(JoinPoint joinPoint,Object result){
+    @AfterReturning(value = "pointcut()", returning = "result")
+    public void afterReturningMethod(JoinPoint joinPoint, Object result) {
         log.info("调用了返回通知");
     }
+
     //@AfterThrowing: 异常通知
-    @AfterThrowing(value="pointcut()",throwing="e")
-    public void afterReturningMethod(JoinPoint joinPoint, Exception e){
+    @AfterThrowing(value = "pointcut()", throwing = "e")
+    public void afterReturningMethod(JoinPoint joinPoint, Exception e) {
         log.info("调用了异常通知");
     }
 
@@ -62,7 +65,7 @@ public class UserLogAdvice {
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
         log.info("around执行方法之前");
         Object object = pjp.proceed();
-        log.info("around执行方法之后--返回值：" +object);
+        log.info("around执行方法之后--返回值：" + object);
         return object;
     }
 }

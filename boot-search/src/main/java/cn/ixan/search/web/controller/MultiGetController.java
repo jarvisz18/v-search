@@ -20,6 +20,6 @@ public class MultiGetController {
     private JestClient jestClient;
 
     @GetMapping("/multiGet")
-    public void multiGet(){
+    public void multiGet() {
     }
 }

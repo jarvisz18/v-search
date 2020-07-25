@@ -27,16 +27,16 @@ public class FullTextController {
     private FullTextService fullTextService;
 
     @PostMapping("/readFileFromPath")
-    @ApiOperation(value = "读取文件从输入路径",notes = "读取文件从输入路径")
-    public String readFileFromPath(@RequestParam String path){
+    @ApiOperation(value = "读取文件从输入路径", notes = "读取文件从输入路径")
+    public String readFileFromPath(@RequestParam String path) {
         ImExtInfo imExtInfo = DocParserUtil.readFile(path);
         fullTextService.index(imExtInfo);
         return "ok";
     }
 
     @PostMapping("/readFile")
-    @ApiOperation(value = "读取文件",notes = "读取文件")
-    public String readFile(){
+    @ApiOperation(value = "读取文件", notes = "读取文件")
+    public String readFile() {
         String path = "C:\\Users\\Administrator\\Desktop\\规范.docx";
         ImExtInfo imExtInfo = DocParserUtil.readFile(path);
         fullTextService.index(imExtInfo);
@@ -44,8 +44,8 @@ public class FullTextController {
     }
 
     @PostMapping("/init")
-    @ApiOperation(value = "读取文件初始化",notes = "读取文件初始化")
-    public String init(){
+    @ApiOperation(value = "读取文件初始化", notes = "读取文件初始化")
+    public String init() {
         List<String> readWordFile = DocParserUtil.readWordFile("C:\\Users\\Administrator\\Desktop\\规范.docx");
         String s = DocParserUtil.wordToString(readWordFile);
         FullTextEntity entity = new FullTextEntity();

@@ -33,7 +33,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Service
-public class ShakespeareServiceImpl implements ShakespeareService{
+public class ShakespeareServiceImpl implements ShakespeareService {
     private static final Logger log = LoggerFactory.getLogger(ShakespeareServiceImpl.class);
     @Resource
     private Gson gson;
@@ -69,7 +69,7 @@ public class ShakespeareServiceImpl implements ShakespeareService{
             boolean succeeded = execute.isSucceeded();
             resultBean.setCode(execute.getResponseCode());
             resultBean.setMsg(execute.getErrorMessage());
-            if(succeeded){
+            if (succeeded) {
                 resultBean.setData(gson.toJson(execute.getJsonObject()));
             } else {
                 resultBean.setData(gson.toJson(execute));
@@ -92,7 +92,7 @@ public class ShakespeareServiceImpl implements ShakespeareService{
             boolean succeeded = execute.isSucceeded();
             resultBean.setCode(execute.getResponseCode());
             resultBean.setMsg(execute.getErrorMessage());
-            if(succeeded){
+            if (succeeded) {
                 resultBean.setData(gson.toJson(execute.getJsonObject()));
             } else {
                 resultBean.setData(gson.toJson(execute));
@@ -105,7 +105,7 @@ public class ShakespeareServiceImpl implements ShakespeareService{
 
     @Override
     public Map<String, Object> reload() {
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         long start = System.currentTimeMillis();
         AtomicInteger count = new AtomicInteger(0);
         //获取数据库数据
@@ -113,12 +113,12 @@ public class ShakespeareServiceImpl implements ShakespeareService{
         List<Shakespeare> addList = new ArrayList<>();
         //获取ES库数据
         shakespeareList.forEach(e -> compare(count, addList, e));
-        log.info("产生重复数据记录数:[{}]",count.get());
+        log.info("产生重复数据记录数:[{}]", count.get());
         bulkDataToES(addList);
         long end = System.currentTimeMillis();
-        map.put("success","200");
-        map.put("total",count.get());
-        map.put("mills",end-start);
+        map.put("success", "200");
+        map.put("total", count.get());
+        map.put("mills", end - start);
         return map;
     }
 
@@ -126,20 +126,20 @@ public class ShakespeareServiceImpl implements ShakespeareService{
         long start = System.currentTimeMillis();
         String line_id = shakespeare.getLine_id();
         List<Shakespeare> shake = listShakespeare(line_id);
-        if(CollectionUtils.isEmpty(shake)){
+        if (CollectionUtils.isEmpty(shake)) {
             addList.add(shakespeare);
-        } else if(shake.size()>1){
+        } else if (shake.size() > 1) {
             delete(line_id);
             count.incrementAndGet();
             addList.add(shakespeare);
-            log.info("产生重复数据的line_id:[{}]",line_id);
+            log.info("产生重复数据的line_id:[{}]", line_id);
         }
         long end = System.currentTimeMillis();
-        log.info("本次比较,耗时[{}]ms",end-start);
+        log.info("本次比较,耗时[{}]ms", end - start);
     }
 
     private boolean delete(String line_id) {
-        String query = "{\"query\":{\"bool\":{\"must\":[{\"match\":{\"line_id\":"+line_id+"}}]}}}";
+        String query = "{\"query\":{\"bool\":{\"must\":[{\"match\":{\"line_id\":" + line_id + "}}]}}}";
         DeleteByQuery builder = new DeleteByQuery.Builder(query).build();
         try {
             JestResult execute = jestClient.execute(builder);
@@ -152,14 +152,14 @@ public class ShakespeareServiceImpl implements ShakespeareService{
 
     private List<Shakespeare> listShakespeare(String line_id) {
         List<Shakespeare> list = Lists.newArrayList();
-        String query = "{\"query\":{\"bool\":{\"must\":[{\"match\":{\"line_id\":"+line_id+"}}]}}}";
+        String query = "{\"query\":{\"bool\":{\"must\":[{\"match\":{\"line_id\":" + line_id + "}}]}}}";
         Search search = new Search.Builder(query)
                 .addIndex(Constant.SHAKES_PEARE_INDEX)
                 .addType(Constant.INDEX_TYPE)
                 .build();
         try {
             SearchResult execute = jestClient.execute(search);
-            if(execute.isSucceeded()){
+            if (execute.isSucceeded()) {
                 List<SearchResult.Hit<Shakespeare, Void>> hits = execute.getHits(Shakespeare.class);
                 list = hits.stream().map(e -> e.source).collect(Collectors.toList());
             }
@@ -171,7 +171,7 @@ public class ShakespeareServiceImpl implements ShakespeareService{
 
     private List<Shakespeare> listShakespeare() {
         List<Shakespeare> list = Lists.newArrayList();
-        String query = "{\"query\":{\"match_all\":{}},\"size\":"+ Constant.SCROLL_SIZE+"}";
+        String query = "{\"query\":{\"match_all\":{}},\"size\":" + Constant.SCROLL_SIZE + "}";
         Search search = new Search.Builder(query)
                 .addIndex(Constant.SHAKES_PEARE_INDEX)
                 .addType(Constant.INDEX_TYPE)
@@ -179,23 +179,23 @@ public class ShakespeareServiceImpl implements ShakespeareService{
                 .build();
         try {
             SearchResult execute = jestClient.execute(search);
-            if(execute.isSucceeded()){
+            if (execute.isSucceeded()) {
                 Long total = execute.getTotal();
-                log.info("索引[{}]存在[{}]条数据",Constant.SHAKES_PEARE_INDEX,total);
+                log.info("索引[{}]存在[{}]条数据", Constant.SHAKES_PEARE_INDEX, total);
                 List<SearchResult.Hit<Shakespeare, Void>> hits = execute.getHits(Shakespeare.class);
                 list.addAll(hits.stream().map(e -> e.source).collect(Collectors.toList()));
                 //获取scroll_id
                 String scroll_id = execute.getJsonObject().get(Constant.SCROLL_ID).getAsString();
-                while (true){
+                while (true) {
                     SearchScroll build = new SearchScroll.Builder(scroll_id, Constant.SCROLL_TIME).build();
                     JestResult result = jestClient.execute(build);
                     List<Shakespeare> source = result.getSourceAsObjectList(Shakespeare.class);
                     list.addAll(source);
-                    if(CollectionUtils.isEmpty(source)){
+                    if (CollectionUtils.isEmpty(source)) {
                         break;
                     }
                 }
-                log.info("ES backupToDatabase to Database success, data size is [{}]",list.size());
+                log.info("ES backupToDatabase to Database success, data size is [{}]", list.size());
             }
 
         } catch (IOException e) {
@@ -208,7 +208,7 @@ public class ShakespeareServiceImpl implements ShakespeareService{
     public boolean clean() {
         int count = 0;
         List<ShakespeareIndex> list = Lists.newArrayList();
-        String query = "{\"query\":{\"match_all\":{}},\"size\":"+Constant.SCROLL_SIZE+"}";
+        String query = "{\"query\":{\"match_all\":{}},\"size\":" + Constant.SCROLL_SIZE + "}";
         Search search = new Search.Builder(query)
                 .addIndex(Constant.SHAKES_PEARE_INDEX)
                 .addType(Constant.INDEX_TYPE)
@@ -216,15 +216,15 @@ public class ShakespeareServiceImpl implements ShakespeareService{
                 .build();
         try {
             SearchResult execute = jestClient.execute(search);
-            if(execute.isSucceeded()){
+            if (execute.isSucceeded()) {
                 Long total = execute.getTotal();
-                log.info("索引[{}]存在[{}]条数据",Constant.SHAKES_PEARE_INDEX,total);
+                log.info("索引[{}]存在[{}]条数据", Constant.SHAKES_PEARE_INDEX, total);
                 List<SearchResult.Hit<Shakespeare, Void>> hits = execute.getHits(Shakespeare.class);
                 list = hits.stream().map(this::convert).collect(Collectors.toList());
                 count += clean(list);
-                log.info("[{}]批量删除数据成功,插入数据[{}]条", DateUtil.currentTime(),list.size());
+                log.info("[{}]批量删除数据成功,插入数据[{}]条", DateUtil.currentTime(), list.size());
                 list.clear();
-                log.info("clean ES data success, data size is [{}]",count);
+                log.info("clean ES data success, data size is [{}]", count);
             }
 
         } catch (IOException e) {
@@ -256,8 +256,8 @@ public class ShakespeareServiceImpl implements ShakespeareService{
                 .build();
         try {
             BulkResult execute = jestClient.execute(bulk);
-            if (execute.isSucceeded()){
-                log.info("处理结果[{}]",execute.getResponseCode());
+            if (execute.isSucceeded()) {
+                log.info("处理结果[{}]", execute.getResponseCode());
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -270,11 +270,11 @@ public class ShakespeareServiceImpl implements ShakespeareService{
         AtomicInteger count = new AtomicInteger(1);
         int total = shakespeareMapper.total();
         int from = 0;
-        while (from < total){
-            List<Shakespeare> list = shakespeareMapper.simpleQuery(from,Constant.SCROLL_SIZE);
+        while (from < total) {
+            List<Shakespeare> list = shakespeareMapper.simpleQuery(from, Constant.SCROLL_SIZE);
             from += list.size();
             bulkDataToES(list);
-            log.info("第[{}]次导入ES[{}]条数据",count.incrementAndGet(),list.size());
+            log.info("第[{}]次导入ES[{}]条数据", count.incrementAndGet(), list.size());
         }
         return true;
     }
@@ -302,7 +302,7 @@ public class ShakespeareServiceImpl implements ShakespeareService{
     public boolean backupToDatabase() {
         int count = 0;
         List<Shakespeare> list = Lists.newArrayList();
-        String query = "{\"query\":{\"match_all\":{}},\"size\":"+Constant.SCROLL_SIZE+"}";
+        String query = "{\"query\":{\"match_all\":{}},\"size\":" + Constant.SCROLL_SIZE + "}";
         Search search = new Search.Builder(query)
                 .addIndex(Constant.SHAKES_PEARE_INDEX)
                 .addType(Constant.INDEX_TYPE)
@@ -310,28 +310,28 @@ public class ShakespeareServiceImpl implements ShakespeareService{
                 .build();
         try {
             SearchResult execute = jestClient.execute(search);
-            if(execute.isSucceeded()){
+            if (execute.isSucceeded()) {
                 Long total = execute.getTotal();
-                log.info("索引[{}]存在[{}]条数据",Constant.SHAKES_PEARE_INDEX,total);
+                log.info("索引[{}]存在[{}]条数据", Constant.SHAKES_PEARE_INDEX, total);
                 List<SearchResult.Hit<Shakespeare, Void>> hits = execute.getHits(Shakespeare.class);
                 list = hits.stream().map(e -> e.source).collect(Collectors.toList());
                 count += inserBatch(list);
                 list.clear();
                 //获取scroll_id
                 String scroll_id = execute.getJsonObject().get(Constant.SCROLL_ID).getAsString();
-                log.info("当前scroll_id为:[{}]",scroll_id);
-                log.info("当前scroll_id长度为:[{}]",scroll_id.length());
-                while (true){
+                log.info("当前scroll_id为:[{}]", scroll_id);
+                log.info("当前scroll_id长度为:[{}]", scroll_id.length());
+                while (true) {
                     SearchScroll build = new SearchScroll.Builder(scroll_id, Constant.SCROLL_TIME).build();
                     JestResult result = jestClient.execute(build);
                     List<Shakespeare> source = result.getSourceAsObjectList(Shakespeare.class);
-                    if(CollectionUtils.isEmpty(source)){
+                    if (CollectionUtils.isEmpty(source)) {
                         break;
                     }
                     //插入操作
                     count += inserBatch(source);
                 }
-                log.info("ES backupToDatabase to Database success, data size is [{}]",count);
+                log.info("ES backupToDatabase to Database success, data size is [{}]", count);
             }
 
         } catch (IOException e) {
@@ -343,7 +343,7 @@ public class ShakespeareServiceImpl implements ShakespeareService{
     @Override
     public List<Shakespeare> query(Integer from, Integer size) {
         List<Shakespeare> list = Lists.newArrayList();
-        String query = "{\"query\":{\"match_all\":{}},\"from\":"+from+",\"size\":"+size+"}";
+        String query = "{\"query\":{\"match_all\":{}},\"from\":" + from + ",\"size\":" + size + "}";
         Search search = new Search.Builder(query)
                 .addIndex(Constant.SHAKES_PEARE_INDEX)
                 .addType(Constant.INDEX_TYPE)
@@ -351,7 +351,7 @@ public class ShakespeareServiceImpl implements ShakespeareService{
 
         try {
             SearchResult execute = jestClient.execute(search);
-            if(execute.isSucceeded()){
+            if (execute.isSucceeded()) {
                 List<SearchResult.Hit<Shakespeare, Void>> hits = execute.getHits(Shakespeare.class);
                 list = hits.stream().map(e -> e.source).collect(Collectors.toList());
                 return list;
@@ -367,16 +367,16 @@ public class ShakespeareServiceImpl implements ShakespeareService{
     public int save(Integer from, Integer size) {
         List<Shakespeare> query = query(from, size);
         query.forEach(e -> shakespeareMapper.save(e));
-        if(log.isDebugEnabled()){
-            log.debug("批量插入数据成功,插入数据[{}]条",query.size());
+        if (log.isDebugEnabled()) {
+            log.debug("批量插入数据成功,插入数据[{}]条", query.size());
         }
         return query.size();
     }
 
     private int save(List<Shakespeare> list) {
         list.forEach(e -> shakespeareMapper.save(e));
-        if(log.isDebugEnabled()){
-            log.debug("[{}]批量插入数据成功,插入数据[{}]条", DateUtil.currentTime(),list.size());
+        if (log.isDebugEnabled()) {
+            log.debug("[{}]批量插入数据成功,插入数据[{}]条", DateUtil.currentTime(), list.size());
         }
         return list.size();
     }
@@ -386,11 +386,11 @@ public class ShakespeareServiceImpl implements ShakespeareService{
         SqlSessionFactory sqlSessionFactory = sqlSessionTemplate.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession(ExecutorType.BATCH);
         try {
-            for(Shakespeare shakespeare:list){
+            for (Shakespeare shakespeare : list) {
                 mapper.save(shakespeare);
             }
-            if(log.isDebugEnabled()){
-                log.debug("[{}]批量插入数据成功,插入数据[{}]条", DateUtil.currentTime(),list.size());
+            if (log.isDebugEnabled()) {
+                log.debug("[{}]批量插入数据成功,插入数据[{}]条", DateUtil.currentTime(), list.size());
             }
             session.commit();
         } finally {
@@ -401,8 +401,8 @@ public class ShakespeareServiceImpl implements ShakespeareService{
 
     private int addBatch(List<Shakespeare> list) {
         shakespeareMapper.addBatch(list);
-        if(log.isDebugEnabled()){
-            log.debug("[{}]批量插入数据成功,插入数据[{}]条", DateUtil.currentTime(),list.size());
+        if (log.isDebugEnabled()) {
+            log.debug("[{}]批量插入数据成功,插入数据[{}]条", DateUtil.currentTime(), list.size());
         }
         return list.size();
     }

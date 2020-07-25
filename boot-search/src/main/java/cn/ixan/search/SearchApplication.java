@@ -26,24 +26,24 @@ import java.util.Collections;
 @MapperScan(basePackages = "cn.ixan.search.mapper")
 @SpringBootApplication
 public class SearchApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(SearchApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SearchApplication.class, args);
+    }
 
-	@Bean
-	public Gson gson(){
-		return new Gson();
-	}
+    @Bean
+    public Gson gson() {
+        return new Gson();
+    }
 
-	//@Bean
-	public Jedis jedis(){
-		return new Jedis("192.168.70.128",6379);
-	}
+    //@Bean
+    public Jedis jedis() {
+        return new Jedis("192.168.70.128", 6379);
+    }
 
-	@Bean
-	public CacheManager cacheManager() {
-		SimpleCacheManager cacheManager = new SimpleCacheManager();
-		cacheManager.setCaches(Collections.singletonList(new ConcurrentMapCache("models")));
-		return cacheManager;
-	}
+    @Bean
+    public CacheManager cacheManager() {
+        SimpleCacheManager cacheManager = new SimpleCacheManager();
+        cacheManager.setCaches(Collections.singletonList(new ConcurrentMapCache("models")));
+        return cacheManager;
+    }
 }

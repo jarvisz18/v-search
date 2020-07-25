@@ -17,7 +17,7 @@ public class RedisServiceImpl implements RedisService {
     private StringRedisTemplate redisTemplate;
 
     @Override
-    public boolean lock(final String key,final long ex) {
+    public boolean lock(final String key, final long ex) {
         Boolean execute = redisTemplate.execute(new RedisCallback<Boolean>() {
             @Override
             public Boolean doInRedis(RedisConnection redisConnection) throws DataAccessException {

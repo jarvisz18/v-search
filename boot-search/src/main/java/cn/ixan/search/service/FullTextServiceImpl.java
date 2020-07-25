@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @Service
 @Slf4j
-public class FullTextServiceImpl implements FullTextService{
+public class FullTextServiceImpl implements FullTextService {
     @Autowired
     private JestClient jestClient;
 

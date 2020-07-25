@@ -24,9 +24,11 @@ import org.elasticsearch.common.MacAddressProvider;
 import java.util.Base64;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/** These are essentially flake ids (http://boundary.com/blog/2012/01/12/flake-a-decentralized-k-ordered-unique-id-generator-in-erlang) but
- *  we use 6 (not 8) bytes for timestamp, and use 3 (not 2) bytes for sequence number. We also reorder bytes in a way that does not make ids
- *  sort in order anymore, but is more friendly to the way that the Lucene terms dictionary is structured. */
+/**
+ * These are essentially flake ids (http://boundary.com/blog/2012/01/12/flake-a-decentralized-k-ordered-unique-id-generator-in-erlang) but
+ * we use 6 (not 8) bytes for timestamp, and use 3 (not 2) bytes for sequence number. We also reorder bytes in a way that does not make ids
+ * sort in order anymore, but is more friendly to the way that the Lucene terms dictionary is structured.
+ */
 
 public class TimeBasedUUIDGenerator implements UUIDGenerator {
 
@@ -54,7 +56,7 @@ public class TimeBasedUUIDGenerator implements UUIDGenerator {
     }
 
     @Override
-    public String getBase64UUID()  {
+    public String getBase64UUID() {
         final int sequenceId = sequenceNumber.incrementAndGet() & 0xffffff;
         long timestamp = currentTimeMillis();
 

@@ -9,7 +9,7 @@ import java.util.List;
  * @date 19-9-4
  */
 public interface ExportService {
-	List<UserInfo> getUserList();
+    List<UserInfo> getUserList();
 
-	Integer saveUserInfo(UserInfo user);
+    Integer saveUserInfo(UserInfo user);
 }

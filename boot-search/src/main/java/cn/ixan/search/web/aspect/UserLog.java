@@ -13,5 +13,6 @@ import java.lang.annotation.*;
 @Documented
 public @interface UserLog {
     String menuName();
+
     String menuDesc();
 }

@@ -47,9 +47,9 @@ public class DocParserUtil {
             log.info("元数据-----");
             Metadata metadata = new Metadata();
 
-            new AutoDetectParser().parse(new FileInputStream(file),new BodyContentHandler(),metadata,new ParseContext());
+            new AutoDetectParser().parse(new FileInputStream(file), new BodyContentHandler(), metadata, new ParseContext());
             String[] names = metadata.names();
-            for(String name:names){
+            for (String name : names) {
                 log.info(name + ":" + metadata.get(name));
             }
         } catch (IOException | TikaException | SAXException e) {
@@ -58,7 +58,7 @@ public class DocParserUtil {
     }
 
     @Test
-    public void testParsePdf(){
+    public void testParsePdf() {
         Tika tika = new Tika();
         File file = new File("C:\\Users\\Administrator\\Desktop\\网络泡沫.pdf");
         String s = null;
@@ -71,10 +71,10 @@ public class DocParserUtil {
         log.info(from);
     }
 
-    public static ImExtInfo readFile(String inputPath){
+    public static ImExtInfo readFile(String inputPath) {
         ImExtInfo imExtInfo;
         String fileExt = FileUtils.getExtension(inputPath);
-        switch (fileExt){
+        switch (fileExt) {
             case "pdf":
                 imExtInfo = readPdfFile(inputPath);
                 break;
@@ -90,7 +90,7 @@ public class DocParserUtil {
                 imExtInfo = readTxtFile(inputPath);
                 break;
             default:
-                log.info("unknow type:"+fileExt);
+                log.info("unknow type:" + fileExt);
                 imExtInfo = null;
         }
         return imExtInfo;
@@ -98,6 +98,7 @@ public class DocParserUtil {
 
     /**
      * 文本文档解析<br/>
+     *
      * @param inputPath 文件路径
      * @return 解析结果
      */
@@ -109,7 +110,7 @@ public class DocParserUtil {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String readLine = bufferedReader.readLine();
             StringBuilder builder = new StringBuilder();
-            while (readLine != null){
+            while (readLine != null) {
                 builder.append(readLine);
                 readLine = bufferedReader.readLine();
             }
@@ -129,6 +130,7 @@ public class DocParserUtil {
 
     /**
      * doc文档解析<br/>
+     *
      * @param inputPath 文件路径
      * @return 解析结果
      */
@@ -143,7 +145,7 @@ public class DocParserUtil {
             WordExtractor extractor = new WordExtractor(document);
             String[] contextArray = extractor.getParagraphText();
             StringBuilder builder = new StringBuilder();
-            for(String context:contextArray){
+            for (String context : contextArray) {
                 builder.append(context.trim());
             }
             String content = builder.toString();
@@ -161,6 +163,7 @@ public class DocParserUtil {
 
     /**
      * docx文档解析<br/>
+     *
      * @param inputPath 文件路径
      * @return 解析结果
      */
@@ -174,7 +177,7 @@ public class DocParserUtil {
             XWPFDocument document = new XWPFDocument(inputStream);
             List<XWPFParagraph> paragraphs = document.getParagraphs();
             StringBuilder builder = new StringBuilder();
-            for(XWPFParagraph paragraph:paragraphs){
+            for (XWPFParagraph paragraph : paragraphs) {
                 builder.append(paragraph.getText().trim());
             }
             String content = builder.toString();
@@ -213,11 +216,11 @@ public class DocParserUtil {
         StringBuilder builder = new StringBuilder();
         word.forEach(builder::append);
         String s = builder.toString();
-        log.info("文件内容为:{}", StringUtils.isNotBlank(s)?s:"null of content");
+        log.info("文件内容为:{}", StringUtils.isNotBlank(s) ? s : "null of content");
         return s;
     }
 
-    public static List<String> readWordToString(InputStream stream,String fileName) {
+    public static List<String> readWordToString(InputStream stream, String fileName) {
         List<String> contextList = Lists.newArrayList();
         try {
             if (fileName.endsWith(".doc")) {
