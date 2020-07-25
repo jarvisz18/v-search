@@ -2,3 +2,7 @@
 /logs/
 /.idea/
 *.iml
+!/search.iml
+java-example/src/main/resources/
+java-example/src/test/
+java-example/target/
