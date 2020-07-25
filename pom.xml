@@ -16,6 +16,7 @@
         <module>cloud-zuul</module>
         <module>cloud-feign</module>
         <module>cloud-ribbon</module>
+        <module>java-example</module>
     </modules>
 
     <parent>
