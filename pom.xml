@@ -17,6 +17,7 @@
         <module>cloud-feign</module>
         <module>cloud-ribbon</module>
         <module>boot-test</module>
+        <module>java-example</module>
     </modules>
 
     <parent>
