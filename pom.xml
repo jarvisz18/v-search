@@ -16,6 +16,7 @@
         <module>cloud-zuul</module>
         <module>cloud-feign</module>
         <module>cloud-ribbon</module>
+        <module>boot-test</module>
     </modules>
 
     <parent>
@@ -33,10 +34,10 @@
 
     <dependencies>
 
-        <!--单元测试-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
@@ -45,7 +46,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Finchley.RELEASE</version>
+                <version>Finchley.SR2</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

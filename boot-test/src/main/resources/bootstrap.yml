@@ -17,3 +17,12 @@ pagehelper:
   support-methods-arguments: true
   params: count=countsql
 
+management:
+  endpoint:
+    health:
+      # 是否展示健康检查详情
+      show-details: always
+    web:
+      exposure:
+        include: metrics
+
