@@ -12,7 +12,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import redis.clients.jedis.Jedis;
 
 import java.util.Collections;
 
@@ -33,11 +32,6 @@ public class SearchApplication {
 	@Bean
 	public Gson gson(){
 		return new Gson();
-	}
-
-	//@Bean
-	public Jedis jedis(){
-		return new Jedis("192.168.70.128",6379);
 	}
 
 	@Bean

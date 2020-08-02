@@ -20,9 +20,8 @@ pagehelper:
 management:
   endpoint:
     health:
-      # 是否展示健康检查详情
       show-details: always
+  endpoints:
     web:
       exposure:
-        include: metrics
-
+        include: metrics,loggers,health
