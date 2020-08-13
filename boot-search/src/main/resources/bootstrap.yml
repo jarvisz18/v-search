@@ -1,10 +1,10 @@
 server:
-  port: 9087
+  port: 10040
   servlet:
     context-path: /search
 spring:
   application:
-    name: v-search
+    name: boot-search
   profiles:
     active: dev
   resources:
@@ -16,6 +16,5 @@ spring:
 
 #配置日志
 logging:
-  config: classpath:logback-spring.xml
   level:
     cn.ixan.search.mapper: debug

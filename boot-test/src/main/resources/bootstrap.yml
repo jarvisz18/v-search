@@ -1,0 +1,31 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /zero
+spring:
+  profiles:
+    active: dev
+
+#配置Mybatis
+mybatis:
+  type-aliases-package: com.ixan.boot.domain
+  mapper-locations: classpath:mapper/*.xml
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countsql
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: metrics,loggers,health
+#开启okhttp
+feign:
+  okhttp:
+    enabled: true

@@ -16,13 +16,14 @@
         <module>cloud-zuul</module>
         <module>cloud-feign</module>
         <module>cloud-ribbon</module>
+        <module>boot-test</module>
         <module>java-example</module>
     </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.9.RELEASE</version>
+        <version>2.1.10.RELEASE</version>
         <relativePath/>
     </parent>
     <!-- 设置编码 -->
@@ -33,11 +34,21 @@
     </properties>
 
     <dependencies>
-
-        <!--单元测试-->
+        <!-- Apache工具组件 -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.8.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>29.0-jre</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.10</version>
         </dependency>
     </dependencies>
 
@@ -46,7 +57,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Finchley.RELEASE</version>
+                <version>Greenwich.SR4</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
