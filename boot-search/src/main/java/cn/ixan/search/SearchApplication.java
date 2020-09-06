@@ -15,7 +15,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
-import javax.annotation.PostConstruct;
 import java.util.Collections;
 
 /**
@@ -35,7 +34,7 @@ public class SearchApplication {
 	@Autowired
 	private Product product;
 
-	@PostConstruct
+	//@PostConstruct
 	public void init() {
 		for (int i = 0; i < 10; i++) {
 			product.send("v-search" + i);

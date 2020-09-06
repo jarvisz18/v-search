@@ -1,7 +1,8 @@
-package cn.ixan.search.service;
+package cn.ixan.search.service.impl;
 
 import cn.ixan.search.domain.BaseIndexDTO;
 import cn.ixan.search.domain.Bucket;
+import cn.ixan.search.service.ThirdSystemService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;

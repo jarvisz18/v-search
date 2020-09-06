@@ -1,6 +1,5 @@
 package cn.ixan.search.web.controller;
 
-import cn.ixan.search.domain.ResultBean;
 import cn.ixan.search.domain.Shakespeare;
 import cn.ixan.search.service.ShakespeareService;
 import io.swagger.annotations.Api;
@@ -29,20 +28,6 @@ public class ShakespeareController {
 
     @Resource
     private ShakespeareService shakespeareService;
-
-    @ApiOperation(value = "获取索引settings信息",notes = "获取索引settings信息")
-    @GetMapping("/settings/{indexName}/{indexType}")
-    public ResultBean<String> settings(@PathVariable("indexName") String indexName,
-                                    @PathVariable("indexType") String indexType){
-        return shakespeareService.settings(indexName,indexType);
-    }
-
-    @ApiOperation(value = "获取索引mapping信息",notes = "获取索引mapping信息")
-    @GetMapping("/mapping/{indexName}/{indexType}")
-    public ResultBean<String> mapping(@PathVariable("indexName") String indexName,
-                                    @PathVariable("indexType") String indexType){
-        return shakespeareService.mapping(indexName,indexType);
-    }
 
     @ApiOperation(value = "重新加载数据",notes = "重新加载数据")
     @PostMapping("/shake/reload")

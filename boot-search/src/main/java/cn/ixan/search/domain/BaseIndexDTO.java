@@ -4,7 +4,8 @@ import cn.ixan.search.domain.constant.Constant;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.NotBlank;
 
 @ApiModel(description = "基本索引查询类")
 @Data

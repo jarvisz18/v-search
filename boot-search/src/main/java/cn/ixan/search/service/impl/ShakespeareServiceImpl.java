@@ -1,10 +1,10 @@
-package cn.ixan.search.service;
+package cn.ixan.search.service.impl;
 
-import cn.ixan.search.domain.ResultBean;
 import cn.ixan.search.domain.Shakespeare;
 import cn.ixan.search.domain.ShakespeareIndex;
 import cn.ixan.search.domain.constant.Constant;
 import cn.ixan.search.mapper.ShakespeareMapper;
+import cn.ixan.search.service.ShakespeareService;
 import cn.ixan.search.utils.DateUtil;
 import com.google.common.collect.Lists;
 import com.google.gson.Gson;
@@ -12,7 +12,6 @@ import io.searchbox.client.JestClient;
 import io.searchbox.client.JestResult;
 import io.searchbox.core.*;
 import io.searchbox.indices.mapping.GetMapping;
-import io.searchbox.indices.settings.GetSettings;
 import io.searchbox.params.Parameters;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
@@ -33,7 +32,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Service
-public class ShakespeareServiceImpl implements ShakespeareService{
+public class ShakespeareServiceImpl implements ShakespeareService {
     private static final Logger log = LoggerFactory.getLogger(ShakespeareServiceImpl.class);
     @Resource
     private Gson gson;
@@ -56,51 +55,6 @@ public class ShakespeareServiceImpl implements ShakespeareService{
             e.printStackTrace();
         }
         return false;
-    }
-
-    @Override
-    public ResultBean<String> settings(String indexName, String indexType) {
-        ResultBean<String> resultBean = new ResultBean<>();
-        GetSettings mapping = new GetSettings.Builder()
-                .addIndex(indexName)
-                .build();
-        try {
-            JestResult execute = jestClient.execute(mapping);
-            boolean succeeded = execute.isSucceeded();
-            resultBean.setCode(execute.getResponseCode());
-            resultBean.setMsg(execute.getErrorMessage());
-            if(succeeded){
-                resultBean.setData(gson.toJson(execute.getJsonObject()));
-            } else {
-                resultBean.setData(gson.toJson(execute));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return resultBean;
-    }
-
-    @Override
-    public ResultBean<String> mapping(String indexName, String indexType) {
-        ResultBean<String> resultBean = new ResultBean<>();
-        GetMapping mapping = new GetMapping.Builder()
-                .addIndex(indexName)
-                .addType(indexType)
-                .build();
-        try {
-            JestResult execute = jestClient.execute(mapping);
-            boolean succeeded = execute.isSucceeded();
-            resultBean.setCode(execute.getResponseCode());
-            resultBean.setMsg(execute.getErrorMessage());
-            if(succeeded){
-                resultBean.setData(gson.toJson(execute.getJsonObject()));
-            } else {
-                resultBean.setData(gson.toJson(execute));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return resultBean;
     }
 
     @Override
