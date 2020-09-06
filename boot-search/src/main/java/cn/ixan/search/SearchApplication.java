@@ -2,6 +2,7 @@ package cn.ixan.search;
 
 import cn.ixan.search.web.controller.Product;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -43,7 +44,7 @@ public class SearchApplication {
 
 	@Bean
 	public Gson gson() {
-		return new Gson();
+		return new GsonBuilder().setPrettyPrinting().create();
 	}
 
 	@Bean

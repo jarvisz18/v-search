@@ -8,6 +8,7 @@ import cn.ixan.search.service.ShakespeareService;
 import cn.ixan.search.utils.DateUtil;
 import com.google.common.collect.Lists;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import io.searchbox.client.JestClient;
 import io.searchbox.client.JestResult;
 import io.searchbox.core.*;
@@ -297,7 +298,9 @@ public class ShakespeareServiceImpl implements ShakespeareService {
     @Override
     public List<Shakespeare> query(Integer from, Integer size) {
         List<Shakespeare> list = Lists.newArrayList();
-        String query = "{\"query\":{\"match_all\":{}},\"from\":"+from+",\"size\":"+size+"}";
+        String query = "{\"query\":{\"match_all\":{}},\"from\":" + from + ",\"size\":" + size + "}";
+        JsonElement jsonElement = gson.fromJson(query, JsonElement.class);
+        log.info("索引:[{}],查询脚本:\n{}", Constant.SHAKES_PEARE_INDEX, gson.toJson(jsonElement));
         Search search = new Search.Builder(query)
                 .addIndex(Constant.SHAKES_PEARE_INDEX)
                 .addType(Constant.INDEX_TYPE)
@@ -305,7 +308,7 @@ public class ShakespeareServiceImpl implements ShakespeareService {
 
         try {
             SearchResult execute = jestClient.execute(search);
-            if(execute.isSucceeded()){
+            if (execute.isSucceeded()) {
                 List<SearchResult.Hit<Shakespeare, Void>> hits = execute.getHits(Shakespeare.class);
                 list = hits.stream().map(e -> e.source).collect(Collectors.toList());
                 return list;
