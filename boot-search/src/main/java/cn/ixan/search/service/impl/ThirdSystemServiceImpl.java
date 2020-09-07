@@ -3,6 +3,7 @@ package cn.ixan.search.service.impl;
 import cn.ixan.search.domain.BaseIndexDTO;
 import cn.ixan.search.domain.Bucket;
 import cn.ixan.search.service.ThirdSystemService;
+import cn.ixan.search.web.controller.dto.ThirdQueryDTO;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -10,6 +11,7 @@ import io.searchbox.client.JestClient;
 import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -28,13 +31,38 @@ public class ThirdSystemServiceImpl implements ThirdSystemService {
 
 
     @Override
+    public Map<String, Object> search(ThirdQueryDTO queryDTO) {
+        Map<String, Object> resultMap = new HashMap<>();
+        String indexName = queryDTO.getIndexName();
+        String indexType = queryDTO.getIndexType();
+        String query = gson.toJson(queryDTO.getQuery());
+        if (log.isInfoEnabled()) {
+            log.info("索引:[{}],查询脚本:\n {}", indexName, query);
+        }
+        Search search = new Search.Builder(query).addIndex(indexName).addType(indexType).build();
+        try {
+            SearchResult execute = jestClient.execute(search);
+            if (execute.isSucceeded()) {
+                List<SearchResult.Hit<Object, Void>> hits = execute.getHits(Object.class);
+                List<Object> collect = hits.stream().map(e -> e.source).collect(Collectors.toList());
+                resultMap.put("data", collect);
+            }
+            resultMap.put("msg", StringUtils.isNotBlank(execute.getErrorMessage()) ? execute.getErrorMessage() : "ok");
+            resultMap.put("code", execute.getResponseCode());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return resultMap;
+    }
+
+    @Override
     public Map<String, Object> repeat(BaseIndexDTO baseIndexDTO) {
-        Map<String,Object> resultMap = new HashMap<>();
+        Map<String, Object> resultMap = new HashMap<>();
         String indexName = baseIndexDTO.getIndexName();
         String indexType = baseIndexDTO.getIndexType();
         String field = baseIndexDTO.getField();
         Integer size = baseIndexDTO.getSize();
-        String query = "{\"size\":0,\"aggs\":{\"nums\":{\"terms\":{\"field\":\""+field+"\",\"size\":"+size+"}}}}";
+        String query = "{\"size\":0,\"aggs\":{\"nums\":{\"terms\":{\"field\":\"" + field + "\",\"size\":" + size + "}}}}";
         Search search = new Search.Builder(query).addIndex(indexName).addType(indexType).build();
         try {
             SearchResult execute = jestClient.execute(search);
