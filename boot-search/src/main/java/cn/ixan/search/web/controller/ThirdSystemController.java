@@ -2,6 +2,7 @@ package cn.ixan.search.web.controller;
 
 import cn.ixan.search.domain.BaseIndexDTO;
 import cn.ixan.search.service.ThirdSystemService;
+import cn.ixan.search.web.controller.dto.ThirdQueryDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +22,15 @@ public class ThirdSystemController {
     @Resource
     private ThirdSystemService thirdSystemService;
 
+    @ApiOperation(value = "通用索引查询")
+    @PostMapping("/system/search")
+    public Map<String, Object> search(@RequestBody @Valid ThirdQueryDTO queryDTO) {
+        return thirdSystemService.search(queryDTO);
+    }
+
     @ApiOperation(value = "查询索引重复数据")
     @PostMapping("/system/repeat")
-    public Map<String,Object> repeat(@RequestBody @Valid BaseIndexDTO baseIndexDTO){
+    public Map<String, Object> repeat(@RequestBody @Valid BaseIndexDTO baseIndexDTO) {
         return thirdSystemService.repeat(baseIndexDTO);
     }
 }
