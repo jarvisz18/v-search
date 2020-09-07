@@ -2,7 +2,7 @@ package cn.ixan.search.test;
 
 import cn.ixan.search.domain.Shakespeare;
 import cn.ixan.search.mapper.ShakespeareMapper;
-import cn.ixan.search.service.ShakespeareService;
+import cn.ixan.search.service.ShakeDataService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,14 +17,14 @@ import java.util.List;
 @Slf4j
 public class ElasticTest {
     @Autowired
-    private ShakespeareService shakespeareService;
+    private ShakeDataService shakeDataService;
     @Autowired
     private ShakespeareMapper shakespeareMapper;
 
     @Test
     public void repeat(){
         List<Shakespeare> list = shakespeareMapper.simpleQuery(0, 1000);
-        shakespeareService.bulkDataToES(list);
-        log.info("导入ES[{}]条数据",list.size());
+        shakeDataService.bulkDataToES(list);
+        log.info("导入ES[{}]条数据", list.size());
     }
 }

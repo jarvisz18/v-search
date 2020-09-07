@@ -1,7 +1,10 @@
 package cn.ixan.search;
 
+import cn.ixan.search.web.controller.Product;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.CacheManager;
@@ -29,9 +32,19 @@ public class SearchApplication {
 		SpringApplication.run(SearchApplication.class, args);
 	}
 
+	@Autowired
+	private Product product;
+
+	//@PostConstruct
+	public void init() {
+		for (int i = 0; i < 10; i++) {
+			product.send("v-search" + i);
+		}
+	}
+
 	@Bean
-	public Gson gson(){
-		return new Gson();
+	public Gson gson() {
+		return new GsonBuilder().setPrettyPrinting().create();
 	}
 
 	@Bean
