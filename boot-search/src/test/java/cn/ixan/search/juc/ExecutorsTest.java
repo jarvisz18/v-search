@@ -22,36 +22,53 @@ public class ExecutorsTest {
 	private static final Logger logger = LoggerFactory.getLogger(ExecutorsTest.class);
 
 	public static void main(String[] args) {
-		ExecutorService executorService = Executors.newFixedThreadPool(4);
-		for (int i = 0; i < 20; i++) {
-			final int index = i;
-			try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			logger.info("正在处理Task" + i);
-			UUIDGenerator uuidGenerator = new TimeBasedUUIDGenerator();
-			executorService.execute(new Runnable() {
-
-				@Override
-				public void run() {
-					logger.info("current state:" + Thread.currentThread().getState());
-					logger.info(Thread.currentThread().getName() + "线程被调用了,生成主键:" + uuidGenerator.getBase64UUID());
-					logger.info("current state:" + Thread.currentThread().getState());
+		long startMills = System.currentTimeMillis();
+		//系统可用线程数
+		int N_CPUS = Runtime.getRuntime().availableProcessors();
+		logger.info("系统可用线程数availableProcessors :[{}]", N_CPUS);
+		ExecutorService executorService = Executors.newFixedThreadPool(N_CPUS);
+		try {
+			for (int i = 0; i < 200; i++) {
+				try {
+					Thread.sleep(100L);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
-			});
+				logger.info("正在处理Task" + i);
+				UUIDGenerator uuidGenerator = new TimeBasedUUIDGenerator();
+				executorService.execute(new Runnable() {
+
+					@Override
+					public void run() {
+						logger.info("current state:" + Thread.currentThread().getState());
+						logger.info(Thread.currentThread().getName() + "线程被调用了,生成主键:" + uuidGenerator.getBase64UUID());
+						logger.info("current state:" + Thread.currentThread().getState());
+					}
+				});
+			}
+		} finally {
+			if (!executorService.isShutdown()) {
+				logger.info("线程池关闭状态:[{}]", executorService.isShutdown());
+				//关闭方法，调用后执行之前提交的任务，不再接受新的任务
+				executorService.shutdown();
+				logger.info("线程池关闭状态:[{}]", executorService.isShutdown());
+			}
 		}
-		logger.info("线程池关闭状态:[{}]", executorService.isShutdown());
-		//关闭方法，调用后执行之前提交的任务，不再接受新的任务
-		executorService.shutdown();
-		logger.info("线程池关闭状态:[{}]", executorService.isShutdown());
+		while (true) {
+			if (executorService.isTerminated()) {
+				long endMills = System.currentTimeMillis();
+				logger.info("线程执行完毕,耗时:[{}]ms", (endMills - startMills));
+				break;
+			}
+		}
 	}
 
 	@Test
 	public void testCallableTask() {
+		//系统可用线程数
+		int N_CPUS = Runtime.getRuntime().availableProcessors();
 		//这里通过newCacheThread（）方法来实现线程池，当然也可以用其他三种方法
-		ExecutorService executorService = Executors.newFixedThreadPool(4);
+		ExecutorService executorService = Executors.newFixedThreadPool(N_CPUS);
 		//Future 表示异步计算的结果。它提供了检查计算是否完成的方法，以等待计算的完成，并获取计算的结果。
 		//计算完成后只能使用 get 方法来获取结果，如有必要，计算完成前可以阻塞此方法。
 		ArrayList<Future<String>> resultList = new ArrayList<Future<String>>();
