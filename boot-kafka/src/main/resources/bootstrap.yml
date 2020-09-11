@@ -1,0 +1,9 @@
+server:
+  port: 10011
+  servlet:
+    context-path: /kafka
+spring:
+  application:
+    name: boot-kafka
+  profiles:
+    active: dev

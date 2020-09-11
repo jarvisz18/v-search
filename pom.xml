@@ -18,6 +18,7 @@
         <module>cloud-ribbon</module>
         <module>boot-test</module>
         <module>java-example</module>
+        <module>boot-kafka</module>
     </modules>
 
     <parent>
