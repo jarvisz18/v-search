@@ -19,6 +19,8 @@
         <module>boot-test</module>
         <module>java-example</module>
         <module>boot-kafka</module>
+        <module>boot-admin-server</module>
+        <module>boot-admin-client</module>
     </modules>
 
     <parent>

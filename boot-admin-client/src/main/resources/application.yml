@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: boot-admin-client
+  boot:
+    admin:
+      client:
+        url: http://localhost:8769
+server:
+  port: 8768
+
+#注册中心
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+  client:
+    registryFetchIntervalSeconds: 5
+    service-url:
+      defaultZone: http://47.105.157.113:7001/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
