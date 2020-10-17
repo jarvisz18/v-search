@@ -2,15 +2,24 @@ server:
   port: 7001
 eureka:
   instance:
-    hostname: localhost #eureka服务端的实例名称
+    #eureka服务端的实例名称
+    hostname: localhost
   client:
-    register-with-eureka: false #false表示不向注册中心注册自己。
-    fetch-registry: false #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
+    #false表示不向注册中心注册自己。
+    register-with-eureka: false
+    #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
+    fetch-registry: false
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/        #设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址。
+      #设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址。
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
     registry-fetch-interval-seconds: 5
   server:
-    use-read-only-response-cache: false #不读取只读的缓存服务清单
+    #不读取只读的缓存服务清单
+    use-read-only-response-cache: false
+    #设为false，关闭自我保护
+    enable-self-preservation: false
+    # 清理间隔（单位毫秒，默认是60*1000）启用主动失效，并且每次主动失效检测间隔为3s
+    eviction-interval-timer-in-ms: 5000
 
 logging:
   file: /home/log/boot-eureka.log
