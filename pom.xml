@@ -22,6 +22,7 @@
         <module>boot-admin-server</module>
         <module>boot-admin-client</module>
         <module>client-kafka-starter</module>
+        <module>boot-httpclient-demo</module>
     </modules>
 
     <parent>
