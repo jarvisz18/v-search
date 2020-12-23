@@ -14,4 +14,6 @@ import java.util.List;
 @Repository
 public interface AccountMapper extends BaseMapper<Account> {
     List<Account> findAll();
+
+    List<Account> listAccount(List<String> statusList);
 }

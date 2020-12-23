@@ -2,9 +2,21 @@ server:
   port: 8088
   servlet:
     context-path: /zero
+  undertow:
+    io-threads: 16
+    worker-threads: 256
+    buffer-size: 1024
+    direct-buffers: true
 spring:
   profiles:
     active: dev
+  main:
+    allow-bean-definition-overriding: true
+  #序列化Date为long型时间戳
+  jackson:
+    time-zone: GMT+8:00
+    serialization:
+      write-dates-as-timestamps: true
 
 #配置Mybatis
 mybatis:
@@ -17,15 +29,3 @@ pagehelper:
   support-methods-arguments: true
   params: count=countsql
 
-management:
-  endpoint:
-    health:
-      show-details: always
-  endpoints:
-    web:
-      exposure:
-        include: metrics,loggers,health
-#开启okhttp
-feign:
-  okhttp:
-    enabled: true

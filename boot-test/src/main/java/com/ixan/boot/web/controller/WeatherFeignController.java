@@ -1,6 +1,6 @@
-package com.ixan.boot.controller;
+package com.ixan.boot.web.controller;
 
-import com.ixan.boot.controller.feign.WeatherFeignService;
+import com.ixan.boot.service.feign.WeatherFeignService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

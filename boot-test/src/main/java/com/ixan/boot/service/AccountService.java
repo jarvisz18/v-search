@@ -1,8 +1,8 @@
 package com.ixan.boot.service;
 
 import com.github.pagehelper.PageInfo;
-import com.ixan.boot.controller.dto.AccountDTO;
 import com.ixan.boot.domain.Account;
+import com.ixan.boot.domain.dto.AccountDTO;
 
 import java.util.List;
 

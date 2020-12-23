@@ -1,4 +1,4 @@
-package com.ixan.boot.controller.feign;
+package com.ixan.boot.service.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;

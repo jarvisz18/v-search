@@ -1,4 +1,4 @@
-package com.ixan.boot.controller.dto;
+package com.ixan.boot.domain.dto;
 
 import lombok.Data;
 
@@ -12,6 +12,6 @@ import java.io.Serializable;
  */
 @Data
 public class ContractDTO implements Serializable {
-    @NotBlank(message = "主键不能为空")
-    private String con_id;
+	@NotBlank(message = "主键不能为空")
+	private String con_id;
 }

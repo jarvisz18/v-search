@@ -1,6 +1,7 @@
 package com.ixan.boot.domain;
 
 import com.ixan.boot.config.DTOConvert;
+import com.ixan.boot.domain.dto.UserDTO;
 import org.springframework.beans.BeanUtils;
 
 /**

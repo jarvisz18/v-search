@@ -2,8 +2,8 @@ package com.ixan.boot.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.ixan.boot.controller.dto.AccountDTO;
 import com.ixan.boot.domain.Account;
+import com.ixan.boot.domain.dto.AccountDTO;
 import com.ixan.boot.mapper.AccountMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

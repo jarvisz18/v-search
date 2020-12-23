@@ -1,4 +1,4 @@
-package com.ixan.boot.domain;
+package com.ixan.boot.domain.dto;
 
 import lombok.Data;
 
