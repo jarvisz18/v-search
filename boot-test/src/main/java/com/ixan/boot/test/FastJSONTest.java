@@ -1,7 +1,7 @@
 package com.ixan.boot.test;
 
 import com.alibaba.fastjson.JSON;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.Date;
 
