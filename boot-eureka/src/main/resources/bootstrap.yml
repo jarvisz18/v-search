@@ -22,6 +22,6 @@ eureka:
     eviction-interval-timer-in-ms: 5000
 
 logging:
-  file: /home/log/boot-eureka.log
+  file: ./logs/boot-eureka.log
   level:
     root: INFO
