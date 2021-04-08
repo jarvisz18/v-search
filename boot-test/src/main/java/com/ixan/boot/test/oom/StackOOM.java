@@ -1,4 +1,4 @@
-package com.ixan.boot.test;
+package com.ixan.boot.test.oom;
 
 /**
  * @author stack_zhang@outlook.com

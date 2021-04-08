@@ -1,4 +1,4 @@
-package com.ixan.boot.test;
+package com.ixan.boot.test.oom;
 
 import java.util.ArrayList;
 import java.util.List;
