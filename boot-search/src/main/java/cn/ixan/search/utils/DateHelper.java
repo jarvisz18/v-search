@@ -17,6 +17,9 @@ import java.util.Date;
  */
 public final class DateHelper extends DateUtils {
 
+	private DateHelper() {
+		throw new UnsupportedOperationException();
+	}
 
     public static void main(String[] args) {
         System.out.println(formatUTC());
