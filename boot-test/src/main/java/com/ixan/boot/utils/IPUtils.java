@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
  * @version 1.0
  */
 @Slf4j
-public class IPUtil {
+public class IPUtils {
 	/**
 	 * 获取访问者的ip地址
 	 * 注：要外网访问才能获取到外网地址，如果你在局域网甚至本机上访问，获得的是内网或者本机的ip

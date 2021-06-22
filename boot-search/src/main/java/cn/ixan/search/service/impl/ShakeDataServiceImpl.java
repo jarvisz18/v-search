@@ -4,7 +4,7 @@ import cn.ixan.search.domain.Shakespeare;
 import cn.ixan.search.domain.constant.Constant;
 import cn.ixan.search.mapper.ShakespeareMapper;
 import cn.ixan.search.service.ShakeDataService;
-import cn.ixan.search.utils.DateUtil;
+import cn.ixan.search.utils.DateHelper;
 import com.google.common.collect.Lists;
 import io.searchbox.client.JestClient;
 import io.searchbox.client.JestResult;
@@ -229,7 +229,7 @@ public class ShakeDataServiceImpl implements ShakeDataService {
 				mapper.save(shakespeare);
 			}
 			if (log.isDebugEnabled()) {
-				log.debug("[{}]批量插入数据成功,插入数据[{}]条", DateUtil.currentTime(), list.size());
+				log.debug("[{}]批量插入数据成功,插入数据[{}]条", DateHelper.currentTime(), list.size());
 			}
 			session.commit();
 		} finally {

@@ -117,7 +117,7 @@ public class DocParserUtil {
             imExtInfo.setTitle(file.getName());
             imExtInfo.setPath(file.getAbsolutePath());
             imExtInfo.setContent(builder.toString());
-            imExtInfo.setCreate_time(DateUtil.currentTime());
+            imExtInfo.setCreate_time(DateHelper.currentTime());
             bufferedReader.close();
             fileReader.close();
         } catch (FileNotFoundException e) {
@@ -152,7 +152,7 @@ public class DocParserUtil {
             imExtInfo.setTitle(title);
             imExtInfo.setPath(path);
             imExtInfo.setContent(content);
-            imExtInfo.setCreate_time(DateUtil.currentTime());
+            imExtInfo.setCreate_time(DateHelper.currentTime());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -184,7 +184,7 @@ public class DocParserUtil {
             imExtInfo.setTitle(title);
             imExtInfo.setPath(path);
             imExtInfo.setContent(content);
-            imExtInfo.setCreate_time(DateUtil.currentTime());
+            imExtInfo.setCreate_time(DateHelper.currentTime());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -207,7 +207,7 @@ public class DocParserUtil {
         imExtInfo.setTitle(file.getName());
         imExtInfo.setPath(file.getAbsolutePath());
         imExtInfo.setContent(content);
-        imExtInfo.setCreate_time(DateUtil.currentTime());
+        imExtInfo.setCreate_time(DateHelper.currentTime());
         return imExtInfo;
     }
 

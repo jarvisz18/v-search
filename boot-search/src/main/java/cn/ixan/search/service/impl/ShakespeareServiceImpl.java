@@ -5,7 +5,7 @@ import cn.ixan.search.domain.ShakespeareIndex;
 import cn.ixan.search.domain.constant.Constant;
 import cn.ixan.search.mapper.ShakespeareMapper;
 import cn.ixan.search.service.ShakespeareService;
-import cn.ixan.search.utils.DateUtil;
+import cn.ixan.search.utils.DateHelper;
 import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -65,7 +65,7 @@ public class ShakespeareServiceImpl implements ShakespeareService {
                 List<SearchResult.Hit<Shakespeare, Void>> hits = execute.getHits(Shakespeare.class);
                 list = hits.stream().map(this::convert).collect(Collectors.toList());
                 count += clean(list);
-                log.info("[{}]批量删除数据成功,插入数据[{}]条", DateUtil.currentTime(),list.size());
+                log.info("[{}]批量删除数据成功,插入数据[{}]条", DateHelper.currentTime(), list.size());
                 list.clear();
                 log.info("clean ES data success, data size is [{}]",count);
             }
@@ -150,7 +150,7 @@ public class ShakespeareServiceImpl implements ShakespeareService {
     private int save(List<Shakespeare> list) {
         list.forEach(e -> shakespeareMapper.save(e));
         if(log.isDebugEnabled()){
-            log.debug("[{}]批量插入数据成功,插入数据[{}]条", DateUtil.currentTime(),list.size());
+            log.debug("[{}]批量插入数据成功,插入数据[{}]条", DateHelper.currentTime(), list.size());
         }
         return list.size();
     }
@@ -159,7 +159,7 @@ public class ShakespeareServiceImpl implements ShakespeareService {
     private int addBatch(List<Shakespeare> list) {
         shakespeareMapper.addBatch(list);
         if(log.isDebugEnabled()){
-            log.debug("[{}]批量插入数据成功,插入数据[{}]条", DateUtil.currentTime(),list.size());
+            log.debug("[{}]批量插入数据成功,插入数据[{}]条", DateHelper.currentTime(), list.size());
         }
         return list.size();
     }

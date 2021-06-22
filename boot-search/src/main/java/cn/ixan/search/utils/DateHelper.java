@@ -15,7 +15,12 @@ import java.util.Date;
  * @author stack_zhang@outlook.com
  * @see DateUtils
  */
-public class DateUtil extends DateUtils {
+public final class DateHelper extends DateUtils {
+
+	private DateHelper() {
+		throw new UnsupportedOperationException();
+	}
+
     public static void main(String[] args) {
         System.out.println(formatUTC());
         System.out.println(stringToLocalDateTime(formatUTC()));

@@ -6,7 +6,7 @@ import com.ixan.boot.domain.OperLog;
 import com.ixan.boot.domain.OperLogEntity;
 import com.ixan.boot.mapper.ErrorLogMapper;
 import com.ixan.boot.mapper.OperLogMapper;
-import com.ixan.boot.utils.IPUtil;
+import com.ixan.boot.utils.IPUtils;
 import com.ixan.boot.utils.UuidUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -113,7 +113,7 @@ public class OperLogAspect {
 			operlog.setOperRespParam(JSON.toJSONString(keys)); // 返回结果
 			//operlog.setOperUserId(UserShiroUtil.getCurrentUserLoginName()); // 请求用户ID
 			//operlog.setOperUserName(UserShiroUtil.getCurrentUserName()); // 请求用户名称
-			operlog.setOperIp(IPUtil.getRemortIP(request)); // 请求IP
+			operlog.setOperIp(IPUtils.getRemortIP(request)); // 请求IP
 			operlog.setOperUri(request.getRequestURI()); // 请求URI
 			operlog.setOperCreateTime(new Date()); // 创建时间
 			operlog.setOperVer(operVer); // 操作版本
@@ -161,7 +161,7 @@ public class OperLogAspect {
 			//excepLog.setOperUserId(UserShiroUtil.getCurrentUserLoginName()); // 操作员ID
 			//excepLog.setOperUserName(UserShiroUtil.getCurrentUserName()); // 操作员名称
 			excepLog.setOperUri(request.getRequestURI()); // 操作URI
-			excepLog.setOperIp(IPUtil.getRemortIP(request)); // 操作员IP
+			excepLog.setOperIp(IPUtils.getRemortIP(request)); // 操作员IP
 			excepLog.setOperVer(operVer); // 操作版本号
 			excepLog.setOperCreateTime(new Date()); // 发生异常时间
 

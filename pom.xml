@@ -23,6 +23,7 @@
         <module>boot-admin-client</module>
         <module>client-kafka-starter</module>
         <module>boot-httpclient-demo</module>
+        <module>sso-auth-server</module>
     </modules>
 
     <parent>
