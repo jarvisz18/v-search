@@ -22,6 +22,14 @@ public class DateTool {
 	public static void main(String[] args) {
 		LocalDate lastDayOfMonth = getLastDayOfMonth();
 		System.out.println("lastDayOfMonth :" + lastDayOfMonth);
+		LocalDate firstDayOfMonth = getFirstDayOfMonth();
+		System.out.println("firstDayOfMonth :" + firstDayOfMonth);
+	}
+
+	//获取本月的第一个星期一
+	public static LocalDate getFirstDayOfMonth() {
+		LocalDate now = LocalDate.now();
+		return now.with(TemporalAdjusters.dayOfWeekInMonth(1, DayOfWeek.MONDAY));
 	}
 
 	//获取本月的最后一个星期五
