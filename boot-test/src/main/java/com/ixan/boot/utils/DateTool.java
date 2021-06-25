@@ -1,15 +1,13 @@
 package com.ixan.boot.utils;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
 import com.google.common.collect.Sets;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Set;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Set;
 
 /**
  * @author stack_zhang@outlook.com
@@ -47,6 +45,10 @@ public class DateTool {
 		LocalDate now = LocalDate.now();
 		LocalDate firstInMonthDay = getFirstInMonthDay(now, -1, 3);
 		System.out.println(firstInMonthDay);
+		LocalDate lastDayOfMonth = getLastDayOfMonth();
+		System.out.println("lastDayOfMonth :" + lastDayOfMonth);
+		LocalDate firstDayOfMonth = getFirstDayOfMonth();
+		System.out.println("firstDayOfMonth :" + firstDayOfMonth);
 	}
 
 
@@ -54,13 +56,6 @@ public class DateTool {
 		LocalDateTime localDateTime = LocalDateTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		return formatter.format(localDateTime);
-	}
-
-	public static void main(String[] args) {
-		LocalDate lastDayOfMonth = getLastDayOfMonth();
-		System.out.println("lastDayOfMonth :" + lastDayOfMonth);
-		LocalDate firstDayOfMonth = getFirstDayOfMonth();
-		System.out.println("firstDayOfMonth :" + firstDayOfMonth);
 	}
 
 	//获取本月的第一个星期一
