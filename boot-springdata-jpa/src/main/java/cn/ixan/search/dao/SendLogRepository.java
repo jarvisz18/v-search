@@ -2,7 +2,9 @@ package cn.ixan.search.dao;
 
 import cn.ixan.search.domain.SendLog;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,6 +24,16 @@ public interface SendLogRepository extends JpaRepository<SendLog, Integer> {
 	 */
 	List<SendLog> findSendLogByTemplateName(String templateName);
 
+	@Modifying
+	@Query("update SendLog set templateName=:templateName where id=:id and type=:type")
+	int updateSendLogByIdAndType(@Param("id") Long id, @Param("type") String type, @Param("templateName") String templateName);
+
+	@Query("from SendLog s where s.templateName like :template%")
+	List<SendLog> findByCondition(@Param("template") String template);
+
+	@Query("from SendLog s where s.type in (:typeList)")
+	List<SendLog> findSendLogByTypeList(@Param("typeList") List<String> typeList);
+
 	/**
 	 * HQL
 	 * @param templateName
@@ -37,4 +49,5 @@ public interface SendLogRepository extends JpaRepository<SendLog, Integer> {
 	 */
 	@Query(value = "select s.* from send_log s where s.templateName = :templateName", nativeQuery = true)
 	List<SendLog> findByTempLateNameNative(String templateName);
+
 }

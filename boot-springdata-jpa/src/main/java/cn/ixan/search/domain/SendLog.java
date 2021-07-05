@@ -13,12 +13,15 @@ import java.io.Serializable;
  */
 @Data
 @Entity
-@Table(name = "send_log")
+@Table(name = "send_log", schema = "user")
 public class SendLog implements Serializable {
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private Long id;
+
+	@Column(name = "type")
+	private String type;
 
 	@Column(name = "template_name")
 	private String templateName;
