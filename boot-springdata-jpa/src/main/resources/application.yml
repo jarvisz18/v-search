@@ -1,0 +1,18 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /sup
+
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+  #序列化Date为long型时间戳
+  jackson:
+    time-zone: GMT+8:00
+    serialization:
+      write-dates-as-timestamps: true
+
+
+
