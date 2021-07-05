@@ -2,10 +2,11 @@ spring:
   application:
     name: boot-test
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/user?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    url: jdbc:p6spy:mysql://127.0.0.1:3306/user?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
     username: root
     password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
     hikari:
       auto-commit: true
       maximum-pool-size: 60
