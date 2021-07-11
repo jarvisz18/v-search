@@ -13,7 +13,7 @@ import java.util.Map;
  * @date Created in 2020/9/4 9:31
  * @description string json test
  */
-public class StringTest {
+public class GsonStringTest {
 	public static void main(String[] args) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("data1", 100);

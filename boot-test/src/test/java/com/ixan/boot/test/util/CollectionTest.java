@@ -1,10 +1,9 @@
-package com.ixan.boot.test;
+package com.ixan.boot.test.util;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.util.StopWatch;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -51,21 +50,4 @@ public class CollectionTest {
 		System.out.println(set1);
 	}
 
-	@Test
-	public void testBigDecimal() {
-		double num = 0.1D;
-		BigDecimal bigDecimal = BigDecimal.valueOf(num);
-		BigDecimal bigDecimal1 = new BigDecimal(num);
-		System.out.println(bigDecimal.equals(bigDecimal1));
-		//避免丢失精度，推荐使用下面这个
-		System.out.println(bigDecimal);
-
-		float num1 = 0.1F;
-		BigDecimal bigDecimal_2 = BigDecimal.valueOf(num1);
-		BigDecimal bigDecimal_3 = new BigDecimal(num1);
-		System.out.println(bigDecimal_2.equals(bigDecimal_3));
-		BigDecimal bigDecimal_4 = new BigDecimal(Float.toString(num1));
-		//避免丢失精度，推荐使用下面这个
-		System.out.println(bigDecimal_4);
-	}
 }

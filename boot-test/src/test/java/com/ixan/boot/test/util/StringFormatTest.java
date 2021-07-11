@@ -1,4 +1,4 @@
-package com.ixan.boot.test;
+package com.ixan.boot.test.util;
 
 import java.util.Date;
 
