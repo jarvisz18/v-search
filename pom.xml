@@ -25,6 +25,7 @@
         <module>boot-httpclient-demo</module>
         <module>sso-auth-server</module>
         <module>boot-springdata-jpa</module>
+        <module>boot-hutool</module>
     </modules>
 
     <parent>
