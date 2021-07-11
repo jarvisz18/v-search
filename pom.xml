@@ -24,6 +24,7 @@
         <module>client-kafka-starter</module>
         <module>boot-httpclient-demo</module>
         <module>sso-auth-server</module>
+        <module>boot-springdata-jpa</module>
     </modules>
 
     <parent>
