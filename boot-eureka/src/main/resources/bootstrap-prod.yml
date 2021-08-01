@@ -22,7 +22,7 @@ eureka:
     eviction-interval-timer-in-ms: 5000
 
 logging:
-  file: boot-eureka.log
+  file: ./logs/boot-eureka.log
   level:
     root: INFO
   config: classpath:logback-spring.xml
