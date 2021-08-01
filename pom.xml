@@ -26,6 +26,7 @@
         <module>sso-auth-server</module>
         <module>boot-springdata-jpa</module>
         <module>boot-hutool</module>
+        <module>boot-quartz</module>
     </modules>
 
     <parent>
