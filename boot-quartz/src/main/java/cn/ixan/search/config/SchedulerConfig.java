@@ -4,9 +4,7 @@ import org.quartz.Scheduler;
 import org.quartz.ee.servlet.QuartzInitializerListener;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
 import java.io.IOException;
@@ -18,8 +16,8 @@ import java.util.Properties;
  * @date Created in 2021/8/1 下午12:33
  * @description
  */
-@Configuration
-@EnableScheduling
+//@Configuration
+//@EnableScheduling
 public class SchedulerConfig {
 
 	@Bean(name = "SchedulerFactory")

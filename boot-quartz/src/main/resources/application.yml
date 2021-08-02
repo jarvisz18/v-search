@@ -1,0 +1,46 @@
+spring:
+  datasource:
+    name: mysql_test
+    type: com.alibaba.druid.pool.DruidDataSource
+    #druid相关配置
+    druid:
+      #监控统计拦截的filters
+      filter: stat,config
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      #基本属性
+      url: jdbc:mysql://localhost:3306/quartz
+      username: root
+      password: root
+      #初始化连接数
+      initial-size: 10
+      #最小活跃连接数
+      #最大活跃连接数
+      max-active: 20
+      #获取连接的等待时间
+      max-wait: 60000
+      #间隔多久进行一次检查，检查需要关闭的空闲连接
+      time-between-eviction-runs-millis: 60000
+      #一个连接在池中最小的生存时间(5分钟)
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'X'
+      # 验证空闲的连接，若无法验证，则删除连接
+      test-while-idle: true
+      # 不检测池中连接的可用性（默认false）
+      # 导致的问题是，若项目作为服务端，数据库连接被关闭时，客户端调用就会出现大量的timeout
+      test-on-borrow: false
+      #在返回连接池之前是否验证对象
+      test-on-return: false
+      #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+      #第三发连接池在使用的时候，获取到Connection后，使用完毕，调用关闭方法，并没有将Connection关闭，只是放回到连接池中
+      #如果调用这个方法，而没有手动关闭PreparedStatement，就可能造成内存溢出，但是JDK1.7实现了AutoCloseable接口，就不需要关闭了
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+      # connection-properties:
+      use-unfair-lock: true
+      min-idle: 5
+
+
+mapper:
+  mappers: cn.ixan.search.common.BaseMapper
+  not-empty: false
+  identity: MYSQL
