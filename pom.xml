@@ -27,6 +27,7 @@
         <module>boot-springdata-jpa</module>
         <module>boot-hutool</module>
         <module>boot-quartz</module>
+        <module>boot-cache</module>
     </modules>
 
     <parent>
