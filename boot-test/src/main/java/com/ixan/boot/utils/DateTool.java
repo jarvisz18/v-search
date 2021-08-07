@@ -2,12 +2,11 @@ package com.ixan.boot.utils;
 
 import com.google.common.collect.Sets;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
+import java.time.temporal.TemporalUnit;
 import java.util.Date;
 import java.util.Set;
 
@@ -15,9 +14,23 @@ import java.util.Set;
  * @author stack_zhang@outlook.com
  * @version 1.0
  * @date Created in 2020/12/7 10:15
- * @description 日期工具类
+ * @description JAVA8 日期工具类
  */
-public class DateTool {
+public final class DateTool {
+	private DateTool() {
+		throw new UnsupportedOperationException();
+	}
+	//获取当前时间的LocalDateTime对象
+	//LocalDateTime.now();
+
+	//根据年月日构建LocalDateTime
+	//LocalDateTime.of();
+
+	//比较日期先后
+	//LocalDateTime.now().isBefore(),
+	//LocalDateTime.now().isAfter(),
+
+
 	/**
 	 * 获取给定日期的差值月的第几个工作日(周一至周五)
 	 *
@@ -89,6 +102,62 @@ public class DateTool {
 	public static String formatLocalDateTime(LocalDateTime date) {
 		if (date == null) return null;
 		return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(date);
+	}
+
+	//获取指定日期的毫秒
+	public static Long getMilliByTime(LocalDateTime time) {
+		return time.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+	}
+
+	//获取指定日期的秒
+	public static Long getSecondsByTime(LocalDateTime time) {
+		return time.atZone(ZoneId.systemDefault()).toInstant().getEpochSecond();
+	}
+
+	//获取指定时间的指定格式
+	public static String formatTime(LocalDateTime time, String pattern) {
+		return time.format(DateTimeFormatter.ofPattern(pattern));
+	}
+
+	//获取当前时间的指定格式
+	public static String formatNow(String pattern) {
+		return formatTime(LocalDateTime.now(), pattern);
+	}
+
+	//日期加上一个数,根据field不同加不同值,field为ChronoUnit.*
+	public static LocalDateTime plus(LocalDateTime time, long number, TemporalUnit field) {
+		return time.plus(number, field);
+	}
+
+	//日期减去一个数,根据field不同减不同值,field参数为ChronoUnit.*
+	public static LocalDateTime minus(LocalDateTime time, long number, TemporalUnit field) {
+		return time.minus(number, field);
+	}
+
+	/**
+	 * 获取两个日期的差  field参数为ChronoUnit.*
+	 */
+	public static long betweenTwoTime(LocalDateTime startTime, LocalDateTime endTime, ChronoUnit field) {
+		Period period = Period.between(LocalDate.from(startTime), LocalDate.from(endTime));
+		if (field == ChronoUnit.YEARS) return period.getYears();
+		if (field == ChronoUnit.MONTHS) return period.getYears() * 12 + period.getMonths();
+		return field.between(startTime, endTime);
+	}
+
+	//获取一天的开始时间，2017,7,22 00:00
+	public static LocalDateTime getDayStart(LocalDateTime time) {
+		return time.withHour(0)
+				.withMinute(0)
+				.withSecond(0)
+				.withNano(0);
+	}
+
+	//获取一天的结束时间，2017,7,22 23:59:59.999999999
+	public static LocalDateTime getDayEnd(LocalDateTime time) {
+		return time.withHour(23)
+				.withMinute(59)
+				.withSecond(59)
+				.withNano(999999999);
 	}
 
 }

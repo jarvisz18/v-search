@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -61,11 +60,9 @@ public class HolidayServiceImpl implements HolidayService {
 	public boolean isHoliday(HolidayDTO holidayDTO) {
 		LocalDateTime holiday = holidayDTO.getHoliday();
 		if (Objects.isNull(holiday)) return false;
-		int year = holiday.getYear();
-		Month month = holiday.getMonth();
-		int dayOfMonth = holiday.getDayOfMonth();
-		LocalDateTime startTime = LocalDateTime.of(year, month, dayOfMonth, 0, 0);
-		LocalDateTime endTime = LocalDateTime.of(year, month, dayOfMonth, 23, 59);
+
+		LocalDateTime startTime = DateTool.getDayStart(holiday);
+		LocalDateTime endTime = DateTool.getDayEnd(holiday);
 		String ofStartTime = DateTool.formatLocalDateTime(startTime);
 		String ofEndTime = DateTool.formatLocalDateTime(endTime);
 		int count = holidayMapper.findHoliday(ofStartTime, ofEndTime);
