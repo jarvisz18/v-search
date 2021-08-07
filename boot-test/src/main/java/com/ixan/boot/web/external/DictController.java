@@ -7,7 +7,9 @@ import com.ixan.boot.domain.Dict;
 import com.ixan.boot.domain.OperLog;
 import com.ixan.boot.domain.OperLogConst;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
@@ -20,6 +22,8 @@ import java.util.Date;
  * @version 1.0
  */
 @RestController
+@Slf4j
+@RequestMapping("/dict")
 public class DictController {
 
 	@ApiOperation(value = "查询所有数据字典", notes = "查询所有数据字典")

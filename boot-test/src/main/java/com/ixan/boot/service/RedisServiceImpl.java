@@ -1,8 +1,8 @@
 package com.ixan.boot.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+
+//import org.springframework.data.redis.core.StringRedisTemplate;
 
 /**
  * @author stack_zhang@outlook.com
@@ -11,15 +11,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RedisServiceImpl implements RedisService {
-	@Autowired
-	private StringRedisTemplate stringRedisTemplate;
+	/*@Autowired
+	private StringRedisTemplate stringRedisTemplate;*/
 
 	/*
 	 * 实现并测试Redis事务
 	 */
 	@Override
 	public void testTransaction() {
-		stringRedisTemplate.setEnableTransactionSupport(true);
+		/*stringRedisTemplate.setEnableTransactionSupport(true);
 		try {
 			stringRedisTemplate.multi();//开启事务
 			stringRedisTemplate.opsForValue().increment("transaction", 1);
@@ -35,6 +35,6 @@ public class RedisServiceImpl implements RedisService {
 			//开启回滚
 			stringRedisTemplate.discard();
 
-		}
+		}*/
 	}
 }

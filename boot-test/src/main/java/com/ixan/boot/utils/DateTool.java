@@ -5,21 +5,24 @@ import com.google.common.collect.Sets;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Date;
 import java.util.Set;
 
 /**
  * @author stack_zhang@outlook.com
+ * @version 1.0
  * @date Created in 2020/12/7 10:15
  * @description 日期工具类
- * @version 1.0
  */
 public class DateTool {
 	/**
 	 * 获取给定日期的差值月的第几个工作日(周一至周五)
+	 *
 	 * @param localDate 指定日期
-	 * @param dValue 当前日期的差值月
+	 * @param dValue    当前日期的差值月
 	 * @param dayOfWork 第几个工作日
 	 * @return LocalDate yyyy-MM-dd
 	 */
@@ -69,4 +72,17 @@ public class DateTool {
 		LocalDate now = LocalDate.now();
 		return now.with(TemporalAdjusters.dayOfWeekInMonth(-1, DayOfWeek.FRIDAY));
 	}
+
+	//LocalDateTime to Date
+	public static Date fromLocalDateTime(LocalDateTime localDateTime) {
+		if (localDateTime == null) return null;
+		return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+	}
+
+	//Date to LocalDateTime
+	public static LocalDateTime fromDate(Date date) {
+		if (date == null) return null;
+		return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+	}
+
 }
