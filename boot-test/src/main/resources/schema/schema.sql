@@ -110,3 +110,17 @@ CREATE TABLE `china_regions`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_unicode_ci COMMENT ='国家行政地域信息表';
+
+-- 节假日表
+CREATE TABLE `holiday`
+(
+    `id`           varchar(64) NOT NULL,
+    `is_delete`    int(11)     DEFAULT NULL,
+    `holiday`      datetime    DEFAULT NULL,
+    `mark`         varchar(64) DEFAULT NULL,
+    `current_year` int(11)     DEFAULT NULL,
+    `create_time`  datetime    DEFAULT NULL,
+    `update_time`  datetime    DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
