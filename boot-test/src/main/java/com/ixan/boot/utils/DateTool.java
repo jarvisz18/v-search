@@ -85,4 +85,10 @@ public class DateTool {
 		return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 	}
 
+	// format LocalDateTime
+	public static String formatLocalDateTime(LocalDateTime date) {
+		if (date == null) return null;
+		return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(date);
+	}
+
 }

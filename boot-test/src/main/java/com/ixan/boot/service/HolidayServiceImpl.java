@@ -7,14 +7,15 @@ import com.ixan.boot.domain.dto.HolidayDTO;
 import com.ixan.boot.mapper.HolidayMapper;
 import com.ixan.boot.utils.DateTool;
 import com.ixan.boot.utils.UuidUtil;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author stack_zhang@outlook.com
@@ -58,11 +59,16 @@ public class HolidayServiceImpl implements HolidayService {
 
 	@Override
 	public boolean isHoliday(HolidayDTO holidayDTO) {
-		String holiday = holidayDTO.getHoliday();
-		if (StringUtils.isBlank(holiday)) return false;
-		//Pattern compile = Pattern.compile("yyyy-MM-dd");
-		//if (!compile.matcher(holiday).find()) return false;
-		int count = holidayMapper.findHoliday(holiday + " 00:00:00", holiday + " 23:59:59");
+		LocalDateTime holiday = holidayDTO.getHoliday();
+		if (Objects.isNull(holiday)) return false;
+		int year = holiday.getYear();
+		Month month = holiday.getMonth();
+		int dayOfMonth = holiday.getDayOfMonth();
+		LocalDateTime startTime = LocalDateTime.of(year, month, dayOfMonth, 0, 0);
+		LocalDateTime endTime = LocalDateTime.of(year, month, dayOfMonth, 23, 59);
+		String ofStartTime = DateTool.formatLocalDateTime(startTime);
+		String ofEndTime = DateTool.formatLocalDateTime(endTime);
+		int count = holidayMapper.findHoliday(ofStartTime, ofEndTime);
 		return count > 0;
 	}
 

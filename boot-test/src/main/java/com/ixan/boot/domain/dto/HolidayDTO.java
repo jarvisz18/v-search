@@ -1,8 +1,11 @@
 package com.ixan.boot.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * @author stack_zhang@outlook.com
@@ -15,5 +18,7 @@ public class HolidayDTO implements Serializable {
 	private Integer pageNum = 1;
 	private Integer pageSize = 10;
 
-	private String holiday;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	private LocalDateTime holiday;
 }
