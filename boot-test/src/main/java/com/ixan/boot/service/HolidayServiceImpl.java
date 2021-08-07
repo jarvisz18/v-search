@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -72,5 +73,25 @@ public class HolidayServiceImpl implements HolidayService {
 	@Override
 	public Integer numHolidayOfBetweenTime(String startTime, String endTime) {
 		return holidayMapper.findHoliday(startTime, endTime);
+	}
+
+	@Override
+	public int addHoliday(Holiday holiday) {
+		holiday.setId(UuidUtil.get32UUID());
+		holiday.setIsDelete(0);
+		holiday.setCreateTime(new Date());
+		holiday.setUpdateTime(new Date());
+		holiday.setCurrentYear(LocalDate.now().getYear());
+		return holidayMapper.insert(holiday);
+	}
+
+	@Override
+	public int deleteHoliday(String id) {
+		return holidayMapper.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public int updateHoliday(Holiday holiday) {
+		return holidayMapper.updateByPrimaryKeySelective(holiday);
 	}
 }

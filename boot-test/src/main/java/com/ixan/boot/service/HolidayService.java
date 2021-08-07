@@ -18,4 +18,10 @@ public interface HolidayService {
 	boolean isHoliday(HolidayDTO holidayDTO);
 
 	Integer numHolidayOfBetweenTime(String startTime, String endTime);
+
+	int addHoliday(Holiday holiday);
+
+	int deleteHoliday(String id);
+
+	int updateHoliday(Holiday holiday);
 }

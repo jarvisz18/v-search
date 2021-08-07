@@ -86,6 +86,12 @@ public final class DateTool {
 		return now.with(TemporalAdjusters.dayOfWeekInMonth(-1, DayOfWeek.FRIDAY));
 	}
 
+	//LocalDate to Date
+	public static Date fromLocalDate(LocalDate localDate) {
+		if (localDate == null) return null;
+		return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+	}
+
 	//LocalDateTime to Date
 	public static Date fromLocalDateTime(LocalDateTime localDateTime) {
 		if (localDateTime == null) return null;
