@@ -124,3 +124,11 @@ CREATE TABLE `holiday`
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
+
+-- log_file
+create table log_file
+(
+    id      int(11) NOT NULL AUTO_INCREMENT,
+    content text,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
