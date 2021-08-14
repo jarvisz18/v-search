@@ -36,7 +36,7 @@ public class LogOneLineFileController {
 	@GetMapping("/doTaskBatch")
 	public void doTaskBatch() throws InterruptedException {
 		long start = System.currentTimeMillis();
-		File file = new File("/Users/mac/Desktop/" + "sinosoft-admin-service.log");
+		File file = new File("/Users/mac/Desktop/" + "service.log");
 		ExecutorService executorService = new ThreadPoolExecutor(5, 10, 60, TimeUnit.MINUTES,
 				new ArrayBlockingQueue<>(10),
 				new ThreadFactoryBuilder().setNameFormat("test-%d").build(), new ThreadPoolExecutor.CallerRunsPolicy());
@@ -80,7 +80,7 @@ public class LogOneLineFileController {
 	@GetMapping("/doTaskRead")
 	public void doTaskRead() {
 		long start = System.currentTimeMillis();
-		File file = new File("/Users/mac/Desktop/" + "sinosoft-admin-service.log");
+		File file = new File("/Users/mac/Desktop/" + "service.log");
 		ExecutorService executorService = new ThreadPoolExecutor(5, 10, 60, TimeUnit.MINUTES,
 				new ArrayBlockingQueue<>(10000),
 				new ThreadFactoryBuilder().setNameFormat("test-%d").build(), new ThreadPoolExecutor.CallerRunsPolicy());
@@ -108,7 +108,7 @@ public class LogOneLineFileController {
 	@GetMapping("/doRead")
 	public void doRead() {
 		long start = System.currentTimeMillis();
-		File file = new File("/Users/mac/Desktop/" + "sinosoft-admin-service.log");
+		File file = new File("/Users/mac/Desktop/" + "service.log");
 		try (LineIterator iterator = IOUtils.lineIterator(new FileInputStream(file), "UTF-8")) {
 			while (iterator.hasNext()) {
 				String line = iterator.nextLine();
