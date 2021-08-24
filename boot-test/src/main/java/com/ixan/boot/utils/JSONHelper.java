@@ -1,4 +1,4 @@
-package com.ixan.boot.test.fastjson;
+package com.ixan.boot.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -13,7 +13,11 @@ import java.util.Map;
  * @date Created in 2021/8/11 下午8:37
  * @description fastJSON工具类
  */
-public class JSONHelper {
+public final class JSONHelper {
+	private JSONHelper() {
+		throw new UnsupportedOperationException();
+	}
+
 	/**
 	 * 将JSON转换成Map对象
 	 */

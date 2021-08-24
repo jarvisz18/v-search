@@ -1,0 +1,33 @@
+spring:
+  jpa:
+    hibernate:
+      # 多数据源下，该属性不生效，需要在配置中额外指定，这里仅表示普通定义
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    open-in-view: false
+  # 定义不同数据源的连接信息
+  datasource:
+    hikari:
+      test1:
+        # Spring Boot 1.0+ 版本：使用spring.datasource.url
+        # Spring Boot 2.0+ 版本：使用spring.datasource.hikari.jdbc-url
+        jdbc-url: jdbc:mysql://localhost:3306/test1?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+        username: root
+        password: root
+        # Spring Boot 1.0+ 版本：使用com.mysql.jdbc.Driver
+        # Spring Boot 2.0+ 版本：使用com.mysql.cj.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
+      test2:
+        # Spring Boot 1.0+ 版本：使用spring.datasource.url
+        # Spring Boot 2.0+ 版本：使用spring.datasource.hikari.jdbc-url
+        jdbc-url: jdbc:mysql://localhost:3306/test2?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+        username: root
+        password: root
+        # Spring Boot 1.0+ 版本：使用com.mysql.jdbc.Driver
+        # Spring Boot 2.0+ 版本：使用com.mysql.cj.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
