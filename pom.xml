@@ -28,6 +28,7 @@
         <module>boot-hutool</module>
         <module>boot-quartz</module>
         <module>boot-cache</module>
+        <module>boot-mult-datasource</module>
     </modules>
 
     <parent>
