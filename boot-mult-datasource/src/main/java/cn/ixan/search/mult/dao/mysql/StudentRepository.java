@@ -1,6 +1,6 @@
 package cn.ixan.search.mult.dao.mysql;
 
-import cn.ixan.search.mult.domain.Student;
+import cn.ixan.search.mult.domain.mysql.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

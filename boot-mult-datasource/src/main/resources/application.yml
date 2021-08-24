@@ -2,7 +2,7 @@ spring:
   jpa:
     hibernate:
       # 多数据源下，该属性不生效，需要在配置中额外指定，这里仅表示普通定义
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         show_sql: true

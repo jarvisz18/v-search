@@ -1,6 +1,6 @@
 package cn.ixan.search.mult.dao.postgres;
 
-import cn.ixan.search.mult.domain.Teacher;
+import cn.ixan.search.mult.domain.postgres.Teacher;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

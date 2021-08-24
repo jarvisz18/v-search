@@ -1,10 +1,12 @@
 package cn.ixan.search.test;
 
 import cn.ixan.search.mult.BootApplication;
+import cn.ixan.search.mult.dao.mysql.StudentDao;
 import cn.ixan.search.mult.dao.mysql.StudentRepository;
+import cn.ixan.search.mult.dao.postgres.TeacherDao;
 import cn.ixan.search.mult.dao.postgres.TeacherRepository;
-import cn.ixan.search.mult.domain.Student;
-import cn.ixan.search.mult.domain.Teacher;
+import cn.ixan.search.mult.domain.mysql.Student;
+import cn.ixan.search.mult.domain.postgres.Teacher;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +28,17 @@ public class SpringBootJpaMultipleDataSourceTest {
 	private StudentRepository studentRepository;
 	@Resource
 	private TeacherRepository teacherRepository;
+	@Resource
+	private StudentDao studentDao;
+	@Resource
+	private TeacherDao teacherDao;
+
+	@Test
+	public void test1() {
+		studentDao.findAll().stream().forEach(System.out::println);
+		System.out.println("++++++++++++++++++++++++++++++++");
+		teacherDao.findAll().stream().forEach(System.out::println);
+	}
 
 	@Test
 	public void test() {

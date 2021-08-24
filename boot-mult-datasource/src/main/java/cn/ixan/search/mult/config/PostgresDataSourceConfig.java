@@ -45,7 +45,7 @@ public class PostgresDataSourceConfig {
 		return builder.dataSource(dataSource)
 				// 实体所在的包位置
 				.properties(properties)
-				.packages("cn.ixan.search.mult.domain")
+				.packages("cn.ixan.search.mult.domain.postgres")
 				.persistenceUnit("jpa-postgres")
 				.build();
 	}

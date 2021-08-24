@@ -1,4 +1,4 @@
-package cn.ixan.search.mult.domain;
+package cn.ixan.search.mult.domain.postgres;
 
 import javax.persistence.*;
 
@@ -37,5 +37,13 @@ public class Teacher {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "Teacher{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				'}';
 	}
 }

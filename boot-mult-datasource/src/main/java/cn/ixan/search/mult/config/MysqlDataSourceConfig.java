@@ -50,7 +50,7 @@ public class MysqlDataSourceConfig {
 		return builder.dataSource(dataSource)
 				.properties(properties)
 				// 实体所在的包位置
-				.packages("cn.ixan.search.mult.domain")
+				.packages("cn.ixan.search.mult.domain.mysql")
 				.persistenceUnit("jpa-mysql")
 				.build();
 	}
