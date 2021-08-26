@@ -32,4 +32,8 @@ public class StudentDao {
 		org.hibernate.Query query = sqlQuery.setResultTransformer(Transformers.aliasToBean(Student.class));
 		return query.list();
 	}
+
+	public void save(Student student) {
+		entityManager.persist(student);
+	}
 }

@@ -55,7 +55,7 @@ public class MysqlDataSourceConfig {
 				.build();
 	}
 
-	@Bean
+	@Bean(name = "mysqlTransactionManager")
 	@Primary
 	public PlatformTransactionManager mysqlTransactionManager(@Qualifier("mysqlEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
 		return new JpaTransactionManager(entityManagerFactory);
