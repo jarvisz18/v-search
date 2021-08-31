@@ -19,6 +19,10 @@ import java.sql.*;
  * ResultSet用法集锦:
  * https://www.iteye.com/blog/soft-development-1420323
  * https://docs.oracle.com/database/121/JJDBC/resltset.htm#JJDBC28611
+ *
+ * 数据迁移总结
+ * https://www.2cto.com/database/201508/439066.html
+ * https://blog.csdn.net/tracymm19891990/article/details/47702675
  */
 public class StreamTest {
 	public static void main(String[] args) {
