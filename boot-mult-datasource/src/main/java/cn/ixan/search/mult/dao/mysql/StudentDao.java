@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.SQLQuery;
 import org.hibernate.transform.Transformers;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,6 +20,7 @@ import java.util.List;
 @Repository
 @Slf4j
 public class StudentDao {
+
 	@PersistenceContext(unitName = "jpa-mysql")
 	private EntityManager entityManager;
 
@@ -31,5 +33,10 @@ public class StudentDao {
 		SQLQuery sqlQuery = entityManager.createNativeQuery(sb.toString()).unwrap(SQLQuery.class);
 		org.hibernate.Query query = sqlQuery.setResultTransformer(Transformers.aliasToBean(Student.class));
 		return query.list();
+	}
+
+	@Transactional(transactionManager = "mysqlTransactionManager")
+	public void save(Student student) {
+		entityManager.persist(student);
 	}
 }

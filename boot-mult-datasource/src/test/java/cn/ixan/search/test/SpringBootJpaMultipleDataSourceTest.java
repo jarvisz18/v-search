@@ -34,6 +34,12 @@ public class SpringBootJpaMultipleDataSourceTest {
 	private TeacherDao teacherDao;
 
 	@Test
+	public void test2() {
+		Student student = new Student("张三");
+		studentDao.save(student);
+	}
+
+	@Test
 	public void test1() {
 		studentDao.findAll().stream().forEach(System.out::println);
 		System.out.println("++++++++++++++++++++++++++++++++");
