@@ -11,7 +11,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -34,16 +36,17 @@ public class SpringBootJpaMultipleDataSourceTest {
 	private TeacherDao teacherDao;
 
 	@Test
+	@Rollback(false)
+	@Transactional(transactionManager = "mysqlTransactionManager")
 	public void test2() {
-		Student student = new Student("张三");
-		studentDao.save(student);
+		studentDao.save(new Student("张三"));
 	}
 
 	@Test
 	public void test1() {
-		studentDao.findAll().stream().forEach(System.out::println);
+		studentDao.findAll().forEach(System.out::println);
 		System.out.println("++++++++++++++++++++++++++++++++");
-		teacherDao.findAll().stream().forEach(System.out::println);
+		teacherDao.findAll().forEach(System.out::println);
 	}
 
 	@Test
