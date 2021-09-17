@@ -187,7 +187,7 @@ public class StreamTest {
 			File file = getFile();
 			while (resultSet.next()) {
 				String content = "id:" + resultSet.getString(1) + ",content:" + resultSet.getString(2);
-				writeInFile(file, content);
+				writeToFile(file, content);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -209,7 +209,7 @@ public class StreamTest {
 		return file;
 	}
 
-	private void writeInFile(File file, String content) {
+	private void writeToFile(File file, String content) {
 		Writer writer = null;
 		StringBuilder outputString = new StringBuilder();
 		try {
