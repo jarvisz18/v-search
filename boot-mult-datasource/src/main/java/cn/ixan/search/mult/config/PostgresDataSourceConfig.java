@@ -37,7 +37,7 @@ public class PostgresDataSourceConfig {
 	@Qualifier("postgresDataSource")
 	private DataSource dataSource;
 
-	@Bean
+	@Bean(name = "postgresEntityManagerFactory")
 	public LocalContainerEntityManagerFactoryBean postgresEntityManagerFactory(EntityManagerFactoryBuilder builder) {
 		Map<String, Object> properties = new HashMap<>(4);
 		properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL55Dialect");
