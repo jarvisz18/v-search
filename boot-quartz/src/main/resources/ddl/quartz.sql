@@ -1,6 +1,22 @@
 #
 # In your Quartz properties file, you'll need to set
 # org.quartz.jobStore.driverDelegateClass = org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+# Driver代表了解不同数据库系统的特定“方言”。可能的选择包括：
+#
+# org.quartz.impl.jdbcjobstore.StdJDBCDelegate（用于完全符合JDBC的驱动程序）
+# org.quartz.impl.jdbcjobstore.MSSQLDelegate（对于Microsoft SQL Server和Sybase）
+# org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+# org.quartz.impl.jdbcjobstore.WebLogicDelegate（对于WebLogic驱动程序）
+# org.quartz.impl.jdbcjobstore.oracle.OracleDelegate
+# org.quartz.impl.jdbcjobstore.oracle.WebLogicOracleDelegate（对于Weblogic中使用的Oracle驱动程序）
+# org.quartz.impl.jdbcjobstore.oracle.weblogic.WebLogicOracleDelegate（对于在Weblogic中使用的Oracle驱动程序）
+# org.quartz.impl.jdbcjobstore.CloudscapeDelegate
+# org.quartz.impl.jdbcjobstore.DB2v6Delegate
+# org.quartz.impl.jdbcjobstore.DB2v7Delegate
+# org.quartz.impl.jdbcjobstore.DB2v8Delegate
+# org.quartz.impl.jdbcjobstore.HSQLDBDelegate
+# org.quartz.impl.jdbcjobstore.PointbaseDelegate
+# org.quartz.impl.jdbcjobstore.SybaseDelegate
 #
 #
 # By: Ron Cordell - roncordell

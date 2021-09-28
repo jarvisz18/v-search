@@ -166,4 +166,18 @@ public final class DateTool {
 				.withNano(999999999);
 	}
 
+	//获取今天的开始时间
+	public static String getTodayStart() {
+		LocalDateTime localDateTime = LocalDateTime.of(LocalDate.now(), LocalTime.MIN);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		return formatter.format(localDateTime);
+	}
+
+	//获取今天的结束时间
+	public static String getTodayEnd() {
+		LocalDateTime localDateTime = LocalDateTime.of(LocalDate.now(), LocalTime.MAX);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		return formatter.format(localDateTime);
+	}
+
 }
