@@ -24,9 +24,9 @@ import java.sql.*;
  * https://www.2cto.com/database/201508/439066.html
  * https://blog.csdn.net/tracymm19891990/article/details/47702675
  */
-public class StreamTest {
+public class JdbcCursorQueryTest {
 	public static void main(String[] args) {
-		StreamTest streamTest = new StreamTest();
+		JdbcCursorQueryTest streamTest = new JdbcCursorQueryTest();
 		System.out.println("+++++++++++++++++++++++++++++++");
 		//streamTest.select("select * from log_file");
 		String sql = "select * from log_file";
@@ -72,7 +72,9 @@ public class StreamTest {
 			}
 		} catch (SQLException e) {
 			try {
-				connectionPg.rollback();
+				if (connectionPg != null) {
+					connectionPg.rollback();
+				}
 			} catch (SQLException ex) {
 				ex.printStackTrace();
 			}
@@ -124,7 +126,6 @@ public class StreamTest {
 		try {
 			connection = DriverManager.getConnection(url, "root", "root");
 			statement = connection.prepareStatement(sql);
-			//设置读取行数
 			statement.setFetchSize(1000);
 			resultSet = statement.executeQuery();
 
@@ -140,7 +141,20 @@ public class StreamTest {
 		}
 	}
 
-	//流式查询
+	/**
+	 * 流式查询
+	 * setFetchSize 设置读取行数
+	 * 不清楚设置为多少,建议设置为: 4*1024*1024/(sum（所读取列的数据长度）)
+	 * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * 数据类型所占长度
+	 * 类型              大小            备注
+	 * varchar2         2               每个字符占用2byte
+	 * BFILE            4K
+	 * BLOB             4K
+	 * CLOB             4K
+	 * Other            22              其他类型，占用空间比较小，可以大致估算为22byte
+	 * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 */
 	private void streamSelect(String sql) {
 		long count = 0;
 		Connection connection = null;
