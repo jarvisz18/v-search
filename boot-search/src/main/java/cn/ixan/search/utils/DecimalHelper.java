@@ -1,6 +1,7 @@
 package cn.ixan.search.utils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * @author stack_zhang@outlook.com
@@ -12,6 +13,25 @@ public final class DecimalHelper {
 	private DecimalHelper() {
 		throw new UnsupportedOperationException();
 	}
+
+	/**
+	 * 保留两位小数
+	 * 传double的时候，精度会损失。所以toString
+	 */
+	public static float truncate(float v1, int number) {
+		BigDecimal bigDecimal = new BigDecimal(Float.toString(v1)).setScale(number, RoundingMode.DOWN);
+		return bigDecimal.floatValue();
+	}
+
+	/**
+	 * 保留两位小数
+	 * 传double的时候，精度会损失。所以toString
+	 */
+	public static float truncate(double v1, int number) {
+		BigDecimal bigDecimal = new BigDecimal(Double.toString(v1)).setScale(number, RoundingMode.DOWN);
+		return bigDecimal.floatValue();
+	}
+
 
 	/**
 	 * 加法计算（result = x + y）
@@ -29,6 +49,24 @@ public final class DecimalHelper {
 			return x;
 		}
 		return x.add(y);
+	}
+
+	/**
+	 * 两数相加,避免3.6+0.4问题;
+	 */
+	public static float add(float x, float y) {
+		BigDecimal b1 = new BigDecimal(Float.toString(x));
+		BigDecimal b2 = new BigDecimal(Float.toString(y));
+		return b1.add(b2).floatValue();
+	}
+
+	/**
+	 * 两数相加,避免3.6+0.4问题;
+	 */
+	public static float add(double x, double y) {
+		BigDecimal b1 = new BigDecimal(Double.toString(x));
+		BigDecimal b2 = new BigDecimal(Double.toString(y));
+		return b1.add(b2).floatValue();
 	}
 
 	/**
@@ -81,6 +119,25 @@ public final class DecimalHelper {
 	}
 
 	/**
+	 * 两个float 相减 避免 2.0 - 1.1问题
+	 */
+	public static float subtract(float x, float y) {
+		BigDecimal b1 = new BigDecimal(Float.toString(x));
+		BigDecimal b2 = new BigDecimal(Float.toString(y));
+		return b1.subtract(b2).floatValue();
+	}
+
+	/**
+	 * 两个double 相减 避免 2.0 - 1.1问题
+	 */
+	public static float subtract(double x, double y) {
+		BigDecimal b1 = new BigDecimal(Double.toString(x));
+		BigDecimal b2 = new BigDecimal(Double.toString(y));
+		return b1.subtract(b2).floatValue();
+	}
+
+
+	/**
 	 * 乘法计算(result = x × y)
 	 *
 	 * @param x 乘数(可为null)
@@ -93,6 +150,18 @@ public final class DecimalHelper {
 			return null;
 		}
 		return x.multiply(y);
+	}
+
+	public static BigDecimal multiply(float x, float y) {
+		BigDecimal b1 = new BigDecimal(Float.toString(x));
+		BigDecimal b2 = new BigDecimal(Float.toString(y));
+		return b1.multiply(b2);
+	}
+
+	public static BigDecimal multiply(double x, double y) {
+		BigDecimal b1 = new BigDecimal(Double.toString(x));
+		BigDecimal b2 = new BigDecimal(Double.toString(y));
+		return b1.multiply(b2);
 	}
 
 	/**
@@ -109,6 +178,12 @@ public final class DecimalHelper {
 		}
 		// 结果为0.000..时，不用科学计数法展示
 		return stripTrailingZeros(x.divide(y, 20, BigDecimal.ROUND_HALF_UP));
+	}
+
+	public static BigDecimal divide(double x, double y) {
+		BigDecimal b1 = new BigDecimal(Double.toString(x));
+		BigDecimal b2 = new BigDecimal(Double.toString(y));
+		return b1.divide(b2);
 	}
 
 	/**
