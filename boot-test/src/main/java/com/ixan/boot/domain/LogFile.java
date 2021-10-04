@@ -14,7 +14,7 @@ import javax.persistence.Table;
  */
 @Data
 @Table(name = "log_file")
-public class LogOneLineFile {
+public class LogFile {
 
 	@Id
 	@Column(name = "id")

@@ -1,4 +1,4 @@
-package com.ixan.boot.domain;
+package com.ixan.boot.domain.base;
 
 /**
  * @author stack_zhang@outlook.com

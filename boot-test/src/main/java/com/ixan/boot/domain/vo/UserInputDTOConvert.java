@@ -1,4 +1,4 @@
-package com.ixan.boot.domain;
+package com.ixan.boot.domain.vo;
 
 import com.ixan.boot.config.DTOConvert;
 import com.ixan.boot.domain.dto.UserDTO;

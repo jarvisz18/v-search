@@ -15,7 +15,7 @@ import java.util.Date;
  */
 @Data
 @Table(name = "china_regions")
-public class ChinaRegionsInfo {
+public class ChinaRegions {
 	@Id
 	private Integer id;
 	/**

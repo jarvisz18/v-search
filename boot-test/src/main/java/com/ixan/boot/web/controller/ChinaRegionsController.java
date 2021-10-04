@@ -1,7 +1,7 @@
 package com.ixan.boot.web.controller;
 
 import com.alibaba.fastjson.JSONArray;
-import com.ixan.boot.domain.ChinaRegionsInfo;
+import com.ixan.boot.domain.ChinaRegions;
 import com.ixan.boot.service.ChinaRegionsService;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
@@ -39,14 +39,14 @@ public class ChinaRegionsController {
 
 	@PutMapping("/regions/pull")
 	public void pullRegions() throws IOException {
-		List<ChinaRegionsInfo> regionsInfoList = getChinaRegionsInfos();
+		List<ChinaRegions> regionsInfoList = getChinaRegionsInfos();
 		//打印结果
 		logger.info(JSONArray.toJSONString(regionsInfoList));
 		chinaRegionsService.saveBatch(regionsInfoList);
 	}
 
-	private List<ChinaRegionsInfo> getChinaRegionsInfos() throws IOException {
-		List<ChinaRegionsInfo> regionsInfoList = new ArrayList<>();
+	private List<ChinaRegions> getChinaRegionsInfos() throws IOException {
+		List<ChinaRegions> regionsInfoList = new ArrayList<>();
 		//抓取网页信息
 		Document document = Jsoup.connect(URL).get();
 		//获取真实的数据体
@@ -66,7 +66,7 @@ public class ChinaRegionsController {
 					if (td1.classNames().contains(className)) {
 						if (td2.toString().contains("span")) {
 							//市级
-							ChinaRegionsInfo chinaRegions = new ChinaRegionsInfo();
+							ChinaRegions chinaRegions = new ChinaRegions();
 							chinaRegions.setCode(td1.text());
 							chinaRegions.setName(td2.text());
 							chinaRegions.setType(2);
@@ -75,7 +75,7 @@ public class ChinaRegionsController {
 							cityCode = td1.text();
 						} else {
 							//省级
-							ChinaRegionsInfo chinaRegions = new ChinaRegionsInfo();
+							ChinaRegions chinaRegions = new ChinaRegions();
 							chinaRegions.setCode(td1.text());
 							chinaRegions.setName(td2.text());
 							chinaRegions.setType(1);
@@ -86,7 +86,7 @@ public class ChinaRegionsController {
 
 					} else {
 						//区或者县级
-						ChinaRegionsInfo chinaRegions = new ChinaRegionsInfo();
+						ChinaRegions chinaRegions = new ChinaRegions();
 						chinaRegions.setCode(td1.text());
 						chinaRegions.setName(td2.text());
 						chinaRegions.setType(3);

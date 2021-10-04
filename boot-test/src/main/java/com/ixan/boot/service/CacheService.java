@@ -1,6 +1,6 @@
 package com.ixan.boot.service;
 
-import com.ixan.boot.domain.CacheEntity;
+import com.ixan.boot.domain.vo.CacheEntity;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 

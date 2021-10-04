@@ -1,9 +1,9 @@
 package com.ixan.boot.web.aspect;
 
 import com.alibaba.fastjson.JSON;
-import com.ixan.boot.domain.ErrorLogEntity;
-import com.ixan.boot.domain.OperLog;
-import com.ixan.boot.domain.OperLogEntity;
+import com.ixan.boot.domain.ErrorLog;
+import com.ixan.boot.domain.OperateLog;
+import com.ixan.boot.domain.base.OperLog;
 import com.ixan.boot.mapper.ErrorLogMapper;
 import com.ixan.boot.mapper.OperLogMapper;
 import com.ixan.boot.utils.IPUtils;
@@ -51,7 +51,7 @@ public class OperLogAspect {
 	/**
 	 * 设置操作日志切入点 记录操作日志 在注解的位置切入代码
 	 */
-	@Pointcut("@annotation(com.ixan.boot.domain.OperLog)")
+	@Pointcut("@annotation(com.ixan.boot.domain.base.OperLog)")
 	public void operLogPoinCut() {
 	}
 
@@ -76,7 +76,7 @@ public class OperLogAspect {
 		HttpServletRequest request = (HttpServletRequest) requestAttributes
 				.resolveReference(RequestAttributes.REFERENCE_REQUEST);
 
-		OperLogEntity operlog = new OperLogEntity();
+		OperateLog operlog = new OperateLog();
 		try {
 			operlog.setOperId(UuidUtil.get32UUID()); // 主键ID
 
@@ -137,7 +137,7 @@ public class OperLogAspect {
 		HttpServletRequest request = (HttpServletRequest) requestAttributes
 				.resolveReference(RequestAttributes.REFERENCE_REQUEST);
 
-		ErrorLogEntity excepLog = new ErrorLogEntity();
+		ErrorLog excepLog = new ErrorLog();
 		try {
 			// 从切面织入点处通过反射机制获取织入点处的方法
 			MethodSignature signature = (MethodSignature) joinPoint.getSignature();

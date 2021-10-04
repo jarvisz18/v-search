@@ -3,7 +3,7 @@ package com.ixan.boot.web.controller;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.ixan.boot.domain.ConvertTask;
-import com.ixan.boot.domain.LogOneLineFile;
+import com.ixan.boot.domain.LogFile;
 import com.ixan.boot.mapper.LogOneLineFileMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
@@ -43,10 +43,10 @@ public class LogOneLineFileController {
 		try (LineIterator iterator = IOUtils.lineIterator(new FileInputStream(file), "UTF-8")) {
 			//存储单个任务执行行数
 			LinkedBlockingQueue<ConvertTask> queue = new LinkedBlockingQueue<>(10);
-			List<LogOneLineFile> lines = Lists.newArrayList();
+			List<LogFile> lines = Lists.newArrayList();
 			while (iterator.hasNext()) {
 				String line = iterator.nextLine();
-				LogOneLineFile lineFile = new LogOneLineFile();
+				LogFile lineFile = new LogFile();
 				lineFile.setContent(line);
 				lines.add(lineFile);
 				if (lines.size() == 1000) {
@@ -122,7 +122,7 @@ public class LogOneLineFileController {
 	}
 
 	private void convertToDB(String line) {
-		LogOneLineFile oneLineFile = new LogOneLineFile();
+		LogFile oneLineFile = new LogFile();
 		oneLineFile.setContent(line);
 		logOneLineFileMapper.insert(oneLineFile);
 	}

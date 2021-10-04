@@ -1,7 +1,7 @@
 package com.ixan.boot.mapper;
 
 import com.ixan.boot.config.BaseMapper;
-import com.ixan.boot.domain.ChinaRegionsInfo;
+import com.ixan.boot.domain.ChinaRegions;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
  * @version 1.0
  */
 @Repository
-public interface ChinaRegionsMapper extends BaseMapper<ChinaRegionsInfo> {
+public interface ChinaRegionsMapper extends BaseMapper<ChinaRegions> {
 }

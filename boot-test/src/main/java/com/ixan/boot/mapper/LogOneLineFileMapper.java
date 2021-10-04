@@ -1,7 +1,7 @@
 package com.ixan.boot.mapper;
 
 import com.ixan.boot.config.BaseMapper;
-import com.ixan.boot.domain.LogOneLineFile;
+import com.ixan.boot.domain.LogFile;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
  * @description 日志记录
  */
 @Repository
-public interface LogOneLineFileMapper extends BaseMapper<LogOneLineFile> {
+public interface LogOneLineFileMapper extends BaseMapper<LogFile> {
 }

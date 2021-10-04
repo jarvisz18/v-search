@@ -11,10 +11,10 @@ import java.util.List;
  * @description 批量任务
  */
 public class ConvertTask implements Runnable {
-	private List<LogOneLineFile> list;
+	private List<LogFile> list;
 	private LogOneLineFileMapper logOneLineFileMapper;
 
-	public ConvertTask(List<LogOneLineFile> list, LogOneLineFileMapper logOneLineFileMapper) {
+	public ConvertTask(List<LogFile> list, LogOneLineFileMapper logOneLineFileMapper) {
 		this.list = list;
 		this.logOneLineFileMapper = logOneLineFileMapper;
 	}

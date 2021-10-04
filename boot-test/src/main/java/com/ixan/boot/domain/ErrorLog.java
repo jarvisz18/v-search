@@ -9,27 +9,22 @@ import java.util.Date;
 
 /**
  * @author stack_zhang@outlook.com
- * @date Created in 2020/10/6 20:26
- * @description 操作日志实体
+ * @date Created in 2020/10/6 20:34
+ * @description 错误日志实体
  * @version 1.0
  */
 @Data
-@Table(name = "oper_log")
-public class OperLogEntity {
+@Table(name = "error_log")
+public class ErrorLog {
 	@Id
-	@Column(name = "oper_id")
-	private String operId;//主键ID
-	@Column(name = "oper_modul")
-	private String operModul;//功能模块
-	@Column(name = "oper_type")
-	private String operType;//操作类型
-	@Column(name = "oper_desc")
-	private String operDesc;//操作描述
-	@Column(name = "oper_requ_param")
-	private String operRequParam;//请求参数
-	@Column(name = "oper_resp_param")
-	private String operRespParam;//返回参数
-
+	@Column(name = "exc_id")
+	private String excId;//主键ID
+	@Column(name = "exc_requ_param")
+	private String excRequParam;//请求参数
+	@Column(name = "exc_name")
+	private String excName;//异常名称
+	@Column(name = "exc_message")
+	private String excMessage;//异常信息
 	@Column(name = "oper_user_id")
 	private String operUserId;//操作员id
 	@Column(name = "oper_user_name")

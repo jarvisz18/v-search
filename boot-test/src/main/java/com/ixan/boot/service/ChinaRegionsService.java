@@ -1,6 +1,6 @@
 package com.ixan.boot.service;
 
-import com.ixan.boot.domain.ChinaRegionsInfo;
+import com.ixan.boot.domain.ChinaRegions;
 
 import java.util.List;
 
@@ -11,5 +11,5 @@ import java.util.List;
  * @version 1.0
  */
 public interface ChinaRegionsService {
-	void saveBatch(List<ChinaRegionsInfo> regionsInfoList);
+	void saveBatch(List<ChinaRegions> regionsInfoList);
 }

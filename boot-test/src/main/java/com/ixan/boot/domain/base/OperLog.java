@@ -1,4 +1,4 @@
-package com.ixan.boot.domain;
+package com.ixan.boot.domain.base;
 
 import java.lang.annotation.*;
 

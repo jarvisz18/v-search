@@ -1,7 +1,7 @@
 package com.ixan.boot.web.external;
 
-import com.ixan.boot.domain.OperLog;
-import com.ixan.boot.domain.OperLogConst;
+import com.ixan.boot.domain.base.OperLog;
+import com.ixan.boot.domain.base.OperLogConst;
 import com.ixan.boot.service.CacheServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

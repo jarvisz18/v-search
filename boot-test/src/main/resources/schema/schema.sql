@@ -132,3 +132,15 @@ create table log_file
     content text,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
+
+-- 秒杀订单表
+CREATE TABLE `tb_user_goods_record`
+(
+    `id`          varchar(64) NOT NULL,
+    `user_id`     varchar(64) DEFAULT NULL,
+    `goods_id`    varchar(64) DEFAULT NULL,
+    `create_time` datetime    DEFAULT NULL,
+    `order_id`    varchar(64) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;

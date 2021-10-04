@@ -1,6 +1,6 @@
 package com.ixan.boot.service;
 
-import com.ixan.boot.domain.ChinaRegionsInfo;
+import com.ixan.boot.domain.ChinaRegions;
 import com.ixan.boot.mapper.ChinaRegionsMapper;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ public class ChinaRegionsServiceImpl implements ChinaRegionsService {
 	private ChinaRegionsMapper chinaRegionsMapper;
 
 	@Override
-	public void saveBatch(List<ChinaRegionsInfo> regionsInfoList) {
+	public void saveBatch(List<ChinaRegions> regionsInfoList) {
 		chinaRegionsMapper.insertList(regionsInfoList);
 	}
 }

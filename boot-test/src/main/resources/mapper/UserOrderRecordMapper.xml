@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ixan.boot.mapper.UserOrderRecordMapper">
+
+    <insert id="addUserGoodsRecordOne" parameterType="com.ixan.boot.domain.UserGoodsRecord">
+        insert into tb_user_goods_record (id, user_id, goods_id, create_time, order_id)
+        select #{userGoodsRecord.id},
+               #{userGoodsRecord.userId},
+               #{userGoodsRecord.goodsId},
+               #{userGoodsRecord.createTime},
+               #{userGoodsRecord.orderId}
+        from dual
+        where not exists
+            (select id
+             from tb_user_goods_record
+             where goods_id = #{userGoodsRecord.goodsId} and user_id = #{userGoodsRecord.userId})
+    </insert>
+</mapper>
