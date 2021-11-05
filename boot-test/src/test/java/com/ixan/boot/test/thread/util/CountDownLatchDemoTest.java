@@ -1,9 +1,7 @@
-package com.ixan.boot.test.thread;
+package com.ixan.boot.test.thread.util;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -17,7 +15,6 @@ import java.util.concurrent.TimeUnit;
  * @description thread demo test
  */
 public class CountDownLatchDemoTest {
-	private static final Logger logger = LoggerFactory.getLogger(CountDownLatchDemoTest.class);
 
 	@Test
 	public void testCountDownLatch() {
@@ -42,13 +39,13 @@ public class CountDownLatchDemoTest {
 			e.printStackTrace();
 		}
 		threadPoolExecutor.shutdown();
-		logger.info("all task finish");
+		System.out.println("all task finish");
 	}
 
 	private void doTask(int finalI) {
 		if (finalI % 3 == 0) {
 			throw new RuntimeException();
 		}
-		logger.info("current thread is :" + Thread.currentThread().getName() + ":" + finalI);
+		System.out.println("current thread is :" + Thread.currentThread().getName() + ":" + finalI);
 	}
 }
