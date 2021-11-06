@@ -85,4 +85,8 @@ package com.ixan.boot.test.juc;
  *
  * 13.CompletableFuture 异步回调
  *
+ * 多线程编程步骤
+ * 1.创建资源类，在资源类创建属性和操作方法
+ * 2.创建多个线程，调用资源类的操作方法
+ *
  * */
