@@ -1,4 +1,4 @@
-package com.ixan.boot.test.thread;
+package com.ixan.boot.test.juc.basic;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;

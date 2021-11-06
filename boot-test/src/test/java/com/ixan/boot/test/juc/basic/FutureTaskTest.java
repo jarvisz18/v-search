@@ -1,4 +1,4 @@
-package com.ixan.boot.test.thread;
+package com.ixan.boot.test.juc.basic;
 
 import java.util.ArrayList;
 import java.util.List;

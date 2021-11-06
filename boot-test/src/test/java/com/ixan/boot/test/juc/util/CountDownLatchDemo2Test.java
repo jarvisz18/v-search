@@ -1,4 +1,4 @@
-package com.ixan.boot.test.thread.util;
+package com.ixan.boot.test.juc.util;
 
 import org.junit.Test;
 

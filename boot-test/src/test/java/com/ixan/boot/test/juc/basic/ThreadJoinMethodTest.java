@@ -1,4 +1,4 @@
-package com.ixan.boot.test.thread;
+package com.ixan.boot.test.juc.basic;
 
 /**
  * @author stack_zhang@outlook.com

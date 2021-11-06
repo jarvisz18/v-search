@@ -1,4 +1,4 @@
-package com.ixan.boot.test;
+package com.ixan.boot.test.juc.queue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.concurrent.ArrayBlockingQueue;
  * @author stack_zhang@outlook.com
  * @date Created in 2021/7/20 16:25
  * @description
- * @version
+ * @version 1.0
  */
 public class QueueTakeTest {
 	public static void main(String[] args) {
@@ -45,7 +45,7 @@ public class QueueTakeTest {
 		private int num;
 		private boolean isEnd;
 
-		public Message(int num, boolean isEnd) {
+		Message(int num, boolean isEnd) {
 			this.num = num;
 			this.isEnd = isEnd;
 		}
@@ -58,7 +58,7 @@ public class QueueTakeTest {
 			this.num = num;
 		}
 
-		public boolean isEnd() {
+		boolean isEnd() {
 			return isEnd;
 		}
 

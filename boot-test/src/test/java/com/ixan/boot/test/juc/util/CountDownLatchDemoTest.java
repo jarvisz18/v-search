@@ -1,4 +1,4 @@
-package com.ixan.boot.test.thread.util;
+package com.ixan.boot.test.juc.util;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package com.ixan.boot.test.thread;
+package com.ixan.boot.test.juc.queue;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 

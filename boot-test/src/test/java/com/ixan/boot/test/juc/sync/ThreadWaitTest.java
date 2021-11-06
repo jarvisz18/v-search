@@ -1,4 +1,4 @@
-package com.ixan.boot.test.thread;
+package com.ixan.boot.test.juc.sync;
 
 /**
  * @author stack_zhang@outlook.com
@@ -8,8 +8,8 @@ package com.ixan.boot.test.thread;
  */
 public class ThreadWaitTest {
 	//创建资源
-	private static volatile Object resourceA = new Object();
-	private static volatile Object resourceB = new Object();
+	private static final Object resourceA = new Object();
+	private static final Object resourceB = new Object();
 
 	public static void main(String[] args) throws InterruptedException {
 		//创建线程

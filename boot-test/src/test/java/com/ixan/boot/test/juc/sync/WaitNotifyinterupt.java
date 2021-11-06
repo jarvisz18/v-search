@@ -1,4 +1,4 @@
-package com.ixan.boot.test.thread;
+package com.ixan.boot.test.juc.sync;
 
 /**
  * @author stack_zhang@outlook.com
@@ -7,7 +7,7 @@ package com.ixan.boot.test.thread;
  * @description 线程中断测试
  */
 public class WaitNotifyinterupt {
-	static Object object = new Object();
+	private static final Object object = new Object();
 
 	public static void main(String[] args) throws InterruptedException {
 		//创建线程

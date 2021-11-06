@@ -1,4 +1,4 @@
-package com.ixan.boot.test.thread.lock;
+package com.ixan.boot.test.juc.lock;
 
 import org.junit.Test;
 
