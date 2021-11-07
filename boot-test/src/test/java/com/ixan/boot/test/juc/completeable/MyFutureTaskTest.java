@@ -65,61 +65,45 @@ public class MyFutureTaskTest {
 
 	private static long couponCount() {
 		int millis = random.nextInt(1000);
-		try {
-			Thread.sleep(millis);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		sleep(millis);
 		return millis;
 	}
 
 	private static long redBagCount() {
 		int millis = random.nextInt(1000);
-		try {
-			Thread.sleep(millis);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		sleep(millis);
 		return millis;
 	}
 
 	private static long followCount() {
 		int millis = random.nextInt(1000);
+		sleep(millis);
+		return millis;
+	}
+
+	private static void sleep(int millis) {
 		try {
-			Thread.sleep(millis);
+			TimeUnit.MILLISECONDS.sleep(millis);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		return millis;
 	}
 
 	private static long collectCount() {
 		int millis = random.nextInt(1000);
-		try {
-			Thread.sleep(millis);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		sleep(millis);
 		return millis;
 	}
 
 	private static long msgCount() {
 		int millis = random.nextInt(1000);
-		try {
-			Thread.sleep(millis);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		sleep(millis);
 		return millis;
 	}
 
 	private static long fansCount() {
 		int millis = random.nextInt(1000);
-		try {
-			Thread.sleep(millis);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		sleep(millis);
 		return millis;
 	}
 }
