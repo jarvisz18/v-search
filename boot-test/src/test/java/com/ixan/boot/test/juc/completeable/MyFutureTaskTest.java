@@ -81,6 +81,10 @@ public class MyFutureTaskTest {
 		return millis;
 	}
 
+	/**
+	 * 调用Thread.sleep()后，线程状态从RUNNABLE转换到哪个?
+	 * RUNNABLE -> TIMED_WAITING
+	 */
 	private static void sleep(int millis) {
 		try {
 			TimeUnit.MILLISECONDS.sleep(millis);
