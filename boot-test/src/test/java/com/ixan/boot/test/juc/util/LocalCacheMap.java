@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  * @date Created in 2021/11/11 下午9:49
  * @description 使用ConcurrentHashMap制作的本地缓存测试
  */
-public class LocalCacheMap {
+public final class LocalCacheMap {
 	private static final ConcurrentHashMap<String, SoftReference<CacheObject>> cache = new ConcurrentHashMap<>();
 
 	//定时器，定时清除缓存
@@ -26,6 +26,13 @@ public class LocalCacheMap {
 
 	static {
 		executor.scheduleAtFixedRate(LocalCacheMap::removeExpiryReference, 5, 5, TimeUnit.SECONDS);
+	}
+
+	/**
+	 * 私有构造函数,工具类不允许实例化
+	 */
+	private LocalCacheMap() {
+		throw new UnsupportedOperationException();
 	}
 
 	private static void removeExpiryReference() {

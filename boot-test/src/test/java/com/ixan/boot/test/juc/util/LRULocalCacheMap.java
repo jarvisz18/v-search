@@ -12,7 +12,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @description 基于LRU算法的本地缓存
  * 原文链接:https://www.jianshu.com/p/4194483127fe <br/>
  */
-public class LRULocalCacheMap {
+public final class LRULocalCacheMap {
 	/**
 	 * 默认有效时长,单位:秒
 	 */
