@@ -1,4 +1,4 @@
-package com.ixan.boot.test.migrate;
+package com.ixan.boot.test.migrate.domain;
 
 import lombok.Data;
 

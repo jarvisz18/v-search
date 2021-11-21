@@ -1,5 +1,6 @@
 package com.ixan.boot.test.migrate;
 
+import com.ixan.boot.test.migrate.utils.JdbcUtils;
 import org.junit.Test;
 
 import java.sql.Connection;

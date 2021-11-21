@@ -1,5 +1,8 @@
 package com.ixan.boot.test.migrate;
 
+import com.ixan.boot.test.migrate.domain.OrderDTO;
+import com.ixan.boot.test.migrate.domain.User;
+import com.ixan.boot.test.migrate.utils.JdbcUtils;
 import org.junit.Test;
 
 import java.sql.Connection;
@@ -18,6 +21,26 @@ import java.util.List;
 public class PreparedStatementTest {
 
 	@Test
+	public void testPreparedStatementfindAllWithConnection() {
+		Connection connection = null;
+		try {
+			connection = JdbcUtils.getConnection();
+			String sql = "select order_id orderId,order_name orderName,order_time orderTime from tbl_order";
+			List<OrderDTO> orderDTOList = JdbcUtils.findAll(connection, OrderDTO.class, sql);
+			orderDTOList.forEach(System.out::println);
+			String sql1 = "select id,name,create_time createTime,update_time updateTime from user where id > ?";
+			List<User> userList = JdbcUtils.findAll(connection, User.class, sql1, 2);
+			userList.forEach(System.out::println);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			//关闭资源
+			JdbcUtils.close(connection, null);
+		}
+
+	}
+
+	@Test
 	public void testPreparedStatementfindAll() {
 		String sql = "select order_id orderId,order_name orderName,order_time orderTime from tbl_order";
 		List<OrderDTO> orderDTOList = JdbcUtils.findAll(OrderDTO.class, sql);
@@ -30,12 +53,20 @@ public class PreparedStatementTest {
 	@Test
 	public void testPreparedStatementCommonQuery() {
 		String sql = "select order_id orderId,order_name orderName,order_time orderTime from tbl_order where order_id =? ";
-		OrderDTO orderDTO = JdbcUtils.commonQuery(OrderDTO.class, sql, 1);
+		OrderDTO orderDTO = JdbcUtils.findOne(OrderDTO.class, sql, 1);
 		System.out.println(orderDTO);
 		String sql1 = "select id,name,create_time createTime,update_time updateTime from user where id =? ";
-		User user = JdbcUtils.commonQuery(User.class, sql1, 1);
+		User user = JdbcUtils.findOne(User.class, sql1, 1);
 		System.out.println(user);
 	}
+
+	@Test
+	public void testGetValue() {
+		String sql = "select count(1) from tbl_order";
+		Long count = JdbcUtils.getValue(sql);
+		System.out.println("record num:" + count);
+	}
+
 
 	@Test
 	public void testPreparedStatementQuery() {
@@ -67,7 +98,7 @@ public class PreparedStatementTest {
 	@Test
 	public void testCommonUpdate() {
 		String sql = "insert into tbl_order(order_id,order_name,order_time) values (?,?,?)";
-		JdbcUtils.commonUpdate(sql, 1, "米线黄焖鸡", new Date());
+		JdbcUtils.update(sql, 1, "米线黄焖鸡", new Date());
 	}
 
 
