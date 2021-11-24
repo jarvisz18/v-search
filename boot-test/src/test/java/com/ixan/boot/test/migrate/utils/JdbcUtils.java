@@ -1,6 +1,8 @@
 package com.ixan.boot.test.migrate.utils;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.core.io.ClassPathResource;
 
 import javax.sql.DataSource;
@@ -330,6 +332,27 @@ public final class JdbcUtils {
 		Connection connection = null;
 		try {
 			connection = dataSource.getConnection();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return connection;
+	}
+
+	private static final HikariDataSource HIKARI_DATA_SOURCE;
+
+	static {
+		HikariConfig hikariConfig = new HikariConfig();
+		hikariConfig.setUsername("root");
+		hikariConfig.setPassword("root");
+		hikariConfig.setJdbcUrl("jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8");
+		hikariConfig.setDriverClassName("com.mysql.cj.jdbc.Driver");
+		HIKARI_DATA_SOURCE = new HikariDataSource(hikariConfig);
+	}
+
+	public static Connection getHikariConnection() {
+		Connection connection = null;
+		try {
+			connection = HIKARI_DATA_SOURCE.getConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
