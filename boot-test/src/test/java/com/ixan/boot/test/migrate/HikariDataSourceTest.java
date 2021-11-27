@@ -15,6 +15,38 @@ import java.sql.*;
  */
 public class HikariDataSourceTest {
 
+	//批处理插入数据
+	@Test
+	public void test3() throws SQLException {
+		long startTime = System.currentTimeMillis();
+		Connection connection = null;
+		PreparedStatement statement = null;
+		try {
+			connection = JdbcUtils.getHikariConnection();
+			connection.setAutoCommit(false);
+			statement = connection.prepareStatement("insert into user(name) values (?)");
+			for (int i = 0; i < 5000; i++) {
+				statement.setObject(1, i + 7);
+				statement.addBatch();
+				if (i % 1000 == 0) {
+					statement.executeBatch();
+					statement.clearBatch();
+				}
+			}
+			statement.executeBatch();
+			connection.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (null != connection) {
+				connection.setAutoCommit(true);
+			}
+			DbUtils.closeQuietly(connection);
+		}
+		long endTime = System.currentTimeMillis();
+		System.out.println("耗时:[" + (endTime - startTime) + "]ms");
+	}
+
 
 	@Test
 	public void test1() throws SQLException {
