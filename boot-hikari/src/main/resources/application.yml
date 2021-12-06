@@ -1,0 +1,26 @@
+server:
+  port: 8089
+  servlet:
+    context-path: /hikari
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+  #序列化Date为long型时间戳
+  jackson:
+    time-zone: GMT+8:00
+    serialization:
+      write-dates-as-timestamps: true
+
+#配置Mybatis
+mybatis:
+  type-aliases-package: com.ixan.boot.domain
+  mapper-locations: classpath:mapper/*.xml
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countsql
+

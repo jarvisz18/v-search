@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: boot-test
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/user?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+logging:
+  config: classpath:logback-spring.xml
+  file: /home/log/boot-test.log
+  level:
+    root: INFO
+    com.ixan.boot.mapper: DEBUG
