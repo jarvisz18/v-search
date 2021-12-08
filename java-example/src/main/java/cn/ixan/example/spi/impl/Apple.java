@@ -9,6 +9,11 @@ import cn.ixan.example.spi.Fruit;
  * @description 苹果
  */
 public class Apple implements Fruit {
+	/**
+	 * @return java.lang.String
+	 * @author stackzhang@126.com
+	 * @date 2021/12/8 下午11:15
+	 */
 	@Override
 	public String getName() {
 		return "My Name is Apple";
