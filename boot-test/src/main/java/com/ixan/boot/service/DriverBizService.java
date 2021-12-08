@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DriverBizService {
-	private static final Logger logger = LoggerFactory.getLogger(DriverBizService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(DriverBizService.class);
 
 	@EventListener
 	public void addDriver(DriverChangeEvent event) {
-		logger.info("add driver event:[{}]", event.getId());
+		LOGGER.info("add driver event:[{}]", event.getId());
 	}
 }

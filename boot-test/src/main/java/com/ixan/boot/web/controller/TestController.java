@@ -20,7 +20,7 @@ import java.util.Date;
  */
 @RestController
 public class TestController {
-	private static final Logger logger = LoggerFactory.getLogger(TestController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(TestController.class);
 
 	@GetMapping("/user")
 	public UserDTO get() {
@@ -29,7 +29,7 @@ public class TestController {
 		user.setName("张三");
 		user.setCreateTime(new Date());
 		user.setRemarks("张三的个人信息");
-		logger.info("user dto info:{}", JSON.toJSONString(user));
+		LOGGER.info("user dto info:{}", JSON.toJSONString(user));
 		return user;
 	}
 
@@ -41,7 +41,7 @@ public class TestController {
 				+ request.getContextPath() //应用名称，如果应用名称为
 				+ request.getServletPath() //请求的相对url
 				+ "?" + request.getQueryString(); //请求参数
-		logger.info("完整的请求URL:[{}]", requestUrl);
+		LOGGER.info("完整的请求URL:[{}]", requestUrl);
 	}
 
 	@GetMapping("/getEntity")
@@ -59,8 +59,8 @@ public class TestController {
 	@GetMapping("/error/{a}/{b}")
 	public int getError(@PathVariable Integer a,
 						@PathVariable Integer b) {
-		logger.info("获取到请求参数 a :[{}]", a);
-		logger.info("获取到请求参数 b :[{}]", b);
+		LOGGER.info("获取到请求参数 a :[{}]", a);
+		LOGGER.info("获取到请求参数 b :[{}]", b);
 		return a / b;
 	}
 

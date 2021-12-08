@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ShakespeareServiceImpl implements ShakespeareService {
-    private static final Logger log = LoggerFactory.getLogger(ShakespeareServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ShakespeareServiceImpl.class);
     @Resource
     private Gson gson;
     @Resource
@@ -61,13 +61,13 @@ public class ShakespeareServiceImpl implements ShakespeareService {
             SearchResult execute = jestClient.execute(search);
             if(execute.isSucceeded()){
                 Long total = execute.getTotal();
-                log.info("索引[{}]存在[{}]条数据",Constant.SHAKES_PEARE_INDEX,total);
+                LOGGER.info("索引[{}]存在[{}]条数据", Constant.SHAKES_PEARE_INDEX, total);
                 List<SearchResult.Hit<Shakespeare, Void>> hits = execute.getHits(Shakespeare.class);
                 list = hits.stream().map(this::convert).collect(Collectors.toList());
                 count += clean(list);
-                log.info("[{}]批量删除数据成功,插入数据[{}]条", DateHelper.currentTime(), list.size());
+                LOGGER.info("[{}]批量删除数据成功,插入数据[{}]条", DateHelper.currentTime(), list.size());
                 list.clear();
-                log.info("clean ES data success, data size is [{}]",count);
+                LOGGER.info("clean ES data success, data size is [{}]", count);
             }
 
         } catch (IOException e) {
@@ -100,7 +100,7 @@ public class ShakespeareServiceImpl implements ShakespeareService {
         try {
             BulkResult execute = jestClient.execute(bulk);
             if (execute.isSucceeded()){
-                log.info("处理结果[{}]",execute.getResponseCode());
+                LOGGER.info("处理结果[{}]", execute.getResponseCode());
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -117,7 +117,7 @@ public class ShakespeareServiceImpl implements ShakespeareService {
         List<Shakespeare> list = Lists.newArrayList();
         String query = "{\"query\":{\"match_all\":{}},\"from\":" + from + ",\"size\":" + size + "}";
         JsonElement jsonElement = gson.fromJson(query, JsonElement.class);
-        log.info("索引:[{}],查询脚本:\n{}", Constant.SHAKES_PEARE_INDEX, gson.toJson(jsonElement));
+        LOGGER.info("索引:[{}],查询脚本:\n{}", Constant.SHAKES_PEARE_INDEX, gson.toJson(jsonElement));
         Search search = new Search.Builder(query)
                 .addIndex(Constant.SHAKES_PEARE_INDEX)
                 .addType(Constant.INDEX_TYPE)
@@ -141,16 +141,16 @@ public class ShakespeareServiceImpl implements ShakespeareService {
     public int save(Integer from, Integer size) {
         List<Shakespeare> query = query(from, size);
         query.forEach(e -> shakespeareMapper.save(e));
-        if(log.isDebugEnabled()){
-            log.debug("批量插入数据成功,插入数据[{}]条",query.size());
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("批量插入数据成功,插入数据[{}]条", query.size());
         }
         return query.size();
     }
 
     private int save(List<Shakespeare> list) {
         list.forEach(e -> shakespeareMapper.save(e));
-        if(log.isDebugEnabled()){
-            log.debug("[{}]批量插入数据成功,插入数据[{}]条", DateHelper.currentTime(), list.size());
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("[{}]批量插入数据成功,插入数据[{}]条", DateHelper.currentTime(), list.size());
         }
         return list.size();
     }
@@ -158,8 +158,8 @@ public class ShakespeareServiceImpl implements ShakespeareService {
 
     private int addBatch(List<Shakespeare> list) {
         shakespeareMapper.addBatch(list);
-        if(log.isDebugEnabled()){
-            log.debug("[{}]批量插入数据成功,插入数据[{}]条", DateHelper.currentTime(), list.size());
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("[{}]批量插入数据成功,插入数据[{}]条", DateHelper.currentTime(), list.size());
         }
         return list.size();
     }

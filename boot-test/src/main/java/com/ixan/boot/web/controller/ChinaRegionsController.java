@@ -28,10 +28,10 @@ import java.util.Objects;
  */
 @RestController
 public class ChinaRegionsController {
-	private static final Logger logger = LoggerFactory.getLogger(ChinaRegionsController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ChinaRegionsController.class);
 	//需要抓取的网页地址
 	@Value("${china.regions}")
-	private String URL;
+	private String url;
 	@Value("${class.type}")
 	private String className;
 	@Autowired
@@ -41,14 +41,14 @@ public class ChinaRegionsController {
 	public void pullRegions() throws IOException {
 		List<ChinaRegions> regionsInfoList = getChinaRegionsInfos();
 		//打印结果
-		logger.info(JSONArray.toJSONString(regionsInfoList));
+		LOGGER.info(JSONArray.toJSONString(regionsInfoList));
 		chinaRegionsService.saveBatch(regionsInfoList);
 	}
 
 	private List<ChinaRegions> getChinaRegionsInfos() throws IOException {
 		List<ChinaRegions> regionsInfoList = new ArrayList<>();
 		//抓取网页信息
-		Document document = Jsoup.connect(URL).get();
+		Document document = Jsoup.connect(url).get();
 		//获取真实的数据体
 		Element element = document.getElementsByTag("tbody").get(0);
 		String provinceCode = "";//省级编码

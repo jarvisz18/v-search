@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class CacheController {
-	private static final Logger logger = LoggerFactory.getLogger(CacheController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CacheController.class);
 	@Autowired
 	private CacheServiceImpl cacheService;
 
@@ -25,10 +25,10 @@ public class CacheController {
 	@OperLog(operModul = "缓存管理-查询", operType = OperLogConst.QUERY, operDesc = "缓存管理-查询")
 	public void cache() {
 		// 第一次查询，应该走数据库
-		logger.info("first query...");
+		LOGGER.info("first query...");
 		cacheService.getAccountByName("somebody");
 		// 第二次查询，应该不查数据库，直接返回缓存的值
-		logger.info("second query...");
+		LOGGER.info("second query...");
 		cacheService.getAccountByName("somebody");
 	}
 

@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 public class ComputeController {
-    private static final Logger log = LoggerFactory.getLogger(ComputeController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ComputeController.class);
 
     @Autowired
     private DiscoveryClient client;
@@ -22,7 +22,7 @@ public class ComputeController {
     public Integer add(@RequestParam(value = "a") Integer a,@RequestParam(value = "b") Integer b){
         List<ServiceInstance> instances = client.getInstances("compute-service");
         int i = a + b;
-        log.info("/add,host:{},service.id:{},result:{}", instances.get(0).getHost(), instances.get(0).getServiceId(),i);
+        LOGGER.info("/add,host:{},service.id:{},result:{}", instances.get(0).getHost(), instances.get(0).getServiceId(), i);
         return i;
     }
 }

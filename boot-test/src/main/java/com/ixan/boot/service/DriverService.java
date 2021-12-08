@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DriverService implements ApplicationEventPublisherAware {
-	private static final Logger logger = LoggerFactory.getLogger(DriverService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(DriverService.class);
 
 	private ApplicationEventPublisher applicationEventPublisher;
 
@@ -26,7 +26,7 @@ public class DriverService implements ApplicationEventPublisherAware {
 
 	public void change(String id, Integer op) {
 		//执行业务逻辑
-		logger.info("driver id:[{}] is change,op:[{}]", id, op);
+		LOGGER.info("driver id:[{}] is change,op:[{}]", id, op);
 		//发布事件
 		applicationEventPublisher.publishEvent(new DriverChangeEvent(this, id, op));
 	}

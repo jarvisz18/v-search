@@ -15,13 +15,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DriverListener implements ApplicationListener<DriverChangeEvent> {
-	private static final Logger logger = LoggerFactory.getLogger(DriverListener.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(DriverListener.class);
 
 	@Override
 	public void onApplicationEvent(DriverChangeEvent driverChangeEvent) {
 		String id = driverChangeEvent.getId();
 		Integer op = driverChangeEvent.getOp();
-		logger.info("receive event change id:[{}],op:[{}]", id, op);
+		LOGGER.info("receive event change id:[{}],op:[{}]", id, op);
 		switch (op) {
 			case 0:
 			case 1:
@@ -33,7 +33,7 @@ public class DriverListener implements ApplicationListener<DriverChangeEvent> {
 			default:
 				throw new RuntimeException("暂不支持此操作");
 		}
-		ConnectPool.POOL_MAP.forEach((k, v) -> logger.info("k:[{}],v:[{}]", k, v));
-		logger.info("--------------------------------------------------");
+		ConnectPool.POOL_MAP.forEach((k, v) -> LOGGER.info("k:[{}],v:[{}]", k, v));
+		LOGGER.info("--------------------------------------------------");
 	}
 }

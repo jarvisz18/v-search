@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CacheServiceImpl implements CacheService {
-	private static final Logger logger = LoggerFactory.getLogger(CacheServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CacheServiceImpl.class);
 
 	/**
 	 * <p> value 缓存名，必填，它指定了你的缓存存放在哪块命名空间
@@ -27,18 +27,18 @@ public class CacheServiceImpl implements CacheService {
 	@Override
 	public CacheEntity getAccountByName(String userName) {
 		// 方法内部实现不考虑缓存逻辑，直接实现业务
-		logger.info("real query account." + userName);
+		LOGGER.info("real query account." + userName);
 		return getFromDB(userName);
 	}
 
 	private CacheEntity getFromDB(String acctName) {
-		logger.info(("real querying db..." + acctName));
+		LOGGER.info(("real querying db..." + acctName));
 		return new CacheEntity(acctName);
 	}
 
 	@CacheEvict(value = "accountCache", allEntries = true, beforeInvocation = true)
 	@Override
 	public void reload() {
-		logger.info("reload accountCache ... ");
+		LOGGER.info("reload accountCache ... ");
 	}
 }

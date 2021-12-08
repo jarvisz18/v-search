@@ -19,7 +19,7 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/api")
 public class FileController {
-	private static final Logger logger = LoggerFactory.getLogger(FileController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(FileController.class);
 
 	@PostMapping("/upload")
 	public String upload(@RequestParam("file") MultipartFile file) {
@@ -29,14 +29,14 @@ public class FileController {
 
 		String fileName = file.getOriginalFilename();
 		String filePath = "/Users/mac/Desktop/tmp";
-		logger.info("临时路径为:[{}]", filePath);
+		LOGGER.info("临时路径为:[{}]", filePath);
 		File dest = new File(filePath + "/" + fileName);
 		try {
 			file.transferTo(dest);
-			logger.info("上传成功");
+			LOGGER.info("上传成功");
 			return "上传成功";
 		} catch (IOException e) {
-			logger.error(e.toString(), e);
+			LOGGER.error(e.toString(), e);
 		}
 		return "上传失败！";
 	}

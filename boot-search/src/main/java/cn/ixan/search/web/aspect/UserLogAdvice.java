@@ -18,9 +18,14 @@ import java.time.LocalDateTime;
 //@Aspect
 //@Component
 public class UserLogAdvice {
-    private static final Logger log = LoggerFactory.getLogger(UserLogAdvice.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserLogAdvice.class);
 
-    //统一切点,对cn.ixan.search.controller及其子包中所有的类的所有方法切面
+    /**
+     * 统一切点,对cn.ixan.search.controller及其子包中所有的类的所有方法切面
+     *
+     * @author stackzhang@126.com
+     * @date 2021/12/8 下午11:26
+     */
     @Pointcut("execution(public * cn.ixan.search.web.controller..*.*(..))")
     public void pointcut() {
     }
@@ -37,35 +42,58 @@ public class UserLogAdvice {
      */
     @Before(value = "controllerAspect(userLog)", argNames = "joinPoint,userLog")
     public void addBeforeLogger(JoinPoint joinPoint, UserLog userLog) {
-        log.info("调用了前置通知");
+        LOGGER.info("调用了前置通知");
         LocalDateTime now = LocalDateTime.now();
-        log.info("登陆时间:" + now.toString() + ",接口访问开始");
+        LOGGER.info("登陆时间:" + now.toString() + ",接口访问开始");
     }
 
-    //@After: 后置通知
+    /**
+     * 后置通知
+     * @author stackzhang@126.com
+     * @date 2021/12/8 下午11:29
+     * @param joinPoint
+     */
     @After("pointcut()")
     public void afterMethod(JoinPoint joinPoint) {
-        log.info("调用了后置通知");
+        LOGGER.info("调用了后置通知");
     }
 
-    //@AfterRunning: 返回通知 rsult为返回内容
+    /**
+     * 返回通知 rsult为返回内容
+     * @author stackzhang@126.com
+     * @date 2021/12/8 下午11:29
+     * @param joinPoint
+     * @param result
+     */
     @AfterReturning(value = "pointcut()", returning = "result")
     public void afterReturningMethod(JoinPoint joinPoint, Object result) {
-        log.info("调用了返回通知");
+        LOGGER.info("调用了返回通知");
     }
 
-    //@AfterThrowing: 异常通知
+    /**
+     * 异常通知
+     * @author stackzhang@126.com
+     * @date 2021/12/8 下午11:28
+     * @param joinPoint
+     * @param e
+     */
     @AfterThrowing(value = "pointcut()", throwing = "e")
     public void afterReturningMethod(JoinPoint joinPoint, Exception e) {
-        log.info("调用了异常通知");
+        LOGGER.info("调用了异常通知");
     }
 
-    //@Around：环绕通知
+    /**
+     * 环绕通知
+     * @author stackzhang@126.com
+     * @date 2021/12/8 下午11:27
+     * @param pjp
+     * @return java.lang.Object
+     */
     @Around("pointcut()")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
-        log.info("around执行方法之前");
+        LOGGER.info("around执行方法之前");
         Object object = pjp.proceed();
-        log.info("around执行方法之后--返回值：" + object);
+        LOGGER.info("around执行方法之后--返回值：" + object);
         return object;
     }
 }

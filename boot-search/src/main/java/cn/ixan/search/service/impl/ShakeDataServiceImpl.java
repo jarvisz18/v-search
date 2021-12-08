@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
  */
 @Service
 public class ShakeDataServiceImpl implements ShakeDataService {
-	private static final Logger log = LoggerFactory.getLogger(ShakeDataServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ShakeDataServiceImpl.class);
 	@Resource
 	private JestClient jestClient;
 	@Resource
@@ -53,7 +53,7 @@ public class ShakeDataServiceImpl implements ShakeDataService {
 			List<Shakespeare> list = shakespeareMapper.simpleQuery(from, Constant.SCROLL_SIZE);
 			from += list.size();
 			bulkDataToES(list);
-			log.info("第[{}]次导入ES[{}]条数据", count.incrementAndGet(), list.size());
+			LOGGER.info("第[{}]次导入ES[{}]条数据", count.incrementAndGet(), list.size());
 		}
 		return true;
 	}
@@ -68,7 +68,7 @@ public class ShakeDataServiceImpl implements ShakeDataService {
 		List<Shakespeare> addList = new ArrayList<>();
 		//获取ES库数据
 		shakespeareList.forEach(e -> compare(count, addList, e));
-		log.info("产生重复数据记录数:[{}]", count.get());
+		LOGGER.info("产生重复数据记录数:[{}]", count.get());
 		bulkDataToES(addList);
 		long end = System.currentTimeMillis();
 		map.put("success", "200");
@@ -87,10 +87,10 @@ public class ShakeDataServiceImpl implements ShakeDataService {
 			delete(line_id);
 			count.incrementAndGet();
 			addList.add(shakespeare);
-			log.info("产生重复数据的line_id:[{}]", line_id);
+			LOGGER.info("产生重复数据的line_id:[{}]", line_id);
 		}
 		long end = System.currentTimeMillis();
-		log.info("本次比较,耗时[{}]ms", end - start);
+		LOGGER.info("本次比较,耗时[{}]ms", end - start);
 	}
 
 	private boolean delete(String line_id) {
@@ -136,7 +136,7 @@ public class ShakeDataServiceImpl implements ShakeDataService {
 			SearchResult execute = jestClient.execute(search);
 			if (execute.isSucceeded()) {
 				Long total = execute.getTotal();
-				log.info("索引[{}]存在[{}]条数据", Constant.SHAKES_PEARE_INDEX, total);
+				LOGGER.info("索引[{}]存在[{}]条数据", Constant.SHAKES_PEARE_INDEX, total);
 				List<SearchResult.Hit<Shakespeare, Void>> hits = execute.getHits(Shakespeare.class);
 				list.addAll(hits.stream().map(e -> e.source).collect(Collectors.toList()));
 				//获取scroll_id
@@ -150,7 +150,7 @@ public class ShakeDataServiceImpl implements ShakeDataService {
 						break;
 					}
 				}
-				log.info("ES backupToDatabase to Database success, data size is [{}]", list.size());
+				LOGGER.info("ES backupToDatabase to Database success, data size is [{}]", list.size());
 			}
 
 		} catch (IOException e) {
@@ -192,15 +192,15 @@ public class ShakeDataServiceImpl implements ShakeDataService {
 			SearchResult execute = jestClient.execute(search);
 			if (execute.isSucceeded()) {
 				Long total = execute.getTotal();
-				log.info("索引[{}]存在[{}]条数据", Constant.SHAKES_PEARE_INDEX, total);
+				LOGGER.info("索引[{}]存在[{}]条数据", Constant.SHAKES_PEARE_INDEX, total);
 				List<SearchResult.Hit<Shakespeare, Void>> hits = execute.getHits(Shakespeare.class);
 				list = hits.stream().map(e -> e.source).collect(Collectors.toList());
 				count += inserBatch(list);
 				list.clear();
 				//获取scroll_id
 				String scroll_id = execute.getJsonObject().get(Constant.SCROLL_ID).getAsString();
-				log.info("当前scroll_id为:[{}]", scroll_id);
-				log.info("当前scroll_id长度为:[{}]", scroll_id.length());
+				LOGGER.info("当前scroll_id为:[{}]", scroll_id);
+				LOGGER.info("当前scroll_id长度为:[{}]", scroll_id.length());
 				while (true) {
 					SearchScroll build = new SearchScroll.Builder(scroll_id, Constant.SCROLL_TIME).build();
 					JestResult result = jestClient.execute(build);
@@ -211,7 +211,7 @@ public class ShakeDataServiceImpl implements ShakeDataService {
 					//插入操作
 					count += inserBatch(source);
 				}
-				log.info("ES backupToDatabase to Database success, data size is [{}]", count);
+				LOGGER.info("ES backupToDatabase to Database success, data size is [{}]", count);
 			}
 
 		} catch (IOException e) {
@@ -228,8 +228,8 @@ public class ShakeDataServiceImpl implements ShakeDataService {
 			for (Shakespeare shakespeare : list) {
 				mapper.save(shakespeare);
 			}
-			if (log.isDebugEnabled()) {
-				log.debug("[{}]批量插入数据成功,插入数据[{}]条", DateHelper.currentTime(), list.size());
+			if (LOGGER.isDebugEnabled()) {
+				LOGGER.debug("[{}]批量插入数据成功,插入数据[{}]条", DateHelper.currentTime(), list.size());
 			}
 			session.commit();
 		} finally {
