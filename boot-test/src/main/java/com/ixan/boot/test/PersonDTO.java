@@ -13,7 +13,7 @@ import java.util.Date;
  */
 @Data
 public class PersonDTO implements Serializable {
-	private int id;
+	private Integer id;
 	private String username;
 	private Date birthday;
 }

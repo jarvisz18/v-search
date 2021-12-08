@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 @Data
 public class PersonVO implements Serializable {
-	private int id;
+	private Integer id;
 	private String username;
 	private Long birthday;
 }

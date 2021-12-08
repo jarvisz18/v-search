@@ -15,41 +15,41 @@ import java.util.List;
  * @description 使用迭代器删除列表中的元素
  */
 public class IteratorTest {
-    private static final List<String> list = new ArrayList<>(100);
+    private static final List<String> STRING_LIST = new ArrayList<>(100);
 
     @Before
     public void init() {
         for (int i = 1; i <= 100; i++) {
-            list.add("element-" + i);
+            STRING_LIST.add("element-" + i);
         }
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void testLoopRemoveElement() {
-        list.forEach(System.out::println);
+        STRING_LIST.forEach(System.out::println);
         System.out.println("----开始删除列表中元素----");
 
-        int bound = list.size();
+        int bound = STRING_LIST.size();
         for (int i = 0; i < bound; i++) {
-            String s = list.get(i);
+            String s = STRING_LIST.get(i);
             String substring = s.substring(s.lastIndexOf("-"));
             if (Integer.parseInt(substring) % 5 == 0) {
-                list.remove(i);
+                STRING_LIST.remove(i);
             }
         }
-        list.forEach(System.out::println);
+        STRING_LIST.forEach(System.out::println);
     }
 
     @Test
     public void testIteratorRemoveElement() {
-        list.forEach(System.out::println);
+        STRING_LIST.forEach(System.out::println);
         System.out.println("----开始删除列表中元素----");
         //使用迭代器删除列表中的元素
-        Iterator<String> iterator = list.iterator();
+        Iterator<String> iterator = STRING_LIST.iterator();
 
         while (iterator.hasNext()) {
             //多线程情况下加锁
-            synchronized (list) {
+            synchronized (STRING_LIST) {
                 String s = iterator.next();
                 String substring = s.substring(s.lastIndexOf("-"));
                 if (Integer.parseInt(substring) % 5 == 0) {
@@ -58,6 +58,6 @@ public class IteratorTest {
 
             }
         }
-        list.forEach(System.out::println);
+        STRING_LIST.forEach(System.out::println);
     }
 }

@@ -41,14 +41,14 @@ public class HikariApplication implements CommandLineRunner {
 		if (args.length <= 0) {
 			System.out.println("[Usage] java xxx.jar {insert name email | display}");
 		} else {
-			if (args[0].equalsIgnoreCase("insert")) {
+			if ("insert".equalsIgnoreCase(args[0])) {
 				System.out.println("Add Student");
 				String name = args[1];
 				String email = args[2];
 				studentRepository.addCustomer(name, email);
 			}
 
-			if (args[0].equalsIgnoreCase("display")) {
+			if ("display".equalsIgnoreCase(args[0])) {
 				System.out.println("Display all student");
 				List<Student> all = studentRepository.findALl();
 				all.forEach(System.out::println);

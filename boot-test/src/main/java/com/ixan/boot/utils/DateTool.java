@@ -88,25 +88,33 @@ public final class DateTool {
 
 	//LocalDate to Date
 	public static Date fromLocalDate(LocalDate localDate) {
-		if (localDate == null) return null;
+		if (localDate == null) {
+			return null;
+		}
 		return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 	}
 
 	//LocalDateTime to Date
 	public static Date fromLocalDateTime(LocalDateTime localDateTime) {
-		if (localDateTime == null) return null;
+		if (localDateTime == null) {
+			return null;
+		}
 		return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
 	}
 
 	//Date to LocalDateTime
 	public static LocalDateTime fromDate(Date date) {
-		if (date == null) return null;
+		if (date == null) {
+			return null;
+		}
 		return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 	}
 
 	// format LocalDateTime
 	public static String formatLocalDateTime(LocalDateTime date) {
-		if (date == null) return null;
+		if (date == null) {
+			return null;
+		}
 		return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(date);
 	}
 
@@ -145,8 +153,12 @@ public final class DateTool {
 	 */
 	public static long betweenTwoTime(LocalDateTime startTime, LocalDateTime endTime, ChronoUnit field) {
 		Period period = Period.between(LocalDate.from(startTime), LocalDate.from(endTime));
-		if (field == ChronoUnit.YEARS) return period.getYears();
-		if (field == ChronoUnit.MONTHS) return period.getYears() * 12 + period.getMonths();
+		if (field == ChronoUnit.YEARS) {
+			return period.getYears();
+		}
+		if (field == ChronoUnit.MONTHS) {
+			return period.getYears() * 12 + period.getMonths();
+		}
 		return field.between(startTime, endTime);
 	}
 

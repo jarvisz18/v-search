@@ -59,7 +59,9 @@ public class HolidayController {
 	@ApiOperation(value = "删除节假日", notes = "删除节假日")
 	@DeleteMapping("/{id}")
 	public Result<Integer> deleteHoliday(@PathVariable("id") String id) {
-		if (StringUtils.isBlank(id)) return ResultGenerate.fail();
+		if (StringUtils.isBlank(id)) {
+			return ResultGenerate.fail();
+		}
 		return ResultGenerate.success(holidayService.deleteHoliday(id));
 	}
 
@@ -75,7 +77,9 @@ public class HolidayController {
 			Holiday holiday = new Holiday();
 			Map value = (Map) entry.getValue();
 			Boolean isHoliday = (Boolean) value.get("holiday");
-			if (!isHoliday) continue;
+			if (!isHoliday) {
+				continue;
+			}
 
 			String date = (String) value.get("date");
 			String name = (String) value.get("name");
@@ -93,7 +97,9 @@ public class HolidayController {
 	public Result<Integer> addHoliday(@RequestBody Map<String, Object> paramMap) {
 		Holiday holiday = new Holiday();
 		Boolean isHoliday = (Boolean) paramMap.get("holiday");
-		if (!isHoliday) return ResultGenerate.fail();
+		if (!isHoliday) {
+			return ResultGenerate.fail();
+		}
 
 		String date = (String) paramMap.get("date");
 		String name = (String) paramMap.get("name");

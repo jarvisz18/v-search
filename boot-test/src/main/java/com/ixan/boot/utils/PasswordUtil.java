@@ -1,16 +1,15 @@
 package com.ixan.boot.utils;
 
-import java.util.Date;
 import java.util.Random;
 
 /**
  * @author stack_zhang@outlook.com
+ * @version 1.0
  * @date Created in 2020/10/22 17:25
  * @description PasswordUtil
- * @version 1.0
  */
 public class PasswordUtil {
-	public final static String[] word = {
+	private final static String[] WORD = {
 			"a", "b", "c", "d", "e", "f", "g",
 			"h", "j", "k", "m", "n",
 			"p", "q", "r", "s", "t",
@@ -22,21 +21,21 @@ public class PasswordUtil {
 			"!", "@", "#", "$", "-", "_",
 	};
 
-	public final static String[] num = {
+	private final static String[] NUM = {
 			"2", "3", "4", "5", "6", "7", "8", "9"
 	};
 
-	public static String randomPassword() {
+	private static String randomPassword() {
 		StringBuilder stringBuilder = new StringBuilder();
-		Random random = new Random(new Date().getTime());
+		Random random = new Random(System.currentTimeMillis());
 		boolean flag = false;
 		//int length = random.nextInt(3) + 8;
 		int length = 12;
 		for (int i = 0; i < length; i++) {
 			if (flag) {
-				stringBuilder.append(num[random.nextInt(num.length)]);
+				stringBuilder.append(NUM[random.nextInt(NUM.length)]);
 			} else {
-				stringBuilder.append(word[random.nextInt(word.length)]);
+				stringBuilder.append(WORD[random.nextInt(WORD.length)]);
 			}
 			flag = !flag;
 		}

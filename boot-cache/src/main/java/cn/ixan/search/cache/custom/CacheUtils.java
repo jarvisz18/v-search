@@ -17,7 +17,9 @@ public class CacheUtils {
 	 * @param expire 过期时间
 	 */
 	public void put(String key, Object value, long expire) {
-		if (StringUtils.isBlank(key)) return;
+		if (StringUtils.isBlank(key)) {
+			return;
+		}
 
 		//缓存存在,更新缓存
 		if (CacheGlobal.concurrentHashMap.containsKey(key)) {
@@ -41,14 +43,22 @@ public class CacheUtils {
 	}
 
 	public Object get(String key) {
-		if (StringUtils.isBlank(key)) return null;
-		if (CacheGlobal.concurrentHashMap.isEmpty()) return null;
+		if (StringUtils.isBlank(key)) {
+			return null;
+		}
+		if (CacheGlobal.concurrentHashMap.isEmpty()) {
+			return null;
+		}
 
 		//不存在
-		if (!CacheGlobal.concurrentHashMap.containsKey(key)) return null;
+		if (!CacheGlobal.concurrentHashMap.containsKey(key)) {
+			return null;
+		}
 
 		MyCache cache = CacheGlobal.concurrentHashMap.get(key);
-		if (cache == null) return cache;
+		if (cache == null) {
+			return cache;
+		}
 
 		//惰性删除,判断缓存是否过期
 		long timeoutTime = System.currentTimeMillis() - cache.getWriteTime();

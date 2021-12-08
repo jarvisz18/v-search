@@ -3,7 +3,7 @@ package cn.ixan.search.web.controller;
 import cn.ixan.search.domain.FullTextEntity;
 import cn.ixan.search.domain.ImExtInfo;
 import cn.ixan.search.service.FullTextService;
-import cn.ixan.search.utils.DocParserUtil;
+import cn.ixan.search.utils.DocParserTest;
 import cn.ixan.search.utils.UUIDUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,7 +29,7 @@ public class FullTextController {
     @PostMapping("/readFileFromPath")
     @ApiOperation(value = "读取文件从输入路径", notes = "读取文件从输入路径")
     public String readFileFromPath(@RequestParam String path) {
-        ImExtInfo imExtInfo = DocParserUtil.readFile(path);
+		ImExtInfo imExtInfo = DocParserTest.readFile(path);
         fullTextService.index(imExtInfo);
         return "ok";
     }
@@ -38,7 +38,7 @@ public class FullTextController {
     @ApiOperation(value = "读取文件", notes = "读取文件")
     public String readFile() {
         String path = "C:\\Users\\Administrator\\Desktop\\规范.docx";
-        ImExtInfo imExtInfo = DocParserUtil.readFile(path);
+		ImExtInfo imExtInfo = DocParserTest.readFile(path);
         fullTextService.index(imExtInfo);
         return "ok";
     }
@@ -46,8 +46,8 @@ public class FullTextController {
     @PostMapping("/init")
     @ApiOperation(value = "读取文件初始化", notes = "读取文件初始化")
     public String init() {
-        List<String> readWordFile = DocParserUtil.readWordFile("C:\\Users\\Administrator\\Desktop\\规范.docx");
-        String s = DocParserUtil.wordToString(readWordFile);
+		List<String> readWordFile = DocParserTest.readWordFile("C:\\Users\\Administrator\\Desktop\\规范.docx");
+		String s = DocParserTest.wordToString(readWordFile);
         FullTextEntity entity = new FullTextEntity();
         entity.setId(UUIDUtils.uuid());
         entity.setFull_text(s);

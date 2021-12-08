@@ -14,7 +14,7 @@ import java.util.Date;
  */
 @Data
 public class UserDTO implements Serializable {
-	private int id;
+	private Integer id;
 
 	@JSONField(name = "userName")
 	private String name;

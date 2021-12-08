@@ -28,16 +28,7 @@ import java.util.List;
  * word 文档处理类
  */
 @Slf4j
-public final class DocParserUtil {
-	private DocParserUtil() {
-		throw new UnsupportedOperationException();
-	}
-
-    public static void main(String[] args) {
-        //List<String> strings = readWordFile("/Users/mac/Desktop/ES/Doc1.docx");
-        List<String> strings = readWordFile("C:\\Users\\Administrator\\Desktop\\规范.docx");
-        log.info(wordToString(strings));
-    }
+public final class DocParserTest {
 
     @Test
     public void testMetadata() {

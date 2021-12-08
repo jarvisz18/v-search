@@ -9,6 +9,8 @@ import java.util.concurrent.ConcurrentHashMap;
  * @description 全局缓存对象
  */
 public class CacheGlobal {
-	//全局缓存对象
+	/**
+	 * 全局缓存对象
+	 */
 	public static ConcurrentHashMap<String, MyCache> concurrentHashMap = new ConcurrentHashMap<>();
 }

@@ -19,9 +19,9 @@ import java.time.format.DateTimeFormatter;
  * 触发器：Trigger，包括SimpleTrigger和CronTrigger</p>
  */
 public class HelloJob implements Job {
-	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	@Override
 	public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-		System.out.println("Hello执行任务,当前时间: " + formatter.format(LocalDateTime.now()));
+		System.out.println("Hello执行任务,当前时间: " + DATE_TIME_FORMATTER.format(LocalDateTime.now()));
 	}
 }

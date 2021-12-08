@@ -60,7 +60,9 @@ public class HolidayServiceImpl implements HolidayService {
 	@Override
 	public boolean isHoliday(HolidayDTO holidayDTO) {
 		LocalDateTime holiday = holidayDTO.getHoliday();
-		if (Objects.isNull(holiday)) return false;
+		if (Objects.isNull(holiday)) {
+			return false;
+		}
 
 		LocalDateTime startTime = DateTool.getDayStart(holiday);
 		LocalDateTime endTime = DateTool.getDayEnd(holiday);

@@ -13,9 +13,9 @@ import java.util.List;
 
 /**
  * @author stack_zhang@outlook.com
+ * @version 1.0
  * @date Created in 2021/8/24 16:50
  * @description 学生
- * @version 1.0
  */
 @Repository
 @Slf4j
@@ -25,7 +25,7 @@ public class StudentDao {
 	private EntityManager entityManager;
 
 	/**
-	 *  使用自定义SQL查询数据
+	 * 使用自定义SQL查询数据
 	 */
 	public List<Student> findAll() {
 		StringBuilder sb = new StringBuilder();
@@ -35,7 +35,7 @@ public class StudentDao {
 		return query.list();
 	}
 
-	@Transactional(transactionManager = "mysqlTransactionManager")
+	@Transactional(transactionManager = "mysqlTransactionManager", rollbackFor = Exception.class)
 	public void save(Student student) {
 		entityManager.persist(student);
 	}
