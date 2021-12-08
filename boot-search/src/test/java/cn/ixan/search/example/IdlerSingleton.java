@@ -1,7 +1,7 @@
 package cn.ixan.search.example;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2020/2/4 14:52
  * @description idler man pattern

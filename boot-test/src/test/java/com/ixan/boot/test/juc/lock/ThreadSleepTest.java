@@ -4,7 +4,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/7/4 下午9:02
  * @description 线程休眠测试

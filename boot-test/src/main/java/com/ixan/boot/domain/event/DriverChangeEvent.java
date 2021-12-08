@@ -3,7 +3,7 @@ package com.ixan.boot.domain.event;
 import org.springframework.context.ApplicationEvent;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/9/16 下午8:58
  * @description 数据源变更事件

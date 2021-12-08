@@ -6,7 +6,7 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/11/11 下午11:05
  * @description 基于LRU算法的本地缓存

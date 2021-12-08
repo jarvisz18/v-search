@@ -5,7 +5,7 @@ import com.ixan.boot.mapper.LogOneLineFileMapper;
 import java.util.List;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/8/14 下午4:40
  * @description 批量任务

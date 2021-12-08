@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Service;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/9/16 下午9:13
  * @description 监听器

@@ -3,7 +3,7 @@ package cn.ixan.search.mult.domain.postgres;
 import javax.persistence.*;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2021/8/24 15:42
  * @description 教师
  * @version 1.0

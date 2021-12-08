@@ -5,7 +5,7 @@ import com.ixan.boot.domain.ChinaRegions;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2020/10/7 14:32
  * @description ChinaRegionsMapper
  * @version 1.0

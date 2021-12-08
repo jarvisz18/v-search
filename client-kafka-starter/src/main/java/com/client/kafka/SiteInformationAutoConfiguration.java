@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2020/9/18 13:48
  * @description SiteInformationAutoConfiguration
  * @version 1.0

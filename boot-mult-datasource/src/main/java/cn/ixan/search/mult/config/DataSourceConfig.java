@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Primary;
 import javax.sql.DataSource;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2021/8/24 15:27
  * @description 数据源配置
  * @version 1.0

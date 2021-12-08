@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2020/11/11 11:09
  * @description UserGender Controller
  * @version 1.0

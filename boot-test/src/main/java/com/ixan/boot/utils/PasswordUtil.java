@@ -3,7 +3,7 @@ package com.ixan.boot.utils;
 import java.util.Random;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2020/10/22 17:25
  * @description PasswordUtil

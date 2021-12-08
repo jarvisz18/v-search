@@ -20,7 +20,7 @@ import javax.annotation.PostConstruct;
 import java.util.Collections;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  */
 @EnableFeignClients
 @EnableDiscoveryClient

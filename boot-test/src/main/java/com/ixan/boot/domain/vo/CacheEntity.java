@@ -1,7 +1,7 @@
 package com.ixan.boot.domain.vo;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2020/10/6 15:52
  * @description 缓存测试实体类
  * @version 1.0

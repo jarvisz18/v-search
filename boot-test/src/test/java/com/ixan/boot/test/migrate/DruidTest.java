@@ -11,7 +11,7 @@ import java.sql.Connection;
 import java.util.Properties;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/11/21 下午6:38
  * @description 测试druid数据源连接池

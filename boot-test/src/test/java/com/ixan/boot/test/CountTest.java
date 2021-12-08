@@ -3,7 +3,7 @@ package com.ixan.boot.test;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2021/6/17 9:09
  * @description 计数测试
  * @version 1.0

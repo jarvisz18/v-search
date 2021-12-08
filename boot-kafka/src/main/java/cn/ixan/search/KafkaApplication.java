@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration;
 import java.util.Date;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2020/9/10 14:56
  * @description kafka application
  * @version 1.0

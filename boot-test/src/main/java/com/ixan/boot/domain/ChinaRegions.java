@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2020/10/7 14:08
  * @description 中国行政区域信息
  * @version 1.0

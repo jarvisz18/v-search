@@ -1,7 +1,7 @@
 package com.ixan.boot.test.juc.basic;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2021/11/8 下午8:56
  * @description 线程本地变量测试
  */

@@ -5,7 +5,7 @@ import com.ixan.boot.test.migrate.domain.User;
 import java.util.List;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/11/21 下午10:15
  * @description 人员信息查询

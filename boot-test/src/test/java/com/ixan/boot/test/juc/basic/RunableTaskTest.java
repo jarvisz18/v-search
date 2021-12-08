@@ -1,7 +1,7 @@
 package com.ixan.boot.test.juc.basic;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/7/4 下午3:27
  * @description 实现Runnable接口的线程创建方式

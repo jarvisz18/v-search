@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date 19-9-4
  */
 @Mapper

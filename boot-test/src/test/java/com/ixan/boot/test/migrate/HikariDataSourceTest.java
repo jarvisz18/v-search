@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.sql.*;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/11/24 下午10:38
  * @description hikari DataSource Test

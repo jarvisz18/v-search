@@ -1,7 +1,7 @@
 package cn.ixan.example.spi;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/12/8 下午8:48
  * @description 水果接口

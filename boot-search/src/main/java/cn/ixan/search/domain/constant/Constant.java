@@ -1,7 +1,7 @@
 package cn.ixan.search.domain.constant;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * <p>常量类</p>
  */
 public final class Constant {

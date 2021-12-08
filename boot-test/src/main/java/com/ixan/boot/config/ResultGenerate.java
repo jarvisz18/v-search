@@ -1,7 +1,7 @@
 package com.ixan.boot.config;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2020/6/27 0:33
  * @description
  */

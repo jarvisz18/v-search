@@ -3,7 +3,7 @@ package com.client.kafka;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2020/9/18 13:45
  * @description 站点
  * @version 1.0

@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/11/5 下午10:00
  * @description CountDownLatch demo2 test

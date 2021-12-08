@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2021/4/5 13:18
  * @description 方法区(运行时常量池)和元空间溢出
  * @version 1.0

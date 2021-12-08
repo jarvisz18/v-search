@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.time.LocalDateTime;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2020/3/1 21:38
  * @description user login advice

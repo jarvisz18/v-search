@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2020/9/4 13:44
  * @description consumer message

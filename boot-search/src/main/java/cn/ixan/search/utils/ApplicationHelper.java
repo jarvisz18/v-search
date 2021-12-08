@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationEvent;
 import org.springframework.stereotype.Component;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/8/11 下午7:53
  * @description Spring工具类

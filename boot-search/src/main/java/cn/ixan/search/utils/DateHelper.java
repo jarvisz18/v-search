@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * 时间日期工具类,切勿重复造轮子(也可使用Java8日期API)
  *
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @see DateUtils
  */
 public final class DateHelper extends DateUtils {

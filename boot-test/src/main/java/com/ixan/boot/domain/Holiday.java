@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/8/7 下午7:14
  * @description 节假日

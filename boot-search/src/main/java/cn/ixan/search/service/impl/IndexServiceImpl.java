@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 import java.io.IOException;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2020/9/6 19:29
  * @description impl index service

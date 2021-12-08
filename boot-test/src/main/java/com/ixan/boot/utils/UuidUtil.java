@@ -3,7 +3,7 @@ package com.ixan.boot.utils;
 import java.util.UUID;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2020/10/6 20:59
  * @description UuidUtil
  * @version 1.0

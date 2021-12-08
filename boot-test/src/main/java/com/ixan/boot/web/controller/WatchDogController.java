@@ -13,7 +13,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2020/12/7 10:11
  * @description 监控后台线程情况
  * @version 1.0

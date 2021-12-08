@@ -5,7 +5,7 @@ import com.ixan.boot.domain.ChinaRegions;
 import java.util.List;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2020/10/7 14:29
  * @description ChinaRegionsService
  * @version 1.0

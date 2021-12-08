@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import javax.persistence.EntityManager;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2021/7/5 17:53
  * @description 抽象公用Repository
  * @version 1.0

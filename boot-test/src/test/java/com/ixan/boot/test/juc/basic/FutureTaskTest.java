@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.concurrent.*;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/9/18 下午10:32
  * @description future task test

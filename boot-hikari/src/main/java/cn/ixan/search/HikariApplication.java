@@ -14,7 +14,7 @@ import java.util.List;
 import static java.lang.System.exit;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/12/6 下午9:35
  * @description hikari application

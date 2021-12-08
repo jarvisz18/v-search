@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2021/7/20 16:25
  * @description
  * @version 1.0

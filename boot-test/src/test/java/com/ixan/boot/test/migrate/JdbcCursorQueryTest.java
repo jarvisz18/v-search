@@ -9,7 +9,7 @@ import java.io.Writer;
 import java.sql.*;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/8/24 下午10:17
  * @description 流式查询数据

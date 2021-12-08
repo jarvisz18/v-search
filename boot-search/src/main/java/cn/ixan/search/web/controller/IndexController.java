@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 /**
  * <p>获取索引基本信息</p>
  *
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2020/9/6 19:26
  * @description index controller

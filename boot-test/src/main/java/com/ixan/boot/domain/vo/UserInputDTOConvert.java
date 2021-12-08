@@ -5,7 +5,7 @@ import com.ixan.boot.domain.dto.UserDTO;
 import org.springframework.beans.BeanUtils;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2020/6/29 15:42
  * @description
  */

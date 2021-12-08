@@ -1,7 +1,7 @@
 package com.client.kafka;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2020/9/18 13:47
  * @description SiteInformationProvider
  * @version 1.0

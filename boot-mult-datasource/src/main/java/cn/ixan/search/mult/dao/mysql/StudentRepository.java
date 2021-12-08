@@ -4,7 +4,7 @@ import cn.ixan.search.mult.domain.mysql.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2021/8/24 15:40
  * @description 学生
  * @version 1.0

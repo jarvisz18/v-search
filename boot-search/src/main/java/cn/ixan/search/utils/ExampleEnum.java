@@ -1,7 +1,7 @@
 package cn.ixan.search.utils;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/6/19 下午5:02
  * @description ExampleEnum

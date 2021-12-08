@@ -4,7 +4,7 @@ import com.p6spy.engine.spy.appender.MessageFormattingStrategy;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2021/7/5 14:47
  * @description P6spyLogFormat
  * @version 1.0

@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2020/10/7 14:25
  * @description ChinaRegionsController
  * @version 1.0

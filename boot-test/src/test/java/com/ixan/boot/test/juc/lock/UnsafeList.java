@@ -5,7 +5,7 @@ import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/11/6 下午3:44
  * @description 不安全的线程集合与安全的线程集合

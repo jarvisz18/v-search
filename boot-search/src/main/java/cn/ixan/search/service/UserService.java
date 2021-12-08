@@ -5,7 +5,7 @@ import cn.ixan.search.domain.User;
 import java.util.List;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  */
 public interface UserService {
     /**

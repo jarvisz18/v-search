@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date 19-9-4
  */
 @Api(tags = "对用户信息数据操作")

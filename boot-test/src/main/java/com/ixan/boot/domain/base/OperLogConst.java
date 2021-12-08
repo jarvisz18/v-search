@@ -1,7 +1,7 @@
 package com.ixan.boot.domain.base;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2020/10/6 21:13
  * @description OperLogConst
  * @version 1.0

@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/11/20 下午12:17
  * @description jdbc连接测试

@@ -3,7 +3,7 @@ package com.ixan.boot.test.juc.forkjoin;
 import java.util.concurrent.RecursiveTask;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/11/6 下午6:44
  * @description 拆分的任务

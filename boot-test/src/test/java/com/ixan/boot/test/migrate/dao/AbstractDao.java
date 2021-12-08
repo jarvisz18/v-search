@@ -11,7 +11,7 @@ import java.sql.Connection;
 import java.util.List;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/11/21 下午9:30
  * @description 基础的数据查询-抽象

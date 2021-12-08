@@ -3,7 +3,7 @@ package cn.ixan.search.service;
 import cn.ixan.search.domain.ResultBean;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2020/9/6 19:27
  * @description index service

@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.concurrent.*;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/11/5 下午10:37
  * @description Exchanger test

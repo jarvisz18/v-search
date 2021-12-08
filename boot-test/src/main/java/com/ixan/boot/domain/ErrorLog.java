@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2020/10/6 20:34
  * @description 错误日志实体
  * @version 1.0

@@ -3,7 +3,7 @@ package cn.ixan.search.domain;
 import lombok.Data;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2021/7/5 17:58
  * @description
  * @version 1.0

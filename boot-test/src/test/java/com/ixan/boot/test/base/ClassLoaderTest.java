@@ -1,7 +1,7 @@
 package com.ixan.boot.test.base;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/11/29 下午8:33
  * @description 类加载器测试

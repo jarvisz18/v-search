@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/11/11 下午9:49
  * @description 使用ConcurrentHashMap制作的本地缓存测试

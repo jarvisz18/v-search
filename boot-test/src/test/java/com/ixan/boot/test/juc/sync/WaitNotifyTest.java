@@ -1,7 +1,7 @@
 package com.ixan.boot.test.juc.sync;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/11/8 下午8:30
  * @description 挂起唤醒测试

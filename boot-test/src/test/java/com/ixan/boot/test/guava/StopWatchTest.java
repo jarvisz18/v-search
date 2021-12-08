@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/10/20 下午10:02
  * @description stopwatch test

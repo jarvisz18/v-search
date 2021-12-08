@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 2.0
  * @date Created in 2021/11/20 下午2:02
  * @description 使用Apache—DbUtils进一步封装我们的查询工具类

@@ -1,7 +1,7 @@
 package com.ixan.boot.test.juc.sync;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/7/4 下午6:48
  * @description 线程等待通知

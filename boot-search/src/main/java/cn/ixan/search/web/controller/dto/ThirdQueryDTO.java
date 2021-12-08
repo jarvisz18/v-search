@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2020/9/7 9:04
  * @description 通用查询实体

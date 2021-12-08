@@ -7,7 +7,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 /**
- * @author stack_zhang@outlook.com
+ * @author stackzhang@126.com
  * @date Created in 2020/11/11 13:33
  * @description 应用准备完成监听器
  * @version 1.0
