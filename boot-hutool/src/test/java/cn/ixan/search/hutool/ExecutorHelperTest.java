@@ -1,5 +1,6 @@
 package cn.ixan.search.hutool;
 
+import cn.ixan.search.hutool.utils.ExecutorHelper;
 import org.junit.Test;
 
 import java.util.concurrent.CountDownLatch;

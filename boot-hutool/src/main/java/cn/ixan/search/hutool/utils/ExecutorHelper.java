@@ -1,4 +1,4 @@
-package cn.ixan.search.hutool;
+package cn.ixan.search.hutool.utils;
 
 import cn.hutool.core.thread.ExecutorBuilder;
 import cn.hutool.core.thread.ThreadFactoryBuilder;
