@@ -1,11 +1,13 @@
 package com.ixan.boot;
 
+import com.ixan.boot.utils.SpringContextUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.ConfigurableApplicationContext;
 import tk.mybatis.spring.annotation.MapperScan;
 
 /**
@@ -20,7 +22,8 @@ import tk.mybatis.spring.annotation.MapperScan;
 @MapperScan("com.ixan.boot.mapper")
 @SpringBootApplication
 public class BootApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(BootApplication.class, args);
-    }
+	public static void main(String[] args) {
+		ConfigurableApplicationContext applicationContext = SpringApplication.run(BootApplication.class, args);
+		SpringContextUtils.setApplicationContext(applicationContext);
+	}
 }
