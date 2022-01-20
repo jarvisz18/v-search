@@ -1,2 +1,9 @@
 server:
   port: 8001
+  servlet:
+    context-path: /hutool
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 20MB
