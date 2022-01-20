@@ -2,6 +2,8 @@ server:
   port: 8001
   servlet:
     context-path: /hutool
+  tomcat:
+    basedir: /Users/mac/Desktop/tomcat
 spring:
   servlet:
     multipart:
