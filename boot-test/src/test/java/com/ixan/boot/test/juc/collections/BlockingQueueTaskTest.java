@@ -1,4 +1,4 @@
-package com.ixan.boot.test.juc.queue;
+package com.ixan.boot.test.juc.collections;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.slf4j.Logger;

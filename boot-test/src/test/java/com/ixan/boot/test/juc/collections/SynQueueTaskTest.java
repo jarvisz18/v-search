@@ -1,4 +1,4 @@
-package com.ixan.boot.test.juc.queue;
+package com.ixan.boot.test.juc.collections;
 
 import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;

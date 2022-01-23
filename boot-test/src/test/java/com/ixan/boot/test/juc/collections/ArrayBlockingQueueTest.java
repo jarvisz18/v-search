@@ -1,4 +1,4 @@
-package com.ixan.boot.test.juc.queue;
+package com.ixan.boot.test.juc.collections;
 
 import java.util.ArrayList;
 import java.util.List;

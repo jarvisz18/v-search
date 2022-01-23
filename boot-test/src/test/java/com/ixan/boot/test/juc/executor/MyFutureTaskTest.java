@@ -1,4 +1,4 @@
-package com.ixan.boot.test.juc.completeable;
+package com.ixan.boot.test.juc.executor;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 

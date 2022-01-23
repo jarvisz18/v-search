@@ -1,4 +1,4 @@
-package com.ixan.boot.test.juc.completeable;
+package com.ixan.boot.test.juc.executor;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
