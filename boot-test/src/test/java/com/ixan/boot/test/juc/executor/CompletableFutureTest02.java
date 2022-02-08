@@ -13,9 +13,27 @@ import java.util.concurrent.*;
 public class CompletableFutureTest02 {
 	public static void main(String[] args) throws ExecutionException, InterruptedException {
 		Instant instantStart = Instant.now();
-		doTaskWithCompletableFuture();
+		doTaskWithCompletableFutureSimple();
 		Instant instantEnd = Instant.now();
 		System.out.println("total seconds:" + (ChronoUnit.SECONDS.between(instantStart, instantEnd)));
+	}
+
+	/**
+	 * why???
+	 * @throws InterruptedException
+	 */
+	private static void doTaskWithCompletableFutureSimple() throws InterruptedException {
+		ExecutorService executorService = Executors.newFixedThreadPool(4);
+		CompletableFuture<Integer> future01 = CompletableFuture.supplyAsync(CompletableFutureTest02::task01, executorService);
+		CompletableFuture<Integer> future02 = CompletableFuture.supplyAsync(CompletableFutureTest02::task02, executorService);
+		CompletableFuture<Integer> future03 = CompletableFuture.supplyAsync(CompletableFutureTest02::task03, executorService);
+		CompletableFuture<Integer> future04 = CompletableFuture.supplyAsync(CompletableFutureTest02::task04, executorService);
+
+		future01.whenComplete((t, u) -> System.out.println(t));
+		future02.whenComplete((t, u) -> System.out.println(t));
+		future03.whenComplete((t, u) -> System.out.println(t));
+		future04.whenComplete((t, u) -> System.out.println(t));
+		executorService.shutdown();
 	}
 
 	private static void doTaskWithCompletableFuture() throws InterruptedException {
