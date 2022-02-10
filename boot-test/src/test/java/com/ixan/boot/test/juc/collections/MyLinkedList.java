@@ -1,4 +1,4 @@
-package com.ixan.boot.test.juc.skiplist;
+package com.ixan.boot.test.juc.collections;
 
 /**
  * @author stackzhang@126.com
