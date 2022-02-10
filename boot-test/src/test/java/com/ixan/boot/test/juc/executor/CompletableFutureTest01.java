@@ -7,9 +7,9 @@ import java.util.concurrent.ExecutionException;
  * @author stackzhang@126.com
  * @version 1.0
  * @date Created in 2021/11/6 下午7:05
- * @description completeable test
+ * @description completable test
  */
-public class CompleteableFutureTest {
+public class CompletableFutureTest01 {
 	public static void main(String[] args) throws ExecutionException, InterruptedException {
 		//异步调用，无返回值
 		CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
