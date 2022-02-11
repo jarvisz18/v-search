@@ -2,8 +2,6 @@ package com.ixan.boot.test.juc.collections.blocking;
 
 import org.junit.Test;
 
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.concurrent.DelayQueue;
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
@@ -17,27 +15,46 @@ import java.util.concurrent.TimeUnit;
 public class DelayQueueExampleTest {
 
 	@Test
-	public void test() throws InterruptedException {
+	public void testDelayQueueTake() throws InterruptedException {
 		DelayQueue<MyDelayTask> delayQueue = DelayQueueExample.create();
 		delayQueue.add(MyDelayTask.of("data1", 800L));
 		delayQueue.add(MyDelayTask.of("data2", 1000L));
 		delayQueue.add(MyDelayTask.of("data3", 2000L));
 		delayQueue.add(MyDelayTask.of("data4", 1200L));
-		Instant now = Instant.now();
-		delayQueue.take();
-		delayQueue.take();
-		delayQueue.take();
-		delayQueue.take();
-		Instant end = Instant.now();
-		System.out.println(ChronoUnit.MILLIS.between(now, end));
+		long start = System.currentTimeMillis();
+		MyDelayTask take = delayQueue.take();
+		System.out.println((System.currentTimeMillis() - start) + ":" + take.data);
+	}
+
+	@Test
+	public void testDelayQueueAdd() throws InterruptedException {
+		DelayQueue<MyDelayTask> delayQueue = DelayQueueExample.create();
+		delayQueue.add(MyDelayTask.of("data1", 800L));
+		delayQueue.add(MyDelayTask.of("data2", 1000L));
+		delayQueue.add(MyDelayTask.of("data3", 2000L));
+		delayQueue.add(MyDelayTask.of("data4", 1200L));
+		long start = System.currentTimeMillis();
+		while (!delayQueue.isEmpty()) {
+			MyDelayTask take = delayQueue.take();
+			System.out.println((System.currentTimeMillis() - start) + ":" + take.data);
+		}
+
+		System.out.println(System.currentTimeMillis() - start);
 	}
 
 	public static class MyDelayTask implements Delayed {
+		/**
+		 * 数据
+		 */
 		private final String data;
+		/**
+		 * 到期时间
+		 */
 		private final long deadline;
 
 		public MyDelayTask(String data, long deadline) {
 			this.data = data;
+			//到期时间=当前时间+延迟时间 (单位:ms)
 			this.deadline = System.currentTimeMillis() + deadline;
 		}
 
@@ -45,22 +62,20 @@ public class DelayQueueExampleTest {
 			return new MyDelayTask(data, deadline);
 		}
 
+		/**
+		 * 判断延迟任务是否到期
+		 */
 		@Override
 		public long getDelay(TimeUnit unit) {
-			long delayTime = System.currentTimeMillis() - deadline;
-			return TimeUnit.MILLISECONDS.convert(delayTime, unit);
+			long diff = this.deadline - System.currentTimeMillis();
+			return unit.convert(diff, TimeUnit.MILLISECONDS);
 		}
 
 		@Override
 		public int compareTo(Delayed o) {
 			MyDelayTask delayTask = (MyDelayTask) o;
-			if (this.deadline > delayTask.deadline) {
-				return -1;
-			} else if (this.deadline < delayTask.deadline) {
-				return 1;
-			} else {
-				return 0;
-			}
+			//根据过期时间升序出队,先过期的先出队
+			return Long.compare(this.deadline, delayTask.deadline);
 		}
 	}
 }
