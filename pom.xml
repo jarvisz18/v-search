@@ -30,6 +30,7 @@
         <module>boot-cache</module>
         <module>boot-mult-datasource</module>
         <module>boot-hikari</module>
+        <module>java-jmh</module>
     </modules>
 
     <parent>
