@@ -10,7 +10,7 @@ import java.util.concurrent.FutureTask;
  * @date Created in 2021/7/4 下午3:22
  * @description 继承Thread类的线程创建方式
  */
-public class ThreadTest {
+public class ThreadCreateTest {
 	//创建有返回值的task
 	public static class CallerTask implements Callable<String> {
 		public String call() throws Exception {
