@@ -42,7 +42,7 @@ public final class LocalCacheMap {
 		System.out.println(Thread.currentThread().getName() + "执行清除过期key");
 	}
 
-	public static void add(String key, Object value, long periodInMillis) {
+	public static <T> void add(String key, T value, long periodInMillis) {
 		if (null == key) {
 			return;
 		}
@@ -50,7 +50,7 @@ public final class LocalCacheMap {
 			cache.remove(key);
 		} else {
 			long expiryTime = System.currentTimeMillis() + periodInMillis;
-			cache.put(key, new SoftReference<>(new CacheObject(value, expiryTime)));
+			cache.put(key, new SoftReference<>(new CacheObject<>(value, expiryTime)));
 		}
 	}
 
@@ -58,17 +58,17 @@ public final class LocalCacheMap {
 		cache.remove(key);
 	}
 
-	public static List<Object> findAll() {
+	public static <T> List<T> findAll() {
 		return cache.values().stream().map(SoftReference::get)
 				.filter(Objects::nonNull)
-				.filter(cacheObject -> !cacheObject.isExpiry()).map(CacheObject::getValue)
+				.filter(cacheObject -> !cacheObject.isExpiry()).map(CacheObject<T>::getValue)
 				.collect(Collectors.toList());
 	}
 
-	public static Object get(String key) {
+	public static <T> T get(String key) {
 		return Optional.ofNullable(cache.get(key)).map(SoftReference::get)
 				.filter(cacheObject -> !cacheObject.isExpiry())
-				.map(CacheObject::getValue).orElse(null);
+				.map(CacheObject<T>::getValue).orElse(null);
 	}
 
 	public static void clear() {
@@ -83,20 +83,20 @@ public final class LocalCacheMap {
 	}
 
 
-	private static class CacheObject {
-		private Object value;
+	private static class CacheObject<T> {
+		private T value;
 		private long expiryTime;
 
-		CacheObject(Object value, long expiryTime) {
+		CacheObject(T value, long expiryTime) {
 			this.value = value;
 			this.expiryTime = expiryTime;
 		}
 
-		Object getValue() {
+		T getValue() {
 			return value;
 		}
 
-		public void setValue(Object value) {
+		public void setValue(T value) {
 			this.value = value;
 		}
 
