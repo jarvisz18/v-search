@@ -56,6 +56,7 @@ public class TestControllerTest extends BaseUnitTest {
 	@Test
 	public void getError() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/getError/1/0"))
-				.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
+				.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+				.andExpect(MockMvcResultMatchers.status().is5xxServerError());
 	}
 }
