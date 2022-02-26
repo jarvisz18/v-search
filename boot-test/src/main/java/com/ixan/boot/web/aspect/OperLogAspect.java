@@ -11,12 +11,10 @@ import com.ixan.boot.utils.UuidUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 
@@ -33,8 +31,8 @@ import java.util.Map;
  * @description 日志切面
  * @version 1.0
  */
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class OperLogAspect {
 	/**
 	 * 操作版本号

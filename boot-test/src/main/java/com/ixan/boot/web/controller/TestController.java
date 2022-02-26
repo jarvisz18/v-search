@@ -34,7 +34,7 @@ public class TestController {
 	}
 
 	@GetMapping("/url")
-	public void getFullRequestUri(HttpServletRequest request) {
+	public void getFullRequestURL(HttpServletRequest request) {
 		String requestUrl = request.getScheme() //当前链接使用的协议
 				+ "://" + request.getServerName()//服务器地址
 				+ ":" + request.getServerPort() //端口号
@@ -56,7 +56,7 @@ public class TestController {
 		return account;
 	}
 
-	@GetMapping("/error/{a}/{b}")
+	@GetMapping("/getError/{a}/{b}")
 	public int getError(@PathVariable Integer a,
 						@PathVariable Integer b) {
 		LOGGER.info("获取到请求参数 a :[{}]", a);
