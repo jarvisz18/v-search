@@ -25,7 +25,7 @@ public class Solution {
 	 * @param str 原始字符串
 	 * @return String
 	 */
-	public String reverseStringI(String str) {
+	private String reverseStringI(String str) {
 		String[] s = str.split(" ");
 		List<String> list = new ArrayList<>();
 		for (String string : s) {

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.Random;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -24,6 +25,9 @@ public class UserGoodsRecordServiceImpl implements UserGoodsRecordService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserGoodsRecordServiceImpl.class);
 	@Autowired
 	private UserOrderRecordMapper userOrderRecordMapper;
+
+	private static final int MAX_TOTAL_USER = 10000;
+	private static final int MAX_LUCKY_USER = 10;
 
 	/**
 	 * #查看当前会话隔离级别
@@ -48,19 +52,32 @@ public class UserGoodsRecordServiceImpl implements UserGoodsRecordService {
 	public void shop() {
 		Random random = new Random(100);
 		ExecutorService executorService = Executors.newFixedThreadPool(10);
-		for (int i = 0; i < 10000; i++) {
+		CountDownLatch countDownLatch = new CountDownLatch(MAX_TOTAL_USER);
+		for (int i = 0; i < MAX_TOTAL_USER; i++) {
 			executorService.submit(() -> {
-				UserGoodsRecord userGoodsRecord = new UserGoodsRecord();
-				userGoodsRecord.setId(UuidUtil.get32UUID());
-				userGoodsRecord.setOrderId(UuidUtil.get32UUID());
-				userGoodsRecord.setCreateTime(new Date());
-				userGoodsRecord.setUserId("zhangsan" + random.nextInt(10));
-				userGoodsRecord.setGoodsId("iPhone13");
-				Integer integer = userOrderRecordMapper.addUserGoodsRecordOne(userGoodsRecord);
-				if (integer == 1) {
-					LOGGER.info("[{}]当前已经成功秒杀:iPhone13", userGoodsRecord.getUserId());
+				try {
+					UserGoodsRecord userGoodsRecord = new UserGoodsRecord();
+					userGoodsRecord.setId(UuidUtil.get32UUID());
+					userGoodsRecord.setOrderId(UuidUtil.get32UUID());
+					userGoodsRecord.setCreateTime(new Date());
+					userGoodsRecord.setUserId("zhangsan" + random.nextInt(MAX_LUCKY_USER));
+					userGoodsRecord.setGoodsId("iPhone13");
+					Integer integer = userOrderRecordMapper.addUserGoodsRecordOne(userGoodsRecord);
+					if (integer == 1) {
+						LOGGER.info("[{}]当前已经成功秒杀:iPhone13", userGoodsRecord.getUserId());
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					countDownLatch.countDown();
 				}
 			});
 		}
+		try {
+			countDownLatch.await();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		executorService.shutdown();
 	}
 }

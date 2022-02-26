@@ -11,7 +11,7 @@ import org.junit.Test;
  * @version 1.0
  */
 public class BasicTextEncryptorTest {
-	BasicTextEncryptor textEncryptor;
+	private BasicTextEncryptor textEncryptor;
 
 	@Before
 	public void setUp() {
