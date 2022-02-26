@@ -31,6 +31,7 @@
         <module>boot-mult-datasource</module>
         <module>boot-hikari</module>
         <module>java-jmh</module>
+        <module>java-juc</module>
     </modules>
 
     <parent>
