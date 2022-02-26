@@ -17,7 +17,7 @@ public class RedisController {
 	private RedisService redisService;
 
 	@GetMapping("/testTransaction")
-	public String test() {
+	public String testTransaction() {
 		redisService.testTransaction();
 		return "ok";
 	}

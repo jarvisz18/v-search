@@ -25,8 +25,8 @@ public class WatchDogController {
 	private Executor taskExecutor;
 
 
-	@GetMapping("/asyncExceutor/info")
-	public Map<String, Object> asyncExceutorInfo() {
+	@GetMapping("/threadTask/monitor")
+	public Map<String, Object> threadTaskMonitor() {
 		Map<String, Object> map = new HashMap<>();
 		Object[] myThread = {taskExecutor};
 		for (Object thread : myThread) {

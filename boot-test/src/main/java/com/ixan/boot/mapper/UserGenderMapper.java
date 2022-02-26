@@ -4,6 +4,8 @@ import com.ixan.boot.config.BaseMapper;
 import com.ixan.boot.domain.UserGender;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author stackzhang@126.com
  * @date Created in 2020/11/11 11:07
@@ -12,4 +14,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserGenderMapper extends BaseMapper<UserGender> {
+	void insertBatch(List<UserGender> userGender);
 }

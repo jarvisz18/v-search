@@ -25,17 +25,18 @@ import javax.validation.constraints.NotNull;
 @RestController
 @Slf4j
 @Validated
-public class ValidtorController {
+@RequestMapping("/api/user")
+public class ValidatorController {
 
-	@GetMapping("/api/user/getByAccount")
-	public Result<EmplDTO> findEmpl(@Length(min = 3, max = 6) @NotNull String account) {
+	@GetMapping("/findEmplByAccount")
+	public Result<EmplDTO> findEmplByAccount(@Length(min = 3, max = 6) @NotNull String account) {
 		EmplDTO emplDTO = new EmplDTO();
 		emplDTO.setAccount(account);
 		emplDTO.setUserName("校验通过");
 		return ResultGenerate.success(emplDTO);
 	}
 
-	@GetMapping("/api/user/{userId}")
+	@GetMapping("/{userId}")
 	public Result<EmplDTO> findEmpl(@PathVariable("userId") @Min(1000L) Long userId) {
 		EmplDTO emplDTO = new EmplDTO();
 		emplDTO.setUserId(userId);
