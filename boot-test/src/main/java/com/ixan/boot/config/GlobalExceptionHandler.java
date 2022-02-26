@@ -13,9 +13,9 @@ import javax.validation.ConstraintViolationException;
 
 /**
  * @author stackzhang@126.com
+ * @version 1.0
  * @date Created in 2022/1/11 12:45
  * @description 统一异常处理
- * @version 1.0
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -37,6 +37,13 @@ public class GlobalExceptionHandler {
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public Result handleConstraintViolationException(ConstraintViolationException ex) {
+		return ResultGenerate.fail(ex.getMessage());
+	}
+
+	@ExceptionHandler({RuntimeException.class})
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	@ResponseBody
+	public Result handleConstraintViolationException(RuntimeException ex) {
 		return ResultGenerate.fail(ex.getMessage());
 	}
 }

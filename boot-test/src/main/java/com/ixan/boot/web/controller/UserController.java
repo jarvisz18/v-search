@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-	@PostMapping(value = "addUser1", consumes = "application/json")
+	@PostMapping(value = "/addUser1", consumes = "application/json")
 	public String addUser1() {
 		return "success";
 	}
 
-	@PostMapping(value = "addUser2", consumes = "application/x-www-form-urlencoded")
+	@PostMapping(value = "/addUser2", consumes = "application/x-www-form-urlencoded")
 	public String addUser2() {
 		return "success";
 	}
