@@ -12,9 +12,9 @@ public class ThreadSortPrintTest {
 
 	@Test
 	public void testSortPrint() throws InterruptedException {
-		Thread thread1 = new Thread(() -> System.out.println(Thread.currentThread().getName()));
-		Thread thread2 = new Thread(() -> System.out.println(Thread.currentThread().getName()));
-		Thread thread3 = new Thread(() -> System.out.println(Thread.currentThread().getName()));
+		Thread thread1 = new Thread(getRunnable(), "T1");
+		Thread thread2 = new Thread(getRunnable(), "T2");
+		Thread thread3 = new Thread(getRunnable(), "T3");
 
 		thread1.start();
 		thread1.join();
@@ -26,11 +26,15 @@ public class ThreadSortPrintTest {
 		thread3.join();
 	}
 
+	private Runnable getRunnable() {
+		return () -> System.out.println(Thread.currentThread().getName());
+	}
+
 	@Test
 	public void testUnSortPrint() {
-		Thread thread1 = new Thread(() -> System.out.println(Thread.currentThread().getName()));
-		Thread thread2 = new Thread(() -> System.out.println(Thread.currentThread().getName()));
-		Thread thread3 = new Thread(() -> System.out.println(Thread.currentThread().getName()));
+		Thread thread1 = new Thread(getRunnable());
+		Thread thread2 = new Thread(getRunnable());
+		Thread thread3 = new Thread(getRunnable());
 		thread1.start();
 		thread2.start();
 		thread3.start();

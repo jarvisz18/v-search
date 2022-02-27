@@ -11,14 +11,14 @@ import java.util.concurrent.FutureTask;
  * @description 继承Thread类的线程创建方式
  */
 public class ThreadCreateTest {
-	//创建有返回值的task
+	//实现Callable接口并重写call方法
 	public static class CallerTask implements Callable<String> {
 		public String call() throws Exception {
 			return "hello";
 		}
 	}
 
-	//继承Runnable并重写run方法
+	//实现Runnable接口并重写run方法
 	public static class RunableTask implements Runnable {
 		public void run() {
 			System.out.println("i am a child thread");
