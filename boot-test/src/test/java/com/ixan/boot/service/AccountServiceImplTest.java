@@ -9,8 +9,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.Method;
 
@@ -22,19 +24,40 @@ public class AccountServiceImplTest extends BaseUnitTest {
 	private AccountService accountService;
 
 	@Test
+	@Transactional
+	@Rollback
 	public void update() {
+		AccountDTO accountDTO = new AccountDTO();
+		accountDTO.setUsername("张三");
+		accountDTO.setSite("www.baidu.com");
+		Integer integer = accountService.update(accountDTO);
+		Assert.assertTrue(integer > 0);
 	}
 
 	@Test
 	public void findById() {
+		Account account = accountService.findById("1");
+		Assert.assertNotNull(account);
 	}
 
 	@Test
 	public void findAccountBySite() {
+		AccountDTO accountDTO = new AccountDTO();
+		accountDTO.setSite("baidu");
+		accountDTO.setPageSize(10);
+		Assert.assertNotNull(accountService.findAccountBySite(accountDTO));
 	}
 
 	@Test
+	@Transactional
+	@Rollback
 	public void add() {
+		AccountDTO accountDTO = new AccountDTO();
+		accountDTO.setUsername("张三");
+		accountDTO.setPassword("123456");
+		accountDTO.setSite("www.baidu.com");
+		accountDTO.setSite_name("百度");
+		Assert.assertTrue(accountService.add(accountDTO) > 0);
 	}
 
 	/**

@@ -35,4 +35,16 @@ CREATE TABLE `site_account`
     `version`     int(11)      DEFAULT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
+  DEFAULT CHARSET = utf8;
+
+-- 用户性别数据
+-- test.user_gender definition
+
+CREATE TABLE `user_gender`
+(
+    `user_id`     varchar(64) NOT NULL,
+    `user_name`   varchar(64) DEFAULT NULL,
+    `user_gender` varchar(1)  DEFAULT NULL,
+    PRIMARY KEY (`user_id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;

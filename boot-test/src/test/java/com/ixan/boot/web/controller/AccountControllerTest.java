@@ -9,12 +9,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -25,6 +27,8 @@ public class AccountControllerTest extends BaseUnitTest {
 	 * {@link AccountController#update(AccountDTO)}
 	 */
 	@Test
+	@Transactional
+	@Rollback
 	public void update() throws Exception {
 		AccountDTO accountDTO = new AccountDTO();
 		accountDTO.setUsername("张三");
@@ -87,6 +91,8 @@ public class AccountControllerTest extends BaseUnitTest {
 	 * {@link AccountController#add(AccountDTO)}
 	 */
 	@Test
+	@Transactional
+	@Rollback
 	public void add() throws Exception {
 		AccountDTO accountDTO = new AccountDTO();
 		accountDTO.setUsername("张三");
