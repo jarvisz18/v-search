@@ -1,5 +1,7 @@
 package com.ixan.boot.web.controller;
 
+import com.ixan.boot.config.Result;
+import com.ixan.boot.config.ResultGenerate;
 import com.ixan.boot.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +21,8 @@ public class DriverController {
 	private DriverService driverService;
 
 	@GetMapping("/event/add")
-	public String addEvent(@RequestParam String id, @RequestParam Integer op) {
+	public Result<String> addEvent(@RequestParam String id, @RequestParam Integer op) {
 		driverService.change(id, op);
-		return "success";
+		return ResultGenerate.success("ok");
 	}
 }

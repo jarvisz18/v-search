@@ -2,8 +2,11 @@ package com.ixan.boot.utils;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 /**
@@ -12,10 +15,12 @@ import java.util.Map;
  * @date Created in 2022/1/12 下午7:13
  * @description SpringContext工具类
  */
-public class SpringContextUtils {
+@Component
+public class SpringContextUtils implements ApplicationContextAware {
 	private static ConfigurableApplicationContext applicationContext;
 
-	public static void setApplicationContext(ApplicationContext context) throws BeansException {
+	@Override
+	public void setApplicationContext(@NotNull ApplicationContext context) throws BeansException {
 		applicationContext = (ConfigurableApplicationContext) context;
 	}
 
