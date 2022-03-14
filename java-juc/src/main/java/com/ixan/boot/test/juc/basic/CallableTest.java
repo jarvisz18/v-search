@@ -18,11 +18,20 @@ public class CallableTest {
 		}
 	}
 
+	public static class CallerExceptionTask implements Callable<String> {
+		@Override
+		public String call() throws Exception {
+			throw new RuntimeException("caller task throw exception");
+		}
+	}
+
 	public static void main(String[] args) {
 		//创建异步任务
 		FutureTask<String> futureTask = new FutureTask<>(new CallerTask());
+		FutureTask<String> futureTask2 = new FutureTask<>(new CallerExceptionTask());
 		//启动线程
 		new Thread(futureTask).start();
+		new Thread(futureTask2).start();
 
 		String s = null;
 		try {
@@ -31,5 +40,13 @@ public class CallableTest {
 			e.printStackTrace();
 		}
 		System.out.println("异步任务返回值:" + s);
+		System.out.println("+++++++++++++++++++++++++++++++++++++++");
+		String s2 = null;
+		try {
+			s2 = futureTask2.get();
+		} catch (InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+		}
+		System.out.println("异步任务返回值:" + s2);
 	}
 }
