@@ -1,9 +1,11 @@
 package com.ixan.boot.web.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.ixan.boot.config.Result;
 import com.ixan.boot.config.ResultGenerate;
 import com.ixan.boot.domain.base.ApplicationContextUtil;
 import com.ixan.boot.domain.dto.ContractDTO;
+import com.ixan.boot.domain.dto.CustomerBO;
 import com.ixan.boot.domain.dto.EmplDTO;
 import com.ixan.boot.domain.valid.Save;
 import com.ixan.boot.mapper.AccountMapper;
@@ -14,6 +16,7 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -61,6 +64,13 @@ public class ValidatorController {
 			return ResultGenerate.fail(con_id);
 		}
 		return ResultGenerate.success(con_id);
+	}
+
+	@PostMapping("/valid/cust")
+	public Result<String> validCustomerBO(@Valid @RequestBody CustomerBO customerBO) {
+		String cust = JSON.toJSONString(customerBO);
+		log.info("对象:[{}]", cust);
+		return ResultGenerate.success(cust);
 	}
 
 }
