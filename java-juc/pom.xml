@@ -11,6 +11,7 @@
 
     <artifactId>java-juc</artifactId>
 
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -48,7 +49,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>1.1.21</version>
+            <version>${druid.version}</version>
         </dependency>
         <dependency>
             <groupId>com.zaxxer</groupId>
@@ -69,7 +70,12 @@
         <dependency>
             <groupId>org.openjdk.jol</groupId>
             <artifactId>jol-cli</artifactId>
-            <version>0.14</version>
+            <version>${org.openjdk.jol.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>${org.openjdk.jol.version}</version>
         </dependency>
     </dependencies>
 

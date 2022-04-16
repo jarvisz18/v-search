@@ -1,4 +1,4 @@
-package com.ixan.boot.test.base;
+package com.ixan.boot.test.base.vm;
 
 import org.openjdk.jol.info.ClassLayout;
 
