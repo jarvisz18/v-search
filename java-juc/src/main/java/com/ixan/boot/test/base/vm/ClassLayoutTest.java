@@ -8,7 +8,7 @@ import org.openjdk.jol.info.ClassLayout;
  * @description jol test
  * @version 1.0
  */
-public class JolTest {
+public class ClassLayoutTest {
 	public static void main(String[] args) {
 		Object object = new Object();
 		System.err.println(ClassLayout.parseInstance(object).toPrintable());

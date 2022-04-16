@@ -13,8 +13,8 @@ import java.util.concurrent.TimeUnit;
  * @description HashMapTest
  * @version 1.0
  */
-public class HashMapTestMemoryTest {
-	private static final Logger LOGGER = LoggerFactory.getLogger(HashMapTestMemoryTest.class);
+public class HashMapMemoryTest {
+	private static final Logger LOGGER = LoggerFactory.getLogger(HashMapMemoryTest.class);
 
 
 	public static void main(String[] args) throws InterruptedException {
