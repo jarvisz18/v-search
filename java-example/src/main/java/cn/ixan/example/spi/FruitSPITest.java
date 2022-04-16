@@ -1,6 +1,4 @@
-package cn.ixan.example;
-
-import cn.ixan.example.spi.Fruit;
+package cn.ixan.example.spi;
 
 import java.util.ServiceLoader;
 
