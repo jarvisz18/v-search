@@ -45,7 +45,10 @@ public class ObjectMemoryTest {
 		int[] arr = new int[]{1, 2, 3, 4, 5};
 		System.out.println(ClassLayout.parseInstance(arr).toPrintable());
 
-		String name = new String("Java");
+		String name = "Java";
 		System.out.println(ClassLayout.parseInstance(name).toPrintable());
+
+		Integer intValue = 100;
+		System.out.println(ClassLayout.parseInstance(intValue).toPrintable());
 	}
 }
