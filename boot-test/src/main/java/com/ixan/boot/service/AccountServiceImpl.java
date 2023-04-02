@@ -8,6 +8,7 @@ import com.ixan.boot.mapper.AccountMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.entity.Example;
 
@@ -70,6 +71,21 @@ public class AccountServiceImpl implements AccountService {
 		PageHelper.startPage(accountDTO.getPageNum(), accountDTO.getPageSize());
 		List<Account> accountList = accountMapper.findAll();
 		return new PageInfo<>(accountList);
+	}
+
+	@Transactional(rollbackFor = Exception.class,noRollbackFor = RuntimeException.class)
+	@Override
+	public void insertRollbackForException() {
+		Account instance = new Account();
+		instance.setSite_name("aaa");
+		instance.setSite("bbb");
+		instance.setUsername("jarvis");
+		instance.setPassword("1234");
+		instance.setCreate_time(new Date());
+		instance.setUpdate_time(new Date());
+		instance.setVersion(1);
+		accountMapper.insert(instance);
+		throw new RuntimeException();
 	}
 
 	private boolean exist(String id) {

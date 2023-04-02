@@ -2,9 +2,9 @@ spring:
   application:
     name: boot-test
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/user?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=true
     username: root
-    password: root
+    password: root@1234
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       auto-commit: true
@@ -17,9 +17,9 @@ spring:
       read-only: false
 
 logging:
-  file: ./log/boot-test.log
+  file: /Users/mac/Desktop/logs/${spring.application.name}/log/boot-test.log
   level:
-    root: INFO
+    root: DEBUG
     com.ixan.boot.mapper: DEBUG
   config: classpath:logback-spring.xml
 

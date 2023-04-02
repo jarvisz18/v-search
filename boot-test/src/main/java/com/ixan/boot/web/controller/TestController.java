@@ -2,13 +2,15 @@ package com.ixan.boot.web.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.ixan.boot.domain.Account;
-import com.ixan.boot.test.UserDTO;
+import com.ixan.boot.domain.dto.UserDTO2;
+import com.ixan.boot.service.AccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
@@ -22,9 +24,17 @@ import java.util.Date;
 public class TestController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(TestController.class);
 
+	@Resource
+	private AccountService accountService;
+
+	@GetMapping("/insert")
+	public void insert(){
+		accountService.insertRollbackForException();
+	}
+
 	@GetMapping("/user")
-	public UserDTO get() {
-		UserDTO user = new UserDTO();
+	public UserDTO2 get() {
+		UserDTO2 user = new UserDTO2();
 		user.setId(26);
 		user.setName("张三");
 		user.setCreateTime(new Date());

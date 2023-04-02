@@ -18,4 +18,5 @@ public interface AccountService {
     int add(AccountDTO account);
     PageInfo<Account> findAll(AccountDTO accountDTO);
 
+	void insertRollbackForException();
 }
