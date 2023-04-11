@@ -9,7 +9,8 @@ import lombok.Data;
  * @version 1.0
  */
 @Data
-public class SendLogDTO {
+public class SendLogDTO extends PageDTO{
+	private static final long serialVersionUID = 5061419738168989716L;
 	private Long id;
 	private String type;
 	private String templateName;

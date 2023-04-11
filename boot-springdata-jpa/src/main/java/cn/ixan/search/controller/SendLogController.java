@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -52,6 +55,18 @@ public class SendLogController {
 		return sendLogService.findAll(logDto, pageable);
 	}
 
+	@GetMapping("/findSendLogsByType")
+	public Page<SendLog> findSendLogsByType(@RequestParam(required = false) String type,
+											@RequestParam(defaultValue = "0") Integer pageNo,
+											@RequestParam(defaultValue = "100") Integer pageSize) {
+		SendLogDTO logDto = new SendLogDTO();
+		logDto.setPageNo(pageNo);
+		logDto.setPageSize(pageSize);
+		logDto.setType(type);
+		logDto.setTemplateName("测试%");
+		return sendLogService.findSendLogsByType(logDto);
+	}
+
 	@PostMapping("/findSendLog")
 	public List<SendLog> findSendLogByTemplateName(@RequestBody Map<String, String> paramMap) {
 		String templateName = paramMap.get("templateName");
@@ -64,6 +79,7 @@ public class SendLogController {
 		SendLog sendLog = new SendLog();
 		sendLog.setTemplateName("测试:" + System.currentTimeMillis());
 		sendLog.setType(type);
+		sendLog.setEntryDatetime(LocalDateTime.now());
 		sendLogService.addLog(sendLog);
 	}
 }

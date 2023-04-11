@@ -6,17 +6,19 @@ import cn.ixan.search.domain.SendLog;
 import cn.ixan.search.domain.SendLogDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import java.util.List;
 
 /**
  * @author stackzhang@126.com
+ * @version 1.0
  * @date Created in 2021/7/5 10:21
  * @description 日志
- * @version 1.0
  */
 @Service
 public class SendLogServiceImpl implements SendLogService {
@@ -59,5 +61,14 @@ public class SendLogServiceImpl implements SendLogService {
 	@Override
 	public void addLog(SendLog sendLog) {
 		sendLogRepository.save(sendLog);
+	}
+
+	@Override
+	public Page<SendLog> findSendLogsByType(SendLogDTO logDto) {
+		Assert.notNull(logDto.getPageNo(), "pageNo cannot be null");
+		Assert.notNull(logDto.getPageSize(), "pageSize cannot be null");
+		Pageable pageable = PageRequest.of(0, 10);
+		String type = logDto.getType();
+		return sendLogRepository.findSendLogsByType5(type, pageable);
 	}
 }
