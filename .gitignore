@@ -1,6 +1,30 @@
-/target/
+# logs
 /logs/
+
 /.idea/
+*/.idea/
+
 *.iml
-!/search.iml
-java-example/target/
+
+# target
+target/
+*/target/
+
+# svn
+.svn/
+
+# OSX System
+.DS_Store
+.AppleDouble
+.LSOverride
+
+/out/
+
+# JAVA
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
