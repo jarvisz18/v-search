@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import java.io.Serializable;
@@ -22,9 +23,13 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "send_log", schema = "test")
 public class SendLog implements Serializable {
-
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	/**
+	 *  这里使用了序列来生成主键，
+	 *  如果使用@GeneratedValue策略GenerationType.IDENTITY, Hibernate将禁用批量更新
+	 */
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqGen")
+	@SequenceGenerator(name = "seqGen", sequenceName = "seq", initialValue = 1)
 	private Long id;
 
 	@Column(name = "type")

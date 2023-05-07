@@ -25,7 +25,7 @@ import java.util.Map;
  * @version 1.0
  */
 @RestController
-public class SendLogController {
+public class SendLogQueryController {
 	@Autowired
 	private SendLogService sendLogService;
 

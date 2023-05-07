@@ -29,4 +29,6 @@ public interface SendLogService {
 	void addLog(SendLog sendLog);
 
 	Page<SendLog> findSendLogsByType(SendLogDTO logDto);
+
+	void batchAddLog(List<SendLog> sendLogList);
 }

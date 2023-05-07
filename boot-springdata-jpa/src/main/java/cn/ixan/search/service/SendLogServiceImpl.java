@@ -1,17 +1,19 @@
 package cn.ixan.search.service;
 
-import cn.ixan.search.dao.SendLogJpaRepository;
 import cn.ixan.search.dao.SendLogRepository;
 import cn.ixan.search.domain.SendLog;
 import cn.ixan.search.domain.SendLogDTO;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import javax.persistence.criteria.Predicate;
 import java.util.List;
 
 /**
@@ -24,8 +26,6 @@ import java.util.List;
 public class SendLogServiceImpl implements SendLogService {
 	@Autowired
 	private SendLogRepository sendLogRepository;
-	@Autowired
-	private SendLogJpaRepository sendLogJpaRepository;
 
 	@Transactional(rollbackFor = Exception.class)
 	@Override
@@ -45,7 +45,15 @@ public class SendLogServiceImpl implements SendLogService {
 
 	@Override
 	public Page<SendLog> findAll(SendLogDTO logDto, Pageable pageable) {
-		return sendLogJpaRepository.findAll(logDto, pageable);
+		Specification specification = (root, query, criteriaBuilder) -> {
+			Predicate predicate = criteriaBuilder.conjunction();
+			if (!StringUtils.isEmpty(logDto.getTemplateName())) {
+				predicate.getExpressions().add(criteriaBuilder.like(root.get("templateName"), logDto.getTemplateName()));
+			}
+			query.where(predicate);
+			return predicate;
+		};
+		return sendLogRepository.findAll(specification, pageable);
 	}
 
 	@Override
@@ -70,5 +78,11 @@ public class SendLogServiceImpl implements SendLogService {
 		Pageable pageable = PageRequest.of(0, 10);
 		String type = logDto.getType();
 		return sendLogRepository.findSendLogsByType5(type, pageable);
+	}
+
+	@Override
+	public void batchAddLog(List<SendLog> sendLogList) {
+		sendLogRepository.batchInsert(sendLogList, 1000);
+		//sendLogRepository.saveAll(sendLogList);
 	}
 }

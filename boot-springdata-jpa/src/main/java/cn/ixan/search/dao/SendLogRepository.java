@@ -5,6 +5,7 @@ import cn.ixan.search.domain.SendLogDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -19,7 +20,7 @@ import java.util.List;
  * @description
  */
 @Repository
-public interface SendLogRepository extends JpaRepository<SendLog, Integer> {
+public interface SendLogRepository extends JpaRepository<SendLog, Integer>, JpaSpecificationExecutor<SendLog>,IBatchJpaRepository<SendLog, Integer> {
 	/**
 	 * 派生的通过解析方法名称的查询
 	 *
@@ -84,6 +85,8 @@ public interface SendLogRepository extends JpaRepository<SendLog, Integer> {
 	@Query(value = "select s from SendLog as s where 1=1" +
 			"  and (:type is null or s.type = :type)", countProjection = "s.id")
 	Page<SendLog> findSendLogsByType5(@Param("type") String type, Pageable pageable);
+
+
 
 
 }
