@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--jdbc config-->
+    <properties resource="jdbc.properties"/>
+
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
+    <!--datasource config-->
+    <environments default="development">
+        <!--test-->
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${datasource.test.jdbc.driver}"/>
+                <property name="url" value="${datasource.test.jdbc.url}"/>
+                <property name="username" value="${datasource.test.jdbc.username}"/>
+                <property name="password" value="${datasource.test.jdbc.password}"/>
+            </dataSource>
+        </environment>
+        <!--test1-->
+        <environment id="development-dev">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${datasource.test1.jdbc.driver}"/>
+                <property name="url" value="${datasource.test1.jdbc.url}"/>
+                <property name="username" value="${datasource.test1.jdbc.username}"/>
+                <property name="password" value="${datasource.test1.jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="cn/ixan/mybatis/mapper/SendLogMapper.xml"/>
+    </mappers>
+
+</configuration>
