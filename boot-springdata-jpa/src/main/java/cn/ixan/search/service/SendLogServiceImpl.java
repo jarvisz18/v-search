@@ -3,8 +3,10 @@ package cn.ixan.search.service;
 import cn.ixan.search.dao.SendLogRepository;
 import cn.ixan.search.domain.SendLog;
 import cn.ixan.search.domain.SendLogDTO;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,10 +24,13 @@ import java.util.List;
  * @date Created in 2021/7/5 10:21
  * @description 日志
  */
+@RequiredArgsConstructor
 @Service
+@Slf4j
 public class SendLogServiceImpl implements SendLogService {
-	@Autowired
-	private SendLogRepository sendLogRepository;
+
+	private final Environment environment;
+	private final SendLogRepository sendLogRepository;
 
 	@Transactional(rollbackFor = Exception.class)
 	@Override
@@ -82,7 +87,7 @@ public class SendLogServiceImpl implements SendLogService {
 
 	@Override
 	public void batchAddLog(List<SendLog> sendLogList) {
-		sendLogRepository.batchInsert(sendLogList, 1000);
-		//sendLogRepository.saveAll(sendLogList);
+		String batchSize = environment.getProperty("spring.jpa.properties.hibernate.jdbc.batch_size","500");
+		sendLogRepository.batchInsert(sendLogList, Integer.valueOf(batchSize));
 	}
 }

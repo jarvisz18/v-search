@@ -23,12 +23,12 @@ spring:
     properties:
       hibernate:
         jdbc:
-          batch_size: 500
+          batch_size: 2000
         order_inserts: true
         order_updates: true
         generate_statistics: true
 logging:
-  file: /home/log/boot-test.log
+  file: /home/log/${spring.application.name}.log
   level:
     root: INFO
     com.ixan.boot.mapper: DEBUG

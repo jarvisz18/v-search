@@ -37,6 +37,7 @@ public class SendLogCmdController {
 			sendLog.setType("type_" + random.nextInt(100));
 			sendLog.setEntryId(1);
 			sendLog.setEntryDatetime(LocalDateTime.now());
+			sendLog.setUpdateId(1);
 			sendLogList.add(sendLog);
 		}
 		long start = System.currentTimeMillis();
