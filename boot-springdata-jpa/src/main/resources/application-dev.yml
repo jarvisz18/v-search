@@ -28,7 +28,7 @@ spring:
         order_updates: true
         generate_statistics: true
 logging:
-  file: /home/log/${spring.application.name}.log
+  file: /Users/${user.name}/Desktop/logs/${spring.application.name}/log/boot-test.log
   level:
     root: INFO
     com.ixan.boot.mapper: DEBUG

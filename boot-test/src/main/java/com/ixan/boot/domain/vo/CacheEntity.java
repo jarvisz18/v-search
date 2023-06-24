@@ -7,13 +7,11 @@ package com.ixan.boot.domain.vo;
  * @version 1.0
  */
 public class CacheEntity {
-	private int id;
-	private String name;
+	private final int id;
+	private final String name;
 
-	public CacheEntity() {
-	}
-
-	public CacheEntity(String name) {
+	public CacheEntity(int id, String name) {
+		this.id = id;
 		this.name = name;
 	}
 
@@ -21,15 +19,11 @@ public class CacheEntity {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public static CacheEntity empty(){
+		return new CacheEntity(-1,"not found");
 	}
 }

@@ -17,7 +17,7 @@ spring:
       read-only: false
 
 logging:
-  file: /Users/mac/Desktop/logs/${spring.application.name}/log/boot-test.log
+  file: /Users/${user.name}/Desktop/logs/${spring.application.name}/log/boot-test.log
   level:
     root: DEBUG
     com.ixan.boot.mapper: DEBUG

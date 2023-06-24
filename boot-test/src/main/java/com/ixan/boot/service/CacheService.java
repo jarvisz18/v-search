@@ -11,10 +11,21 @@ import org.springframework.cache.annotation.Cacheable;
  * @version 1.0
  */
 public interface CacheService {
+	/**
+	 * 使用了一个缓存名叫 accountCache
+	 * @return cache entity
+	 */
 	@Cacheable(value = "accountCache")
-// 使用了一个缓存名叫 accountCache
-	CacheEntity getAccountByName(String userName);
+	CacheEntity create(Integer cacheId);
 
 	@CacheEvict(value = "accountCache", beforeInvocation = true)
-	void reload();
+	void clear();
+
+	Object findAll(String name);
+
+	CacheEntity update(Integer cacheId);
+
+	void delete(Integer cacheId);
+
+	CacheEntity find(Integer cacheId);
 }
