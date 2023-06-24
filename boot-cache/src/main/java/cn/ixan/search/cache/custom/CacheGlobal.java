@@ -12,5 +12,5 @@ public class CacheGlobal {
 	/**
 	 * 全局缓存对象
 	 */
-	public static ConcurrentHashMap<String, MyCache> concurrentHashMap = new ConcurrentHashMap<>();
+	public static final ConcurrentHashMap<String, MyCache> concurrentHashMap = new ConcurrentHashMap<>();
 }
