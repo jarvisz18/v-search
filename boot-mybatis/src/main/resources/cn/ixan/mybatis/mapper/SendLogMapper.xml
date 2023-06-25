@@ -14,4 +14,16 @@
         select * from send_log where type like concat('%',#{type},'%') limit 1
     </select>
 
+    <select id="findByIds" parameterType="java.lang.Integer" resultType="java.util.Map">
+        select * from send_log
+        <where>
+            <if test="ids != null and ids.size()>0">
+                and id in
+                <foreach collection="ids" open="(" close=")" item="id" separator="," index="index">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
 </mapper>

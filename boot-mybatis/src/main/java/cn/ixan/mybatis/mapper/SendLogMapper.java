@@ -3,6 +3,7 @@ package cn.ixan.mybatis.mapper;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,4 +19,7 @@ public interface SendLogMapper {
 
 	@MapKey("id")
 	Map<String,Object> findByTypeLike(@Param("type") String type);
+
+	@MapKey("id")
+	List<Map<String,Object>> findByIds(List<Integer> ids);
 }

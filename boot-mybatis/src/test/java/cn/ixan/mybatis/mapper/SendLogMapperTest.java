@@ -10,6 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class SendLogMapperTest {
@@ -41,6 +43,13 @@ public class SendLogMapperTest {
 	public void findByTypeLike() {
 		Map<String, Object> resultMap = mapper.findByTypeLike("64");
 		System.out.println(resultMap);
+	}
+
+	@Test
+	public void findByIds() {
+		List<Integer> ids = Arrays.asList(1, 3, 5, 7, 8, 9);
+		List<Map<String, Object>> resultMap = mapper.findByIds(ids);
+		resultMap.forEach(System.out::println);
 	}
 
 
