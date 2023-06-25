@@ -10,4 +10,8 @@
         select * from send_log where id=#{id} limit 1
     </select>
 
+    <select id="findByTypeLike" parameterType="java.lang.String" resultType="java.util.Map">
+        select * from send_log where type like concat('%',#{type},'%') limit 1
+    </select>
+
 </mapper>

@@ -15,4 +15,7 @@ public interface SendLogMapper {
 
 	@MapKey("id")
 	Map<String,Object> findById(@Param("id") Integer id);
+
+	@MapKey("id")
+	Map<String,Object> findByTypeLike(@Param("type") String type);
 }

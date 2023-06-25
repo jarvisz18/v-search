@@ -37,6 +37,12 @@ public class SendLogMapperTest {
 		System.out.println(resultMap);
 	}
 
+	@Test
+	public void findByTypeLike() {
+		Map<String, Object> resultMap = mapper.findByTypeLike("64");
+		System.out.println(resultMap);
+	}
+
 
 	@After
 	public void after() {
