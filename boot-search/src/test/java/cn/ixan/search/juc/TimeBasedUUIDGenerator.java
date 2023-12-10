@@ -17,8 +17,9 @@
  * under the License.
  */
 
-package cn.ixan.search.utils.base;
+package cn.ixan.search.juc;
 
+import cn.ixan.search.utils.base.SecureRandomHolder;
 import org.elasticsearch.common.MacAddressProvider;
 
 import java.util.Base64;

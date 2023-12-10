@@ -1,7 +1,5 @@
 package cn.ixan.search.juc;
 
-import cn.ixan.search.utils.base.TimeBasedUUIDGenerator;
-import cn.ixan.search.utils.base.UUIDGenerator;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

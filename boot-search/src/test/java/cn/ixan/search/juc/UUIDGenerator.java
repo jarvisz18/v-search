@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package cn.ixan.search.utils.base;
+package cn.ixan.search.juc;
 
 /**
  * Generates opaque unique strings.
